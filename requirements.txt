@@ -2,3 +2,5 @@ pandas
 requests
 beautifulsoup4
 openpyxl
+selenium
+webdriver-manager
