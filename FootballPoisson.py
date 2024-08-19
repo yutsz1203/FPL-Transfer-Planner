@@ -89,12 +89,46 @@ def update_fixture():
         cell = sheet.cell(row=1, column=col, value=gameweek)
         cell.font = DEFAULT_FONT_BOLD
 
+    team_map = {
+        "ARS": 2,
+        "AVL": 3,
+        "BOU": 4,
+        "BRE": 5,
+        "BHA": 6,
+        "CHE": 7,
+        "CRY": 8,
+        "EVE": 9,
+        "FUL": 10,
+        "IPS": 11,
+        "LEI": 12,
+        "LIV": 13,
+        "MCI": 14,
+        "MUN": 15,
+        "NEW": 16,
+        "NFO": 17,
+        "SOU": 18,
+        "TOT": 19,
+        "WHU": 20,
+        "WOL": 21
+    }
+    team_data_sheet = wb["Team Data"]
+
     for row in range (2,22):
         sheet[f"A{row}"] = fixtures[row-2]["Team"]
         sheet[f"A{row}"].font = DEFAULT_FONT_BOLD
         for col, opponent in enumerate(fixtures[row - 2]["Next 5"], start=2):
+            #filling in opponents
             cell = sheet.cell(row=row, column=col, value=opponent)
             cell.font = DEFAULT_FONT
+
+            #aggregating Oi and Di
+            cleaned_opponent = opponent.split(" ")[0]
+            team_row = team_map[cleaned_opponent]
+
+            sheet[f"G{team_row}"] = sheet[f"G{team_row}"].value + team_data_sheet[f"G{team_row}"].value
+            sheet[f"H{team_row}"] = sheet[f"H{team_row}"].value + team_data_sheet[f"H{team_row}"].value
+
+        
     print("Finished updating excel.")
 
     wb.save("FootballPoisson.xlsx")
