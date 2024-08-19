@@ -2,7 +2,7 @@
 
 ## Description
 
-This program extracts Premier League data from fpl.page for assiting me in planning my transfers in Fantasy Premier League. It currently extracts (1) Gameweek Data (Goal for, Goal against) and (2) Fixture Data (future 5 gws).
+This program extracts Premier League data from [fpl.page](https://fpl.page) (thanks to FPL Focal) for assiting me in planning my transfers in Fantasy Premier League (FPL). It currently extracts (1) Gameweek Data (Goal for, Goal against) and (2) Fixture Data (future 5 gws).
 
 ### (1) Gameweek Data
 
@@ -14,13 +14,15 @@ The fixture data provides the next 5 opponents of each team. Then, total Oi and 
 
 ## Running the program
 
+Pass the following arguments to get respective data
+
 ### (1) Gameweek Data
 
-`$ python FootballPoisson.py update_data`
+`$update_data`
 
 ### (2) Fixture Data
 
-`$ python FootballPoisson.py update_fixture`
+`$update_fixture`
 
 ## Features to work on
 
