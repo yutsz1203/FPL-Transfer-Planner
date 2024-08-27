@@ -1,4 +1,6 @@
+import math
 import sys
+from functools import partial
 
 import pandas as pd
 import requests
@@ -12,7 +14,27 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 DEFAULT_FONT = Font(size=16)
 DEFAULT_FONT_BOLD = Font(size=16, bold=True)
+#Helper functions
+def get_fmt_str(x, fill):
+        return "{message: >{fill}}".format(message=x, fill=fill)
 
+def format_columns(df):
+    s = df.astype(str).agg(lambda x: x.str.len()).max() 
+
+    pad = 6  
+    fmts = {}
+    for idx, c_len in s.items():
+        if isinstance(idx, tuple):
+            lab_len = max([len(str(x)) for x in idx])
+        else:
+            lab_len = len(str(idx))
+
+        fill = max(lab_len, c_len) + pad - 1
+        fmts[idx] = partial(get_fmt_str, fill=fill)
+    return fmts
+
+
+#Main functions
 def update_data():
     #web scrapping
     url = "https://fpl.page/bonus"
@@ -164,7 +186,7 @@ def update_fixture():
 
     sheet["G22"].value = df["Oi"].mean()
     sheet["H22"].value = df["Di"].mean()
-    
+
     low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
     high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
 
@@ -178,8 +200,88 @@ def update_fixture():
 
     wb.save("FootballPoisson.xlsx")
 
+def show_summary():
+    wb = load_workbook("FootballPoisson.xlsx")
+    team_data_sheet = wb["Team Data"]
+    fixture_sheet = wb["Fixtures"]
+
+    team_df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
+    top_attacking_team = []
+    top_defending_team = []
+
+    columns = ["B", "C", "D", "E", "F"]
+
+    for col in columns:
+        attack_team = team_data_sheet[f"{col}26"].value
+        defend_team = team_data_sheet[f"{col}27"].value 
+        top_attacking_team.append({"Team": attack_team, "Oi": team_df.loc[team_df["Team"] == attack_team, "Oi"].values[0], "Di": team_df.loc[team_df["Team"] == attack_team, "Di"].values[0]})
+        top_defending_team.append({"Team": defend_team, "Oi": team_df.loc[team_df["Team"] == defend_team, "Oi"].values[0], "Di": team_df.loc[team_df["Team"] == defend_team, "Di"].values[0]})
+
+    fixture_df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Fixtures", usecols="A:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
+    favourable_attacking_teams = []
+    favourable_defending_teams = []
+
+    gameweeks = fixture_df.columns[1:6]
+
+    for col in columns:
+        attack_team = fixture_sheet[f"{col}24"].value
+        defend_team = fixture_sheet[f"{col}25"].value
+        favourable_attacking_teams.append(
+            {"Team": attack_team, 
+             gameweeks[0]: fixture_df.loc[fixture_df["Team"] == attack_team, gameweeks[0]].values[0],
+             gameweeks[1]: fixture_df.loc[fixture_df["Team"] == attack_team, gameweeks[1]].values[0],
+             gameweeks[2]: fixture_df.loc[fixture_df["Team"] == attack_team, gameweeks[2]].values[0],
+             gameweeks[3]: fixture_df.loc[fixture_df["Team"] == attack_team, gameweeks[3]].values[0],
+             gameweeks[4]: fixture_df.loc[fixture_df["Team"] == attack_team, gameweeks[4]].values[0],
+             "Oi": fixture_df.loc[fixture_df["Team"] == attack_team, "Oi"].values[0], 
+             "Di": fixture_df.loc[fixture_df["Team"] == attack_team, "Di"].values[0],
+            }
+            )
+        favourable_defending_teams.append(
+            {"Team": defend_team, 
+             gameweeks[0]: fixture_df.loc[fixture_df["Team"] == defend_team, gameweeks[0]].values[0],
+             gameweeks[1]: fixture_df.loc[fixture_df["Team"] == defend_team, gameweeks[1]].values[0],
+             gameweeks[2]: fixture_df.loc[fixture_df["Team"] == defend_team, gameweeks[2]].values[0],
+             gameweeks[3]: fixture_df.loc[fixture_df["Team"] == defend_team, gameweeks[3]].values[0],
+             gameweeks[4]: fixture_df.loc[fixture_df["Team"] == defend_team, gameweeks[4]].values[0],
+             "Oi": fixture_df.loc[fixture_df["Team"] == defend_team, "Oi"].values[0], 
+             "Di": fixture_df.loc[fixture_df["Team"] == defend_team, "Di"].values[0],
+             }
+            )
+
+    gameweek = team_df["Games"].max()
+    separator = "--------------------"
+    print(f"Summary for GW {gameweek}")
+    print(separator)
+    
+    print(f"Average Oi: {math.floor(team_data_sheet["G23"].value * 100)/100}\n")
+    print("Top 5 attacking teams")
+    top_attacking_team_df = pd.DataFrame(top_attacking_team)
+    print(top_attacking_team_df.sort_values(by=["Oi"], ascending=False).to_string(index=False, formatters=format_columns(top_attacking_team_df)))
+    
+    print(separator)
+    print(f"Average Di: {math.floor(team_data_sheet["H23"].value * 100)/100}\n")
+    print("Top 5 defending teams")
+    top_defending_team_df = pd.DataFrame(top_defending_team)
+    print(top_defending_team_df.sort_values(by=["Di"], ascending=True).to_string(index=False, formatters=format_columns(top_defending_team_df)))
+    print(separator)
+
+    print("Top 5 favourable attacking teams")
+    print(f"Average aggregated Di: {math.floor(fixture_sheet['H23'].value * 100)/100}\n")
+    favourable_attacking_teams_df = pd.DataFrame(favourable_attacking_teams)
+    print(favourable_attacking_teams_df.sort_values(by=["Di"], ascending=False).to_string(index=False, formatters=format_columns(favourable_attacking_teams_df)))   
+    print(separator)
+    
+    print("Top 5 favourable defending teams")
+    print(f"Average aggregated Oi: {math.floor(fixture_sheet["G23"].value * 100)/100}\n" )
+    favourable_defending_teams_df = pd.DataFrame(favourable_defending_teams)
+    print(favourable_defending_teams_df.sort_values(by=["Oi"], ascending=True).to_string(index=False, formatters=format_columns(favourable_defending_teams_df)))
+
+#Initiate functions
 if __name__ == "__main__":  
     if(sys.argv[1] == "update_data"):
         update_data()
     elif(sys.argv[1] == "update_fixture"):
         update_fixture()
+    elif(sys.argv[1] == "show_summary"):
+        show_summary()
