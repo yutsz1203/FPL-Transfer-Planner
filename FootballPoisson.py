@@ -35,22 +35,55 @@ def update_data():
             teams.append({"Team": home_team, "GF": scores[0], "GA": scores[1]})
             teams.append({"Team": away_team, "GF": scores[1], "GA": scores[0]})
 
-    team_dict = {team["Team"]: team for team in teams}
+    print("Finished getting gameweek data")
     #update excel
     wb = load_workbook("FootballPoisson.xlsx")
     sheet = wb["Team Data"]
 
-    for row in range(2,22):
-        team_name = sheet[f"A{row}"].value
-        if team_name in team_dict:
-            team = team_dict[team_name]
-            sheet[f"B{row}"] = sheet[f"B{row}"].value + team["GF"]
-            sheet[f"B{row}"].font = DEFAULT_FONT
-            sheet[f"C{row}"] = sheet[f"C{row}"].value + team["GA"]
-            sheet[f"C{row}"].font = DEFAULT_FONT
-            sheet[f"D{row}"] = sheet[f"D{row}"].value + 1
-            sheet[f"D{row}"].font = DEFAULT_FONT
+    df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
+    for team in teams:
+        team_name = team["Team"]
+        team_row = df.index[df["Team"] == team_name].tolist()[0]
+        df.loc[team_row, "GF"] = df.loc[team_row, "GF"] + team["GF"]
+        df.loc[team_row, "GA"] = df.loc[team_row, "GA"] + team["GA"]
+        df.loc[team_row, "Games"] += 1
+        df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
+        df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
+    lod = df["GF"].sum() / df["Games"].sum()
+    df["Oi"] = df["Avg.GF"] / lod
+    df["Di"] = df["Avg.GA"] / lod
     
+    df["Avg.GF"] = df["Avg.GF"].round(2)
+    df["Avg.GA"] = df["Avg.GA"].round(2)
+    df["Oi"] = df["Oi"].round(2)
+    df["Di"] = df["Di"].round(2)
+
+    sheet["B23"] = df["GF"].sum()
+    sheet["C23"] = df["GA"].sum()
+    sheet["D23"] = df["Games"].sum()
+    sheet["E23"] = df["Avg.GF"].mean()
+    sheet["F23"] = df["Avg.GA"].mean()
+    sheet["G23"] = df["Oi"].mean()
+    sheet["H23"] = df["Di"].mean()
+
+    sheet["B24"] = lod
+    top_attacking = df.sort_values(by=["Oi"], ascending=False)["Team"].head(5).tolist()
+    top_defending = df.sort_values(by=["Di"], ascending=True)["Team"].head(5).tolist()
+
+    top_attacking.sort()
+    top_defending.sort()
+
+    columns = ["B", "C", "D", "E", "F"]
+
+    for i, col in enumerate(columns):
+        sheet[f"{col}26"] = top_attacking[i]
+        sheet[f"{col}27"] = top_defending[i]
+
+    for r_idx, row in enumerate(df.values, start=2):
+        for c_idx, value in enumerate(row, start=1):
+            sheet.cell(row=r_idx, column=c_idx, value=value)
+
+    print("Finished updating team gameweek data.")    
     wb.save("FootballPoisson.xlsx")
 
 def update_fixture():
@@ -82,7 +115,7 @@ def update_fixture():
     driver.quit()
 
     #update excel
-    wb = load_workbook("FootballPoisson.xlsx")
+    wb = load_workbook("FootballPoisson.xlsx", data_only=True)
     sheet = wb["Fixtures"]
 
     for col, gameweek in enumerate(gameweeks, start=2):
@@ -112,7 +145,6 @@ def update_fixture():
         "WOL": 21
     }
     team_data_sheet = wb["Team Data"]
-
     for row in range (2,22):
         sheet[f"A{row}"] = fixtures[row-2]["Team"]
         sheet[f"A{row}"].font = DEFAULT_FONT_BOLD
@@ -125,11 +157,24 @@ def update_fixture():
             cleaned_opponent = opponent.split(" ")[0]
             team_row = team_map[cleaned_opponent]
 
-            sheet[f"G{team_row}"] = sheet[f"G{team_row}"].value + team_data_sheet[f"G{team_row}"].value
-            sheet[f"H{team_row}"] = sheet[f"H{team_row}"].value + team_data_sheet[f"H{team_row}"].value
+            sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"G{team_row}"].value
+            sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"H{team_row}"].value
+    wb.save("FootballPoisson.xlsx")
+    df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Fixtures", usecols="G:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
 
-        
-    print("Finished updating excel.")
+    sheet["G22"].value = df["Oi"].mean()
+    sheet["H22"].value = df["Di"].mean()
+    
+    low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
+    high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
+
+    low_oi_index.sort()
+    high_di_index.sort()
+    for col, (low_oi_idx, high_di_idx) in enumerate(zip(low_oi_index, high_di_index), start=2):
+        sheet.cell(row=24, column=col, value=sheet[f"A{high_di_idx + 2}"].value)
+        sheet.cell(row=25, column=col, value=sheet[f"A{low_oi_idx + 2}"].value)
+
+    print("Finished updating fixture data.")
 
     wb.save("FootballPoisson.xlsx")
 
