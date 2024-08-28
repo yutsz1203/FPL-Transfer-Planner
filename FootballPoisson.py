@@ -6,14 +6,33 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
-from openpyxl.styles import Font
+from openpyxl.styles import Font, PatternFill
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
+COL_A = 1
+COL_B = 2
+COL_C = 3
+COL_D = 4
+COL_E = 5
+COL_F = 6
+COL_G = 7
+COL_H = 8
+COL_I = 9
+COL_J = 10
+
 DEFAULT_FONT = Font(size=16)
 DEFAULT_FONT_BOLD = Font(size=16, bold=True)
+YELLOW_TEXT = Font(size=16, bold=True, color="FFFFFF00")
+GREEN_TEXT = Font(size=16, bold=True, color="FF008000")
+RED_TEXT = Font(size=16, bold=True, color="FFFF0000")
+
+redFill = PatternFill(start_color='FFFF0000',end_color='FFFF0000', fill_type='solid')
+yellowFill = PatternFill(start_color='FFFFFF00', end_color='FFFFFF00',fill_type='solid')
+greenFill = PatternFill(start_color='ff00b050',end_color='ff00b050',fill_type='solid')
+
 #Helper functions
 def get_fmt_str(x, fill):
         return "{message: >{fill}}".format(message=x, fill=fill)
@@ -170,6 +189,8 @@ def update_fixture():
     for row in range (2,22):
         sheet[f"A{row}"] = fixtures[row-2]["Team"]
         sheet[f"A{row}"].font = DEFAULT_FONT_BOLD
+        sheet[f"G{row}"] = 0
+        sheet[f"H{row}"] = 0
         for col, opponent in enumerate(fixtures[row - 2]["Next 5"], start=2):
             #filling in opponents
             cell = sheet.cell(row=row, column=col, value=opponent)
@@ -184,17 +205,37 @@ def update_fixture():
     wb.save("FootballPoisson.xlsx")
     df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Fixtures", usecols="G:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
 
-    sheet["G22"].value = df["Oi"].mean()
-    sheet["H22"].value = df["Di"].mean()
+    sheet["G23"].value = df["Oi"].mean()
+    sheet["H23"].value = df["Di"].mean()
 
     low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
+    high_oi_index = df.sort_values(by=["Oi"], ascending=False)["Oi"].head(5).index.tolist()
     high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
+    low_di_index = df.sort_values(by=["Di"], ascending=True)["Di"].head(5).index.tolist()
 
     low_oi_index.sort()
     high_di_index.sort()
     for col, (low_oi_idx, high_di_idx) in enumerate(zip(low_oi_index, high_di_index), start=2):
         sheet.cell(row=24, column=col, value=sheet[f"A{high_di_idx + 2}"].value)
         sheet.cell(row=25, column=col, value=sheet[f"A{low_oi_idx + 2}"].value)
+    
+    for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index, low_oi_index, high_di_index, low_di_index):
+        sheet.cell(row=high_oi_idx + 2, column=COL_G).font = RED_TEXT
+
+        sheet.cell(row=low_oi_idx + 2, column=COL_G).fill = greenFill
+        sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = greenFill
+
+        sheet.cell(row=high_di_idx + 2, column=COL_H).fill = yellowFill
+        sheet.cell(row=high_di_idx + 2, column=COL_A).fill = yellowFill
+
+        sheet.cell(row=low_di_idx + 2, column=COL_H).font = RED_TEXT
+
+        if low_oi_idx in high_di_index:
+            sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = redFill
+        
+        if high_di_idx in low_oi_index:
+            sheet.cell(row=high_di_idx + 2, column=COL_A).fill = redFill
+
 
     print("Finished updating fixture data.")
 
@@ -251,16 +292,16 @@ def show_summary():
 
     gameweek = team_df["Games"].max()
     separator = "--------------------"
-    print(f"Summary for GW {gameweek}")
+    print(f"Summary as at GW {gameweek}")
     print(separator)
     
-    print(f"Average Oi: {math.floor(team_data_sheet["G23"].value * 100)/100}\n")
+    print(f"Average Oi: {math.floor(team_data_sheet['G23'].value * 100)/100}\n")
     print("Top 5 attacking teams")
     top_attacking_team_df = pd.DataFrame(top_attacking_team)
     print(top_attacking_team_df.sort_values(by=["Oi"], ascending=False).to_string(index=False, formatters=format_columns(top_attacking_team_df)))
     
     print(separator)
-    print(f"Average Di: {math.floor(team_data_sheet["H23"].value * 100)/100}\n")
+    print(f"Average Di: {math.floor(team_data_sheet['H23'].value * 100)/100}\n")
     print("Top 5 defending teams")
     top_defending_team_df = pd.DataFrame(top_defending_team)
     print(top_defending_team_df.sort_values(by=["Di"], ascending=True).to_string(index=False, formatters=format_columns(top_defending_team_df)))
@@ -273,7 +314,7 @@ def show_summary():
     print(separator)
     
     print("Top 5 favourable defending teams")
-    print(f"Average aggregated Oi: {math.floor(fixture_sheet["G23"].value * 100)/100}\n" )
+    print(f"Average aggregated Oi: {math.floor(fixture_sheet['G23'].value * 100)/100}\n" )
     favourable_defending_teams_df = pd.DataFrame(favourable_defending_teams)
     print(favourable_defending_teams_df.sort_values(by=["Oi"], ascending=True).to_string(index=False, formatters=format_columns(favourable_defending_teams_df)))
 
