@@ -12,6 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
+#region Constants
 COL_A = 1
 COL_B = 2
 COL_C = 3
@@ -33,7 +34,7 @@ redFill = PatternFill(start_color='FFFF0000',end_color='FFFF0000', fill_type='so
 yellowFill = PatternFill(start_color='FFFFFF00', end_color='FFFFFF00',fill_type='solid')
 greenFill = PatternFill(start_color='ff00b050',end_color='ff00b050',fill_type='solid')
 
-#Helper functions
+#region Helper functions
 def get_fmt_str(x, fill):
         return "{message: >{fill}}".format(message=x, fill=fill)
 
@@ -53,7 +54,7 @@ def format_columns(df):
     return fmts
 
 
-#Main functions
+#region Main functions
 def update_data():
     #web scrapping
     url = "https://fpl.page/bonus"
@@ -318,7 +319,7 @@ def show_summary():
     favourable_defending_teams_df = pd.DataFrame(favourable_defending_teams)
     print(favourable_defending_teams_df.sort_values(by=["Oi"], ascending=True).to_string(index=False, formatters=format_columns(favourable_defending_teams_df)))
 
-#Initiate functions
+#region System arguments
 if __name__ == "__main__":  
     if(sys.argv[1] == "update_data"):
         update_data()
