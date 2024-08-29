@@ -57,25 +57,25 @@ def format_columns(df):
 #region Main functions
 def update_data():
     #web scrapping
-    url = "https://fpl.page/bonus"
-    page = requests.get(url)
+    # url = "https://fpl.page/bonus"
+    # page = requests.get(url)
 
-    soup = BeautifulSoup(page.text, "html.parser")
+    # soup = BeautifulSoup(page.text, "html.parser")
     
-    fixtures = soup.find_all("li", class_="fixture-item")
+    # fixtures = soup.find_all("li", class_="fixture-item")
     
-    teams = []
+    # teams = []
 
-    for fixture in fixtures:
-        home_team = fixture.find("span", class_="home-text").text.strip()
-        away_team = fixture.find("span", class_="away-text").text.strip()
-        score_box = fixture.find("span", class_="score-box")
-        if score_box:
-            scores = score_box.text.split("-")
-            scores = list(map(int, scores))
+    # for fixture in fixtures:
+    #     home_team = fixture.find("span", class_="home-text").text.strip()
+    #     away_team = fixture.find("span", class_="away-text").text.strip()
+    #     score_box = fixture.find("span", class_="score-box")
+    #     if score_box:
+    #         scores = score_box.text.split("-")
+    #         scores = list(map(int, scores))
             
-            teams.append({"Team": home_team, "GF": scores[0], "GA": scores[1]})
-            teams.append({"Team": away_team, "GF": scores[1], "GA": scores[0]})
+    #         teams.append({"Team": home_team, "GF": scores[0], "GA": scores[1]})
+    #         teams.append({"Team": away_team, "GF": scores[1], "GA": scores[0]})
 
     print("Finished getting gameweek data")
     #update excel
@@ -83,47 +83,68 @@ def update_data():
     sheet = wb["Team Data"]
 
     df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
-    for team in teams:
-        team_name = team["Team"]
-        team_row = df.index[df["Team"] == team_name].tolist()[0]
-        df.loc[team_row, "GF"] = df.loc[team_row, "GF"] + team["GF"]
-        df.loc[team_row, "GA"] = df.loc[team_row, "GA"] + team["GA"]
-        df.loc[team_row, "Games"] += 1
-        df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
-        df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
-    lod = df["GF"].sum() / df["Games"].sum()
-    df["Oi"] = df["Avg.GF"] / lod
-    df["Di"] = df["Avg.GA"] / lod
+    # for team in teams:
+    #     team_name = team["Team"]
+    #     team_row = df.index[df["Team"] == team_name].tolist()[0]
+    #     df.loc[team_row, "GF"] = df.loc[team_row, "GF"] + team["GF"]
+    #     df.loc[team_row, "GA"] = df.loc[team_row, "GA"] + team["GA"]
+    #     df.loc[team_row, "Games"] += 1
+    #     df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
+    #     df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
+    # lod = df["GF"].sum() / df["Games"].sum()
+    # df["Oi"] = df["Avg.GF"] / lod
+    # df["Di"] = df["Avg.GA"] / lod
     
-    df["Avg.GF"] = df["Avg.GF"].round(2)
-    df["Avg.GA"] = df["Avg.GA"].round(2)
-    df["Oi"] = df["Oi"].round(2)
-    df["Di"] = df["Di"].round(2)
+    # df["Avg.GF"] = df["Avg.GF"].round(2)
+    # df["Avg.GA"] = df["Avg.GA"].round(2)
+    # df["Oi"] = df["Oi"].round(2)
+    # df["Di"] = df["Di"].round(2)
 
-    sheet["B23"] = df["GF"].sum()
-    sheet["C23"] = df["GA"].sum()
-    sheet["D23"] = df["Games"].sum()
-    sheet["E23"] = df["Avg.GF"].mean()
-    sheet["F23"] = df["Avg.GA"].mean()
-    sheet["G23"] = df["Oi"].mean()
-    sheet["H23"] = df["Di"].mean()
+    # sheet["B23"] = df["GF"].sum()
+    # sheet["C23"] = df["GA"].sum()
+    # sheet["D23"] = df["Games"].sum()
+    # sheet["E23"] = df["Avg.GF"].mean()
+    # sheet["F23"] = df["Avg.GA"].mean()
+    # sheet["G23"] = df["Oi"].mean()
+    # sheet["H23"] = df["Di"].mean()
 
-    sheet["B24"] = lod
+    # sheet["B24"] = lod
     top_attacking = df.sort_values(by=["Oi"], ascending=False)["Team"].head(5).tolist()
     top_defending = df.sort_values(by=["Di"], ascending=True)["Team"].head(5).tolist()
 
     top_attacking.sort()
     top_defending.sort()
 
-    columns = ["B", "C", "D", "E", "F"]
+    low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
+    high_oi_index = df.sort_values(by=["Oi"], ascending=False)["Oi"].head(5).index.tolist()
+    high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
+    low_di_index = df.sort_values(by=["Di"], ascending=True)["Di"].head(5).index.tolist()
 
-    for i, col in enumerate(columns):
-        sheet[f"{col}26"] = top_attacking[i]
-        sheet[f"{col}27"] = top_defending[i]
+    # columns = ["B", "C", "D", "E", "F"]
 
-    for r_idx, row in enumerate(df.values, start=2):
-        for c_idx, value in enumerate(row, start=1):
-            sheet.cell(row=r_idx, column=c_idx, value=value)
+    # for i, col in enumerate(columns):
+    #     sheet[f"{col}26"] = top_attacking[i]
+    #     sheet[f"{col}27"] = top_defending[i]
+
+    # for r_idx, row in enumerate(df.values, start=2):
+    #     for c_idx, value in enumerate(row, start=1):
+    #         sheet.cell(row=r_idx, column=c_idx, value=value)
+
+    for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index,low_oi_index, high_di_index, low_di_index):
+        sheet.cell(row=low_oi_idx + 2, column=COL_G).font = RED_TEXT
+        sheet.cell(row=high_di_idx + 2, column=COL_H).font = RED_TEXT
+
+        sheet.cell(row=high_oi_idx + 2, column=COL_G).fill = yellowFill
+        sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = yellowFill
+
+        sheet.cell(row=low_di_idx + 2, column=COL_H).fill = greenFill
+        sheet.cell(row=low_di_idx + 2, column=COL_A).fill = greenFill
+
+        if high_oi_idx in low_di_index:
+            sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = redFill
+        
+        if low_di_idx in high_oi_index:
+            sheet.cell(row=low_di_idx + 2, column=COL_A).fill = redFill
 
     print("Finished updating team gameweek data.")    
     wb.save("FootballPoisson.xlsx")
