@@ -3,7 +3,7 @@ import sys
 from functools import partial
 
 import pandas as pd
-import requests
+import requests, json
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
@@ -11,6 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from pprint import pprint
 
 #region Constants
 COL_A = 1
@@ -340,6 +341,110 @@ def show_summary():
     favourable_defending_teams_df = pd.DataFrame(favourable_defending_teams)
     print(favourable_defending_teams_df.sort_values(by=["Oi"], ascending=True).to_string(index=False, formatters=format_columns(favourable_defending_teams_df)))
 
+def test_api():
+    base_url = "https://fantasy.premierleague.com/api/bootstrap-static/"
+    r = requests.get(base_url).json() 
+    players = r["elements"] # 1 to 567
+    gks, defs, mids, fwds = [], [], [], []
+    teams = {
+        1: "ARS",
+        2: "AVL",
+        3: "BOU",
+        4: "BRE",
+        5: "BHA",
+        6: "CHE",
+        7: "CRY",
+        8: "EVE",
+        9: "FUL",
+        10: "IPS",
+        11: "LEI",
+        12: "LIV",
+        13: "MCI",
+        14: "MUN",
+        15: "NEW",
+        16: "NFO",
+        17: "SOU",
+        18: "TOT",
+        19: "WHU",
+        20: "WOL"
+    }
+    for player in players:
+        if player["starts"] > 0:
+            if player["element_type"] == 1:
+                gks.append([
+                    player["web_name"],
+                    teams[player["team"]],
+                    (player["now_cost"] / 10.0),
+                    player["event_points"],
+                    player["total_points"],
+                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
+                    player["clean_sheets"],
+                    player["goals_conceded"],
+                    float(player["expected_goals_conceded"]),
+                    float(player["expected_goals_conceded"]) - player["goals_conceded"],
+                    player["saves"],
+                    player["bonus"],
+                ])
+            elif player["element_type"] == 2:
+                defs.append([
+                    player["web_name"],
+                    teams[player["team"]],
+                    (player["now_cost"] / 10.0),
+                    player["form"],
+                    player["event_points"],
+                    player["total_points"],
+                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
+                    float(player["expected_goals"]),
+                    player["goals_scored"],
+                    float(player["expected_goals"]) - player["goals_scored"], #negative means overperforming, positive means underperforming
+                    float(player["expected_assists"]),
+                    player["assists"],
+                    float(player["expected_assists"]) - player["assists"],
+                    float(player["expected_goal_involvements"]),
+                    player["bonus"],
+                ])
+            elif player["element_type"] == 3:
+                mids.append([
+                    player["web_name"],
+                    teams[player["team"]],
+                    (player["now_cost"] / 10.0),
+                    player["form"],
+                    player["event_points"],
+                    player["total_points"],
+                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
+                    float(player["expected_goals"]),
+                    player["goals_scored"],
+                    float(player["expected_goals"]) - player["goals_scored"],
+                    float(player["expected_assists"]),
+                    player["assists"],
+                    float(player["expected_assists"]) - player["assists"],
+                    float(player["expected_goal_involvements"]),
+                    player["bonus"],
+                ])
+            elif player["element_type"] == 4:
+                fwds.append([
+                    player["web_name"],
+                    teams[player["team"]],
+                    (player["now_cost"] / 10.0),
+                    player["form"],
+                    player["event_points"],
+                    player["total_points"],
+                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
+                    float(player["expected_goals"]),
+                    player["goals_scored"],
+                    float(player["expected_goals"]) - player["goals_scored"],
+                    float(player["expected_assists"]),
+                    player["assists"],
+                    float(player["expected_assists"]) - player["assists"],
+                    float(player["expected_goal_involvements"]),
+                    player["bonus"],
+                ])
+    column = ["Name", "Team", "Price", "Form", "GW Points", "Total Points", "Points/$", "xG", "G", "xG+-","xA", "A", "xA+-", "xGI", "Bonus"]
+    gk_df = pd.DataFrame(gks, columns=["Name", "Team", "Price", "GW Points", "Total Points", "Points/$", "CS", "Goals Conceded", "xG Conceded", "xGoals Prevented", "Saves", "Bonus"])
+    def_df = pd.DataFrame(defs, columns=column)
+    mid_df = pd.DataFrame(mids, columns=column)
+    fwd_df = pd.DataFrame(fwds, columns=column)
+    print(def_df.loc[def_df["Points/$"].idxmax()])
 #region System arguments
 if __name__ == "__main__":  
     if(sys.argv[1] == "update_data"):
@@ -348,3 +453,5 @@ if __name__ == "__main__":
         update_fixture()
     elif(sys.argv[1] == "show_summary"):
         show_summary()
+    elif(sys.argv[1] == "test_api"):
+        test_api()  
