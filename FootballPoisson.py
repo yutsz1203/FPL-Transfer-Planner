@@ -4,6 +4,7 @@ from functools import partial
 
 import pandas as pd
 import requests, json
+import numpy as np
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
@@ -35,6 +36,10 @@ redFill = PatternFill(start_color='FFFF0000',end_color='FFFF0000', fill_type='so
 yellowFill = PatternFill(start_color='FFFFFF00', end_color='FFFFFF00',fill_type='solid')
 greenFill = PatternFill(start_color='ff00b050',end_color='ff00b050',fill_type='solid')
 
+BASE_URL = "https://fantasy.premierleague.com/api/bootstrap-static/"
+ID = 1185677
+EXCEL_FILE = "FootballPoisson.xlsx"
+
 #region Helper functions
 def get_fmt_str(x, fill):
         return "{message: >{fill}}".format(message=x, fill=fill)
@@ -54,6 +59,17 @@ def format_columns(df):
         fmts[idx] = partial(get_fmt_str, fill=fill)
     return fmts
 
+def write_df_to_sheet(df, sheet):
+    for row, value in enumerate(df.values, start=2):
+        for col, cell in enumerate(value, start=1):
+            sheet.cell(row=row, column=col, value=cell)
+
+#region Get data functions
+def get_gameweek():
+    gws = requests.get(BASE_URL).json()["events"]
+    for gw in gws:
+        if gw["is_current"]:
+            return gw["id"]
 
 #region Main functions
 def update_data():
@@ -80,10 +96,10 @@ def update_data():
 
     print("Finished getting gameweek data")
     #update excel
-    wb = load_workbook("FootballPoisson.xlsx")
+    wb = load_workbook(EXCEL_FILE)
     sheet = wb["Team Data"]
 
-    df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
+    df = pd.read_excel(EXCEL_FILE, sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
     # for team in teams:
     #     team_name = team["Team"]
     #     team_row = df.index[df["Team"] == team_name].tolist()[0]
@@ -148,7 +164,7 @@ def update_data():
             sheet.cell(row=low_di_idx + 2, column=COL_A).fill = redFill
 
     print("Finished updating team gameweek data.")    
-    wb.save("FootballPoisson.xlsx")
+    wb.save(EXCEL_FILE)
 
 def update_fixture():
     #web scrapping
@@ -179,7 +195,7 @@ def update_fixture():
     driver.quit()
 
     #update excel
-    wb = load_workbook("FootballPoisson.xlsx", data_only=True)
+    wb = load_workbook(EXCEL_FILE, data_only=True)
     sheet = wb["Fixtures"]
 
     for col, gameweek in enumerate(gameweeks, start=2):
@@ -225,8 +241,8 @@ def update_fixture():
 
             sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"G{team_row}"].value
             sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"H{team_row}"].value
-    wb.save("FootballPoisson.xlsx")
-    df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Fixtures", usecols="G:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
+    wb.save(EXCEL_FILE)
+    df = pd.read_excel(EXCEL_FILE, sheet_name="Fixtures", usecols="G:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
 
     sheet["G23"].value = df["Oi"].mean()
     sheet["H23"].value = df["Di"].mean()
@@ -262,14 +278,14 @@ def update_fixture():
 
     print("Finished updating fixture data.")
 
-    wb.save("FootballPoisson.xlsx")
+    wb.save(EXCEL_FILE)
 
 def show_summary():
-    wb = load_workbook("FootballPoisson.xlsx")
+    wb = load_workbook(EXCEL_FILE)
     team_data_sheet = wb["Team Data"]
     fixture_sheet = wb["Fixtures"]
 
-    team_df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
+    team_df = pd.read_excel(EXCEL_FILE, sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
     top_attacking_team = []
     top_defending_team = []
 
@@ -281,7 +297,7 @@ def show_summary():
         top_attacking_team.append({"Team": attack_team, "Oi": team_df.loc[team_df["Team"] == attack_team, "Oi"].values[0], "Di": team_df.loc[team_df["Team"] == attack_team, "Di"].values[0]})
         top_defending_team.append({"Team": defend_team, "Oi": team_df.loc[team_df["Team"] == defend_team, "Oi"].values[0], "Di": team_df.loc[team_df["Team"] == defend_team, "Di"].values[0]})
 
-    fixture_df = pd.read_excel("FootballPoisson.xlsx", sheet_name="Fixtures", usecols="A:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
+    fixture_df = pd.read_excel(EXCEL_FILE, sheet_name="Fixtures", usecols="A:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
     favourable_attacking_teams = []
     favourable_defending_teams = []
 
@@ -318,6 +334,7 @@ def show_summary():
     print(f"Summary as at GW {gameweek}")
     print(separator)
     
+    # team
     print(f"Average Oi: {math.floor(team_data_sheet['G23'].value * 100)/100}\n")
     print("Top 5 attacking teams")
     top_attacking_team_df = pd.DataFrame(top_attacking_team)
@@ -330,6 +347,7 @@ def show_summary():
     print(top_defending_team_df.sort_values(by=["Di"], ascending=True).to_string(index=False, formatters=format_columns(top_defending_team_df)))
     print(separator)
 
+    # fixture
     print("Top 5 favourable attacking teams")
     print(f"Average aggregated Di: {math.floor(fixture_sheet['H23'].value * 100)/100}\n")
     favourable_attacking_teams_df = pd.DataFrame(favourable_attacking_teams)
@@ -341,9 +359,8 @@ def show_summary():
     favourable_defending_teams_df = pd.DataFrame(favourable_defending_teams)
     print(favourable_defending_teams_df.sort_values(by=["Oi"], ascending=True).to_string(index=False, formatters=format_columns(favourable_defending_teams_df)))
 
-def test_api():
-    base_url = "https://fantasy.premierleague.com/api/bootstrap-static/"
-    r = requests.get(base_url).json() 
+def update_player():
+    r = requests.get(BASE_URL).json() 
     players = r["elements"] # 1 to 567
     gks, defs, mids, fwds = [], [], [], []
     teams = {
@@ -368,6 +385,12 @@ def test_api():
         19: "WHU",
         20: "WOL"
     }
+    position = {
+        1: "GK",
+        2: "DEF",
+        3: "MID",
+        4: "FWD"
+    }
     for player in players:
         if player["starts"] > 0:
             if player["element_type"] == 1:
@@ -375,10 +398,11 @@ def test_api():
                     player["web_name"],
                     teams[player["team"]],
                     (player["now_cost"] / 10.0),
+                    position[player["element_type"]],
                     player["event_points"],
                     player["total_points"],
                     round(player["total_points"] / (player["now_cost"] / 10.0), 2),
-                    player["clean_sheets"],
+                    int(player["clean_sheets"]),
                     player["goals_conceded"],
                     float(player["expected_goals_conceded"]),
                     float(player["expected_goals_conceded"]) - player["goals_conceded"],
@@ -390,7 +414,8 @@ def test_api():
                     player["web_name"],
                     teams[player["team"]],
                     (player["now_cost"] / 10.0),
-                    player["form"],
+                    position[player["element_type"]],
+                    float(player["form"]),
                     player["event_points"],
                     player["total_points"],
                     round(player["total_points"] / (player["now_cost"] / 10.0), 2),
@@ -408,7 +433,8 @@ def test_api():
                     player["web_name"],
                     teams[player["team"]],
                     (player["now_cost"] / 10.0),
-                    player["form"],
+                    position[player["element_type"]],
+                    float(player["form"]),
                     player["event_points"],
                     player["total_points"],
                     round(player["total_points"] / (player["now_cost"] / 10.0), 2),
@@ -426,7 +452,8 @@ def test_api():
                     player["web_name"],
                     teams[player["team"]],
                     (player["now_cost"] / 10.0),
-                    player["form"],
+                    position[player["element_type"]],
+                    float(player["form"]),
                     player["event_points"],
                     player["total_points"],
                     round(player["total_points"] / (player["now_cost"] / 10.0), 2),
@@ -439,12 +466,89 @@ def test_api():
                     float(player["expected_goal_involvements"]),
                     player["bonus"],
                 ])
-    column = ["Name", "Team", "Price", "Form", "GW Points", "Total Points", "Points/$", "xG", "G", "xG+-","xA", "A", "xA+-", "xGI", "Bonus"]
-    gk_df = pd.DataFrame(gks, columns=["Name", "Team", "Price", "GW Points", "Total Points", "Points/$", "CS", "Goals Conceded", "xG Conceded", "xGoals Prevented", "Saves", "Bonus"])
+    print("Finished fetching player data.")
+
+    gk_column = ["Name", "Team", "Price", "Pos", "GW Points", "Total Points", "Points/$", "CS", "Goals Conceded", "xG Conceded", "xGoals Prevented", "Saves", "Bonus"]
+    column = ["Name", "Team", "Price", "Pos", "Form", "GW Points", "Total Points", "Points/$", "xG", "G", "xG+-","xA", "A", "xA+-", "xGI", "Bonus"]
+    gk_df = pd.DataFrame(gks, columns=gk_column)
     def_df = pd.DataFrame(defs, columns=column)
     mid_df = pd.DataFrame(mids, columns=column)
     fwd_df = pd.DataFrame(fwds, columns=column)
-    print(def_df.loc[def_df["Points/$"].idxmax()])
+    
+    wb = load_workbook(EXCEL_FILE)
+    gk_sheet = wb["GK"]
+    def_sheet = wb["DEF"]
+    mid_sheet = wb["MID"]
+    fwd_sheet = wb["FWD"]
+
+    for col, header in enumerate(gk_column, start=1):
+        gk_sheet.cell(row=1, column=col, value=header)
+    
+    for col, header in enumerate(column, start=1):
+        def_sheet.cell(row=1, column=col, value=header)
+        mid_sheet.cell(row=1, column=col, value=header)
+        fwd_sheet.cell(row=1, column=col, value=header)
+
+    write_df_to_sheet(gk_df, gk_sheet)
+    write_df_to_sheet(def_df, def_sheet)
+    write_df_to_sheet(mid_df, mid_sheet)
+    write_df_to_sheet(fwd_df, fwd_sheet)
+    print("Finished updated player data.")
+    wb.save(EXCEL_FILE)
+
+
+def update_team():
+    gw = get_gameweek()
+    url = f"https://fantasy.premierleague.com/api/entry/{ID}/event/{gw}/picks/"
+    team = requests.get(url).json()["picks"]
+    player_ids = [player["element"] for player in team]
+    r = requests.get(BASE_URL).json()["elements"]
+    players = [player for player in r if player["id"] in player_ids]
+
+    wb = load_workbook(EXCEL_FILE)
+    gk_df = pd.read_excel(EXCEL_FILE, sheet_name="GK", usecols="A:M", header=0, nrows=25, dtype={"Name": str, "Team": str, "Price": float, "Pos": str, "GW Points": int, "Total Points": int, "Points/$": float, "CS": int, "Goals Conceded": int, "xG Conceded": float, "xGoals Prevented": float, "Saves": int, "Bonus": int})
+    def_df = pd.read_excel(EXCEL_FILE, sheet_name="DEF", usecols="A:P", header=0, nrows=150, dtype={"Name": str, "Team": str, "Price": float, "Pos": str, "Form": float, "GW Points": int, "Total Points": int, "Points/$": float, "xG": float, "G": int, "xG+-": float, "xA": float, "A": int, "xA+-": float, "xGI": float, "Bonus": int})
+    mid_df = pd.read_excel(EXCEL_FILE, sheet_name="MID", usecols="A:P", header=0, nrows=150, dtype={"Name": str, "Team": str, "Price": float, "Pos": str, "Form": float, "GW Points": int, "Total Points": int, "Points/$": float, "xG": float, "G": int, "xG+-": float, "xA": float, "A": int, "xA+-": float, "xGI": float, "Bonus": int})
+    fwd_df = pd.read_excel(EXCEL_FILE, sheet_name="FWD", usecols="A:P", header=0, nrows=50, dtype={"Name": str, "Team": str, "Price": float, "Pos": str, "Form": float, "GW Points": int, "Total Points": int, "Points/$": float, "xG": float, "G": int, "xG+-": float, "xA": float, "A": int, "xA+-": float, "xGI": float, "Bonus": int})
+
+    team_gk_rows = []
+    team_def_rows = []
+    team_mid_rows = []
+    team_fwd_rows = []
+
+    for player in players:
+        if player["element_type"] == 1:
+            team_gk_rows.append(gk_df.loc[gk_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 2:
+            team_def_rows.append(def_df.loc[def_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 3:
+            team_mid_rows.append(mid_df.loc[mid_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 4:
+            team_fwd_rows.append(fwd_df.loc[fwd_df["Name"] == player["web_name"]])
+
+    team_gk_df = pd.concat(team_gk_rows, ignore_index=True)
+    team_def_df = pd.concat(team_def_rows, ignore_index=True)
+    team_mid_df = pd.concat(team_mid_rows, ignore_index=True)
+    team_fwd_df = pd.concat(team_fwd_rows, ignore_index=True)
+
+    team_df = pd.concat([team_gk_df, team_def_df, team_mid_df, team_fwd_df], ignore_index=True, sort=False)
+    Na_cols = team_df.columns[team_df.isna().any()].tolist()
+    Int_cols = ["CS", "Goals Conceded", "Saves", "Form", "G", "A"]
+    for col in Na_cols:
+        team_df[col] = team_df[col].replace({np.nan: 0})
+        if col in Int_cols:
+            team_df[col] = team_df[col].astype(int)
+
+    team_season = wb["My Team - Season"]
+
+    for col, header in enumerate(team_df.columns, start=1):
+        team_season.cell(row=1, column=col, value=header)
+    for row, value in enumerate(team_df.values, start=2):
+        for col, cell in enumerate(value, start=1):
+            team_season.cell(row=row, column=col, value=cell)
+
+    wb.save(EXCEL_FILE)
+    print("Finished updating my team - season")
 #region System arguments
 if __name__ == "__main__":  
     if(sys.argv[1] == "update_data"):
@@ -453,5 +557,7 @@ if __name__ == "__main__":
         update_fixture()
     elif(sys.argv[1] == "show_summary"):
         show_summary()
-    elif(sys.argv[1] == "test_api"):
-        test_api()  
+    elif(sys.argv[1] == "update_player"):
+        update_player()  
+    elif(sys.argv[1] == "update_team"):
+        update_team()
