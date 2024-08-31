@@ -48,6 +48,7 @@ lightBlueFill = PatternFill(start_color='ffbdd7ee',end_color='ffbdd7ee',fill_typ
 BASE_URL = "https://fantasy.premierleague.com/api/bootstrap-static/"
 ID = 1185677
 EXCEL_FILE = "FootballPoisson.xlsx"
+GAME_THRESHOLD = 0
 
 team_map = {
         "ARS": 2,
@@ -72,6 +73,34 @@ team_map = {
         "WOL": 21
         }
 
+teams = {
+        1: "Arsenal",
+        2: "Aston Villa",
+        3: "Bournemouth",
+        4: "Brentford",
+        5: "Brighton",
+        6: "Chelsea",
+        7: "Crystal Palace",
+        8: "Everton",
+        9: "Fulham",
+        10: "Ipswich",
+        11: "Leicester",
+        12: "Liverpool",
+        13: "Man City",
+        14: "Man Utd",
+        15: "Newcastle",
+        16: "Nott'm Forest",
+        17: "Southampton",
+        18: "Spurs",
+        19: "West Ham",
+        20: "Wolves"
+    }
+position = {
+        1: "GK",
+        2: "DEF",
+        3: "MID",
+        4: "FWD"
+    }
 #region Helper functions
 def get_fmt_str(x, fill):
         return "{message: >{fill}}".format(message=x, fill=fill)
@@ -443,135 +472,213 @@ def show_summary():
     favourable_defending_teams_df = pd.DataFrame(favourable_defending_teams)
     print(favourable_defending_teams_df.sort_values(by=["Oi"], ascending=True).to_string(index=False, formatters=format_columns(favourable_defending_teams_df)))
 
-def update_player():
+def update_player_season():
+    gk_df = pd.read_excel(EXCEL_FILE, sheet_name="GK-Season", usecols="A:AB", header=0, nrows=23)
+    def_df = pd.read_excel(EXCEL_FILE, sheet_name="DEF-Season", usecols="A:AI", header=0, nrows=100)
+    mid_df = pd.read_excel(EXCEL_FILE, sheet_name="MID-Season", usecols="A:AI", header=0, nrows=120)
+    fwd_df = pd.read_excel(EXCEL_FILE, sheet_name="FWD-Season", usecols="A:AI", header=0, nrows=30)
+
     r = requests.get(BASE_URL).json() 
     players = r["elements"] # 1 to 567
-    gks, defs, mids, fwds = [], [], [], []
-    teams = {
-        1: "ARS",
-        2: "AVL",
-        3: "BOU",
-        4: "BRE",
-        5: "BHA",
-        6: "CHE",
-        7: "CRY",
-        8: "EVE",
-        9: "FUL",
-        10: "IPS",
-        11: "LEI",
-        12: "LIV",
-        13: "MCI",
-        14: "MUN",
-        15: "NEW",
-        16: "NFO",
-        17: "SOU",
-        18: "TOT",
-        19: "WHU",
-        20: "WOL"
-    }
-    position = {
-        1: "GK",
-        2: "DEF",
-        3: "MID",
-        4: "FWD"
-    }
+    gw = [get_gameweek()-1]
+    #gw = range(0,2) set certain range when i forgot to update the data after a gw
     for player in players:
-        if player["starts"] > 0:
+        if player["starts"] > GAME_THRESHOLD:
+            print(player["web_name"])
+            if player["element_type"] == 1:
+                df = gk_df
+                player_row = gk_df.index[gk_df["Name"] == player["web_name"]].tolist()[0]
+            elif player["element_type"] == 2:
+                df = def_df
+                player_row = def_df.index[def_df["Name"] == player["web_name"]].tolist()[0]
+            elif player["element_type"] == 3:
+                df = mid_df
+                player_row = mid_df.index[mid_df["Name"] == player["web_name"]].tolist()[0]
+            elif player["element_type"] == 4:
+                df = fwd_df
+                player_row = fwd_df.index[fwd_df["Name"] == player["web_name"]].tolist()[0]
+            for i in gw:
+                id = player["id"]
+                individual = requests.get(f"https://fantasy.premierleague.com/api/element-summary/{id}/").json()["history"]
+                gw_stat = individual[i]
+                side = "H" if gw_stat["was_home"] else "A"
+                if player["element_type"] == 1:
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_CS")] += gw_stat["clean_sheets"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")] += gw_stat["goals_conceded"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] += float(gw_stat["expected_goals_conceded"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Prevented")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] - df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Saves")] += gw_stat["saves"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
+                else:
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_G")] += gw_stat["goals_scored"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] += float(gw_stat["expected_goals"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_A")] += gw_stat["assists"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] += float(gw_stat["expected_assists"])
+                    df.iloc
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] += float(gw_stat["expected_goal_involvements"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
+            if player["element_type"] == 1:
+                df.iloc[player_row, df.columns.get_loc("Points")] = df.iloc[player_row, df.columns.get_loc("H_Points")] + df.iloc[player_row, df.columns.get_loc("A_Points")]
+                df.iloc[player_row, df.columns.get_loc("CS")] = df.iloc[player_row, df.columns.get_loc("H_CS")] + df.iloc[player_row, df.columns.get_loc("A_CS")]
+                df.iloc[player_row, df.columns.get_loc("Goals Conceded")] = df.iloc[player_row, df.columns.get_loc("H_Goals Conceded")] + df.iloc[player_row, df.columns.get_loc("A_Goals Conceded")]
+                df.iloc[player_row, df.columns.get_loc("xG Conceded")] = df.iloc[player_row, df.columns.get_loc("H_xG Conceded")] + df.iloc[player_row, df.columns.get_loc("A_xG Conceded")]
+                df.iloc[player_row, df.columns.get_loc("Saves")] = df.iloc[player_row, df.columns.get_loc("H_Saves")] + df.iloc[player_row, df.columns.get_loc("A_Saves")]
+                df.iloc[player_row, df.columns.get_loc("Bonus")] = df.iloc[player_row, df.columns.get_loc("H_Bonus")] + df.iloc[player_row, df.columns.get_loc("A_Bonus")]
+            else: 
+                df.iloc[player_row, df.columns.get_loc("Points")] = df.iloc[player_row, df.columns.get_loc("H_Points")] + df.iloc[player_row, df.columns.get_loc("A_Points")]
+                df.iloc[player_row, df.columns.get_loc("G")] = df.iloc[player_row, df.columns.get_loc("H_G")] + df.iloc[player_row, df.columns.get_loc("A_G")]
+                df.iloc[player_row, df.columns.get_loc("xG")] = df.iloc[player_row, df.columns.get_loc("H_xG")] + df.iloc[player_row, df.columns.get_loc("A_xG")]
+                df.iloc[player_row, df.columns.get_loc("A")] = df.iloc[player_row, df.columns.get_loc("H_A")] + df.iloc[player_row, df.columns.get_loc("A_A")]
+
+def update_player_last5():
+    r = requests.get(BASE_URL).json() 
+    players = r["elements"] # 1 to 567
+    gw = get_gameweek()
+    #gameweeks = range(gw-1, gw+4) if gw >= 5 else range(0, gw)
+    gameweeks = range(0,2)
+
+    gks, defs, mids, fwds = [], [], [], []
+    for player in players:
+        points, starts, games, cs,  goals_conceded, xg_conceded, saves, bonus, xg, g, xa, a, xgi = [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]
+        if player["starts"] > GAME_THRESHOLD:
+            id = player["id"]
+            individual = requests.get(f"https://fantasy.premierleague.com/api/element-summary/{id}/").json()["history"]
+            if len(individual) == 1:
+                gameweeks = [0]
+            for i in gameweeks:
+                gw_stat = individual[i]
+                index = 0 if gw_stat["was_home"] else 1
+                points[index] += gw_stat["total_points"]
+                starts[index] += gw_stat["starts"]
+                games[index] += 1 if gw_stat["minutes"] > 0 else 0
+                cs[index] += gw_stat["clean_sheets"]
+                goals_conceded[index] += gw_stat["goals_conceded"]
+                xg_conceded[index] += float(gw_stat["expected_goals_conceded"])
+                saves[index] += gw_stat["saves"]
+                bonus[index] += gw_stat["bonus"]
+                xg[index] += float(gw_stat["expected_goals"])
+                g[index] += gw_stat["goals_scored"]
+                xa[index] += float(gw_stat["expected_assists"])
+                a[index] += gw_stat["assists"]
+                xgi[index] += float(gw_stat["expected_goal_involvements"])
+            total_points = points[0] + points[1]
+            total_starts = starts[0] + starts[1]
+            total_games = games[0] + games[1]
+            total_cs = cs[0] + cs[1]    
+            total_goals_conceded = goals_conceded[0] + goals_conceded[1]
+            total_xg_conceded = xg_conceded[0] + xg_conceded[1]
+            total_saves = saves[0] + saves[1]
+            total_bonus = bonus[0] + bonus[1]
+            total_xg = xg[0] + xg[1]
+            total_g = g[0] + g[1]
+            total_xa = xa[0] + xa[1]
+            total_a = a[0] + a[1]
+            total_xgi = xgi[0] + xgi[1]
+            outfield_list = [player["web_name"],
+                    teams[player["team"]],
+                    (player["now_cost"] / 10.0),
+                    position[player["element_type"]],
+                    player["form"],
+                    total_starts,
+                    total_games,
+                    points[0],
+                    points[1],
+                    total_points,
+                    round(points[0] / (player["now_cost"] / 10.0), 2),
+                    round(points[1] / (player["now_cost"] / 10.0), 2),
+                    round(total_points / (player["now_cost"] / 10.0), 2),
+                    g[0],
+                    float(xg[0]),
+                    float(xg[0] - g[0]),
+                    g[1],
+                    float(xg[1]),
+                    float(xg[1] - g[1]),
+                    total_g,
+                    float(total_xg),
+                    float(total_xg - total_g),
+                    a[0],
+                    float(xa[0]),
+                    float(xa[0] - a[0]),
+                    a[1],
+                    float(xa[1]),
+                    float(xa[1] - a[1]),
+                    total_a,
+                    float(total_xa),
+                    float(total_xa - total_a),
+                    float(xgi[0]),
+                    float(xgi[0] - g[0] - a[0]),
+                    float(xgi[1]),
+                    float(xgi[1] - g[1] - a[1]),
+                    float(total_xgi),
+                    float(total_xgi - total_g - total_a),
+                    bonus[0],
+                    bonus[1],
+                    total_bonus,]
             if player["element_type"] == 1:
                 gks.append([
                     player["web_name"],
                     teams[player["team"]],
                     (player["now_cost"] / 10.0),
                     position[player["element_type"]],
-                    player["event_points"],
-                    player["total_points"],
-                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
-                    int(player["clean_sheets"]),
-                    player["goals_conceded"],
-                    float(player["expected_goals_conceded"]),
-                    float(player["expected_goals_conceded"]) - player["goals_conceded"],
-                    player["saves"],
-                    player["bonus"],
+                    total_starts,
+                    total_games,
+                    points[0],
+                    points[1],
+                    total_points,
+                    round(points[0] / (player["now_cost"] / 10.0), 2),
+                    round(points[1] / (player["now_cost"] / 10.0), 2),
+                    round(total_points / (player["now_cost"] / 10.0), 2),
+                    int(cs[0]),
+                    int(cs[1]),
+                    int(total_cs),
+                    goals_conceded[0],
+                    float(xg_conceded[0]),
+                    float(xg_conceded[0] - goals_conceded[0]),
+                    goals_conceded[1],
+                    float(xg_conceded[1]),
+                    float(xg_conceded[1] - goals_conceded[1]),
+                    total_goals_conceded,
+                    float(total_xg_conceded),
+                    float(total_xg_conceded - total_goals_conceded),
+                    saves[0],
+                    saves[1],
+                    total_saves,
+                    bonus[0],
+                    bonus[1],
+                    total_bonus,    
                 ])
             elif player["element_type"] == 2:
-                defs.append([
-                    player["web_name"],
-                    teams[player["team"]],
-                    (player["now_cost"] / 10.0),
-                    position[player["element_type"]],
-                    float(player["form"]),
-                    player["event_points"],
-                    player["total_points"],
-                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
-                    float(player["expected_goals"]),
-                    player["goals_scored"],
-                    float(player["expected_goals"]) - player["goals_scored"], #negative means overperforming, positive means underperforming
-                    float(player["expected_assists"]),
-                    player["assists"],
-                    float(player["expected_assists"]) - player["assists"],
-                    float(player["expected_goal_involvements"]),
-                    player["bonus"],
-                ])
+                defs.append(outfield_list)
             elif player["element_type"] == 3:
-                mids.append([
-                    player["web_name"],
-                    teams[player["team"]],
-                    (player["now_cost"] / 10.0),
-                    position[player["element_type"]],
-                    float(player["form"]),
-                    player["event_points"],
-                    player["total_points"],
-                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
-                    float(player["expected_goals"]),
-                    player["goals_scored"],
-                    float(player["expected_goals"]) - player["goals_scored"],
-                    float(player["expected_assists"]),
-                    player["assists"],
-                    float(player["expected_assists"]) - player["assists"],
-                    float(player["expected_goal_involvements"]),
-                    player["bonus"],
-                ])
+                mids.append(outfield_list)
             elif player["element_type"] == 4:
-                fwds.append([
-                    player["web_name"],
-                    teams[player["team"]],
-                    (player["now_cost"] / 10.0),
-                    position[player["element_type"]],
-                    float(player["form"]),
-                    player["event_points"],
-                    player["total_points"],
-                    round(player["total_points"] / (player["now_cost"] / 10.0), 2),
-                    float(player["expected_goals"]),
-                    player["goals_scored"],
-                    float(player["expected_goals"]) - player["goals_scored"],
-                    float(player["expected_assists"]),
-                    player["assists"],
-                    float(player["expected_assists"]) - player["assists"],
-                    float(player["expected_goal_involvements"]),
-                    player["bonus"],
-                ])
-    print("Finished fetching player data.")
+                fwds.append(outfield_list)
+        print("Updated " + player["web_name"])
 
-    gk_column = ["Name", "Team", "Price", "Pos", "GW Points", "Total Points", "Points/$", "CS", "Goals Conceded", "xG Conceded", "xGoals Prevented", "Saves", "Bonus"]
-    column = ["Name", "Team", "Price", "Pos", "Form", "GW Points", "Total Points", "Points/$", "xG", "G", "xG+-","xA", "A", "xA+-", "xGI", "Bonus"]
+    gk_column = ["Name", "Team", "Price", "Pos", "Starts", "Games", "H_Points", "A_Points", "Points", "H_Points/$", "A_Points/$", "Points/$",
+    "H_CS", "A_CS", "CS", "H_Goals Conceded", "H_xG Conceded", "H_xG Prevented", "A_Goals Conceded", "A_xG Conceded",
+    "A_xG Prevented", "Goals Conceded", "xG Conceded", "xGoals Prevented", "H_Saves", "A_Saves", "Saves", "H_Bonus",
+    "A_Bonus", "Bonus"]
+
+    column = [
+    "Name", "Team", "Price", "Pos", "Form", "Starts", "Games", "H_Points", "A_Points", "Points", "H_Points/$", "A_Points/$", "Points/$",
+    "H_G", "H_xG", "H_xGDiff", "A_G", "A_xG", "A_xGDiff", "G", "xG", "xGDiff", "H_A", "H_xA", "H_xADiff", "A_A", "A_xA",
+    "A_xADiff", "A", "xA", "xADiff", "H_xGI", "H_xGIDIFF", "A_xGI", "A_xGIDIFF", "xGI", "xGIDIFF", "H_Bonus", "A_Bonus", "Bonus"
+    ]
+
     gk_df = pd.DataFrame(gks, columns=gk_column)
     def_df = pd.DataFrame(defs, columns=column)
     mid_df = pd.DataFrame(mids, columns=column)
     fwd_df = pd.DataFrame(fwds, columns=column)
     
     wb = load_workbook(EXCEL_FILE)
-    gk_sheet = wb["GK"]
-    def_sheet = wb["DEF"]
-    mid_sheet = wb["MID"]
-    fwd_sheet = wb["FWD"]
-
-    for col, header in enumerate(gk_column, start=1):
-        gk_sheet.cell(row=1, column=col, value=header)
-    
-    for col, header in enumerate(column, start=1):
-        def_sheet.cell(row=1, column=col, value=header)
-        mid_sheet.cell(row=1, column=col, value=header)
-        fwd_sheet.cell(row=1, column=col, value=header)
+    gk_sheet = wb["GK-Last5"]
+    def_sheet = wb["DEF-Last5"]
+    mid_sheet = wb["MID-Last5"]
+    fwd_sheet = wb["FWD-Last5"]
 
     write_df_to_sheet(gk_df, gk_sheet)
     write_df_to_sheet(def_df, def_sheet)
@@ -641,7 +748,9 @@ if __name__ == "__main__":
         update_fixture()
     elif(sys.argv[1] == "show_summary"):
         show_summary()
-    elif(sys.argv[1] == "update_player"):
-        update_player()  
+    elif(sys.argv[1] == "update_player_season"):
+        update_player_season()  
+    elif(sys.argv[1] == "update_player_last5"):
+        update_player_last5()
     elif(sys.argv[1] == "update_my_team"):
         update_my_team()   
