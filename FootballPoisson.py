@@ -25,20 +25,52 @@ COL_G = 7
 COL_H = 8
 COL_I = 9
 COL_J = 10
-
-DEFAULT_FONT = Font(size=16)
-DEFAULT_FONT_BOLD = Font(size=16, bold=True)
-YELLOW_TEXT = Font(size=16, bold=True, color="FFFFFF00")
-GREEN_TEXT = Font(size=16, bold=True, color="FF008000")
-RED_TEXT = Font(size=16, bold=True, color="FFFF0000")
+COL_K = 11
+COL_L = 12
+COL_M = 13
+COL_N = 14
+COL_O = 15
+COL_P = 16
+COL_Q = 17
+COL_R = 18
+COL_S = 19
+COL_T = 20
+COL_U = 21
+COL_V = 22
 
 redFill = PatternFill(start_color='FFFF0000',end_color='FFFF0000', fill_type='solid')
 yellowFill = PatternFill(start_color='FFFFFF00', end_color='FFFFFF00',fill_type='solid')
 greenFill = PatternFill(start_color='ff00b050',end_color='ff00b050',fill_type='solid')
+lightGreenFill = PatternFill(start_color='ffc6e0b4',end_color='ffc6e0b4',fill_type='solid')
+blueFill = PatternFill(start_color='ff2f75b5',end_color='ff2f75b5',fill_type='solid')
+lightBlueFill = PatternFill(start_color='ffbdd7ee',end_color='ffbdd7ee',fill_type='solid')
 
 BASE_URL = "https://fantasy.premierleague.com/api/bootstrap-static/"
 ID = 1185677
 EXCEL_FILE = "FootballPoisson.xlsx"
+
+team_map = {
+        "ARS": 2,
+        "AVL": 3,
+        "BOU": 4,
+        "BRE": 5,
+        "BHA": 6,
+        "CHE": 7,
+        "CRY": 8,
+        "EVE": 9,
+        "FUL": 10,
+        "IPS": 11,
+        "LEI": 12,
+        "LIV": 13,
+        "MCI": 14,
+        "MUN": 15,
+        "NEW": 16,
+        "NFO": 17,
+        "SOU": 18,
+        "TOT": 19,
+        "WHU": 20,
+        "WOL": 21
+        }
 
 #region Helper functions
 def get_fmt_str(x, fill):
@@ -72,64 +104,118 @@ def get_gameweek():
             return gw["id"]
 
 #region Main functions
-def update_data():
+def update_teams():
     #web scrapping
-    # url = "https://fpl.page/bonus"
-    # page = requests.get(url)
+    url = "https://fpl.page/bonus"
+    page = requests.get(url)
 
-    # soup = BeautifulSoup(page.text, "html.parser")
+    soup = BeautifulSoup(page.text, "html.parser")
     
-    # fixtures = soup.find_all("li", class_="fixture-item")
+    fixtures = soup.find_all("li", class_="fixture-item")
     
-    # teams = []
+    teams = []
 
-    # for fixture in fixtures:
-    #     home_team = fixture.find("span", class_="home-text").text.strip()
-    #     away_team = fixture.find("span", class_="away-text").text.strip()
-    #     score_box = fixture.find("span", class_="score-box")
-    #     if score_box:
-    #         scores = score_box.text.split("-")
-    #         scores = list(map(int, scores))
+    for fixture in fixtures:
+        home_team = fixture.find("span", class_="home-text").text.strip()
+        away_team = fixture.find("span", class_="away-text").text.strip()
+        score_box = fixture.find("span", class_="score-box")
+        if score_box:
+            scores = score_box.text.split("-")
+            scores = list(map(int, scores))
             
-    #         teams.append({"Team": home_team, "GF": scores[0], "GA": scores[1]})
-    #         teams.append({"Team": away_team, "GF": scores[1], "GA": scores[0]})
+            teams.append({"Team": home_team, "Side": "H", "GF": scores[0], "GA": scores[1]})
+            teams.append({"Team": away_team, "Side": "A", "GF": scores[1], "GA": scores[0]})
 
     print("Finished getting gameweek data")
     #update excel
     wb = load_workbook(EXCEL_FILE)
     sheet = wb["Team Data"]
 
-    df = pd.read_excel(EXCEL_FILE, sheet_name="Team Data", usecols="A:H", header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
-    # for team in teams:
-    #     team_name = team["Team"]
-    #     team_row = df.index[df["Team"] == team_name].tolist()[0]
-    #     df.loc[team_row, "GF"] = df.loc[team_row, "GF"] + team["GF"]
-    #     df.loc[team_row, "GA"] = df.loc[team_row, "GA"] + team["GA"]
-    #     df.loc[team_row, "Games"] += 1
-    #     df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
-    #     df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
-    # lod = df["GF"].sum() / df["Games"].sum()
-    # df["Oi"] = df["Avg.GF"] / lod
-    # df["Di"] = df["Avg.GA"] / lod
-    
-    # df["Avg.GF"] = df["Avg.GF"].round(2)
-    # df["Avg.GA"] = df["Avg.GA"].round(2)
-    # df["Oi"] = df["Oi"].round(2)
-    # df["Di"] = df["Di"].round(2)
+    df = pd.read_excel(EXCEL_FILE, sheet_name="Team Data", usecols="A:V", header=0, nrows=20, dtype={"Team": str, "H_GF": int, "H_GA": int, "A_GF": int, "A_GA": int, "GF": int, "GA": int, "H_Games": int, "A_Games": int, "Games": int, "H_Avg.GF": float, "H_Avg.GA": float, "A_Avg.GF": float, "A_Avg.GA": float,  "Avg.GF": float,  "Avg.GA": float, "H_Oi": float, "H_Di": float, "A_Oi": float, "A_Di": float, "Oi": float, "Di": float})
+    for team in teams:
+        team_name = team["Team"]
+        team_row = df.index[df["Team"] == team_name].tolist()[0]
+        df.loc[team_row, "GF"] += team["GF"]
+        df.loc[team_row, "GA"] += team["GA"]
+        df.loc[team_row, "Games"] += 1
+        df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
+        df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
 
-    # sheet["B23"] = df["GF"].sum()
-    # sheet["C23"] = df["GA"].sum()
-    # sheet["D23"] = df["Games"].sum()
-    # sheet["E23"] = df["Avg.GF"].mean()
-    # sheet["F23"] = df["Avg.GA"].mean()
-    # sheet["G23"] = df["Oi"].mean()
-    # sheet["H23"] = df["Di"].mean()
+        #update home side
+        if team["Side"] == "H":
+            df.loc[team_row, "H_GF"] += team["GF"]
+            df.loc[team_row, "H_GA"] += team["GA"]
+            df.loc[team_row, "H_Games"] += 1
+        #update away side
+        elif team["Side"] == "A":
+            df.loc[team_row, "A_GF"] += team["GF"]
+            df.loc[team_row, "A_GA"] += team["GA"]
+            df.loc[team_row, "A_Games"] += 1
 
-    # sheet["B24"] = lod
+    df["H_Avg.GF"] = df["H_GF"] / df["H_Games"]
+    df["H_Avg.GA"] = df["H_GA"] / df["H_Games"]
+    df["A_Avg.GF"] = df["A_GF"] / df["A_Games"]
+    df["A_Avg.GA"] = df["A_GA"] / df["A_Games"]
+    df["Avg.GF"] = df["GF"] / df["Games"]
+    df["Avg.GA"] = df["GA"] / df["Games"]
+
+    lod = df["GF"].sum() / df["Games"].sum()
+    df["Oi"] = df["Avg.GF"] / lod
+    df["Di"] = df["Avg.GA"] / lod
+
+    h_lod = df["H_GF"].sum() / df["H_Games"].sum()
+    df["H_Oi"] = df["H_Avg.GF"] / h_lod
+    df["H_Di"] = df["H_Avg.GA"] / h_lod
+
+    a_lod = df["A_GF"].sum() / df["A_Games"].sum()
+    df["A_Oi"] = df["A_Avg.GF"] / a_lod
+    df["A_Di"] = df["A_Avg.GA"] / a_lod
+
+    cols = ["H_Avg.GF", "H_Avg.GA", "H_Oi", "H_Di", "A_Avg.GF", "A_Avg.GA", "A_Oi", "A_Di", "Avg.GF", "Avg.GA", "Oi", "Di"]
+    for col in cols:
+        df[col] = df[col].round(2)
+
+    sheet["B23"] = df["H_GF"].sum()
+    sheet["C23"] = df["H_GA"].sum()
+    sheet["D23"] = df["A_GF"].sum()
+    sheet["E23"] = df["A_GA"].sum()
+    sheet["F23"] = df["GF"].sum()
+    sheet["G23"] = df["GA"].sum()
+    sheet["H23"] = df["H_Games"].sum()
+    sheet["I23"] = df["A_Games"].sum()
+    sheet["J23"] = df["Games"].sum()
+
+    sheet["K23"] = df["H_Avg.GF"].mean()
+    sheet["L23"] = df["H_Avg.GA"].mean()
+    sheet["M23"] = df["A_Avg.GF"].mean()
+    sheet["N23"] = df["A_Avg.GA"].mean()
+    sheet["O23"] = df["Avg.GF"].mean()
+    sheet["P23"] = df["Avg.GA"].mean()
+    sheet["Q23"] = df["H_Oi"].mean()
+    sheet["R23"] = df["H_Di"].mean()
+    sheet["S23"] = df["A_Oi"].mean()
+    sheet["T23"] = df["A_Di"].mean()
+    sheet["U23"] = df["Oi"].mean()
+    sheet["V23"] = df["Di"].mean()
+
+    sheet["B24"] = h_lod
+    sheet["E24"] = a_lod
+    sheet["H24"] = lod
+
+    home_top_attacking = df.sort_values(by=["H_Oi"], ascending=False)["Team"].head(5).tolist()
+    away_top_attacking = df.sort_values(by=["A_Oi"], ascending=False)["Team"].head(5).tolist()
     top_attacking = df.sort_values(by=["Oi"], ascending=False)["Team"].head(5).tolist()
+
+    home_top_defending = df.sort_values(by=["H_Di"], ascending=True)["Team"].head(5).tolist()
+    away_top_defending = df.sort_values(by=["A_Di"], ascending=True)["Team"].head(5).tolist()
     top_defending = df.sort_values(by=["Di"], ascending=True)["Team"].head(5).tolist()
 
+    home_top_attacking.sort()
+    away_top_attacking.sort()
     top_attacking.sort()
+
+    home_top_defending.sort()
+    away_top_defending.sort()
     top_defending.sort()
 
     low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
@@ -137,34 +223,46 @@ def update_data():
     high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
     low_di_index = df.sort_values(by=["Di"], ascending=True)["Di"].head(5).index.tolist()
 
-    # columns = ["B", "C", "D", "E", "F"]
+    columns = ["B", "C", "D", "E", "F"]
 
-    # for i, col in enumerate(columns):
-    #     sheet[f"{col}26"] = top_attacking[i]
-    #     sheet[f"{col}27"] = top_defending[i]
+    for i, col in enumerate(columns):
+        sheet[f"{col}26"] = home_top_attacking[i]
+        sheet[f"{col}27"] = away_top_attacking[i]
+        sheet[f"{col}28"] = top_attacking[i]
 
-    # for r_idx, row in enumerate(df.values, start=2):
-    #     for c_idx, value in enumerate(row, start=1):
-    #         sheet.cell(row=r_idx, column=c_idx, value=value)
+        sheet[f"{col}30"] = home_top_defending[i]
+        sheet[f"{col}31"] = away_top_defending[i]
+        sheet[f"{col}32"] = top_defending[i]
 
-    for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index,low_oi_index, high_di_index, low_di_index):
-        sheet.cell(row=low_oi_idx + 2, column=COL_G).font = RED_TEXT
-        sheet.cell(row=high_di_idx + 2, column=COL_H).font = RED_TEXT
+    for r_idx, row in enumerate(df.values, start=2):
+        for c_idx, value in enumerate(row, start=1):
+            sheet.cell(row=r_idx, column=c_idx, value=value)
 
-        sheet.cell(row=high_oi_idx + 2, column=COL_G).fill = yellowFill
-        sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = yellowFill
+    for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index, low_oi_index, high_di_index, low_di_index):
+        sheet.cell(row=low_oi_idx + 2, column=COL_U).fill = redFill
+        sheet.cell(row=high_di_idx + 2, column=COL_V).fill = redFill
 
-        sheet.cell(row=low_di_idx + 2, column=COL_H).fill = greenFill
+        sheet.cell(row=high_oi_idx + 2, column=COL_U).fill = blueFill
+        sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = blueFill
+
+        sheet.cell(row=low_di_idx + 2, column=COL_V).fill = greenFill
         sheet.cell(row=low_di_idx + 2, column=COL_A).fill = greenFill
 
         if high_oi_idx in low_di_index:
-            sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = redFill
+            sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = yellowFill
         
         if low_di_idx in high_oi_index:
-            sheet.cell(row=low_di_idx + 2, column=COL_A).fill = redFill
+            sheet.cell(row=low_di_idx + 2, column=COL_A).fill = yellowFill
+        
+        if low_oi_idx in high_di_index:
+            sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = redFill
+        
+        if high_di_idx in low_oi_index:
+            sheet.cell(row=high_di_idx + 2, column=COL_A).fill = redFill
 
     print("Finished updating team gameweek data.")    
     wb.save(EXCEL_FILE)
+    print(df)
 
 def update_fixture():
     #web scrapping
@@ -200,47 +298,28 @@ def update_fixture():
 
     for col, gameweek in enumerate(gameweeks, start=2):
         cell = sheet.cell(row=1, column=col, value=gameweek)
-        cell.font = DEFAULT_FONT_BOLD
 
-    team_map = {
-        "ARS": 2,
-        "AVL": 3,
-        "BOU": 4,
-        "BRE": 5,
-        "BHA": 6,
-        "CHE": 7,
-        "CRY": 8,
-        "EVE": 9,
-        "FUL": 10,
-        "IPS": 11,
-        "LEI": 12,
-        "LIV": 13,
-        "MCI": 14,
-        "MUN": 15,
-        "NEW": 16,
-        "NFO": 17,
-        "SOU": 18,
-        "TOT": 19,
-        "WHU": 20,
-        "WOL": 21
-    }
     team_data_sheet = wb["Team Data"]
     for row in range (2,22):
         sheet[f"A{row}"] = fixtures[row-2]["Team"]
-        sheet[f"A{row}"].font = DEFAULT_FONT_BOLD
         sheet[f"G{row}"] = 0
         sheet[f"H{row}"] = 0
         for col, opponent in enumerate(fixtures[row - 2]["Next 5"], start=2):
             #filling in opponents
             cell = sheet.cell(row=row, column=col, value=opponent)
-            cell.font = DEFAULT_FONT
 
             #aggregating Oi and Di
             cleaned_opponent = opponent.split(" ")[0]
             team_row = team_map[cleaned_opponent]
 
-            sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"G{team_row}"].value
-            sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"H{team_row}"].value
+            #gets opponent's Away Oi, Di
+            if(cleaned_opponent[1] == "(H)"):
+                sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"S{team_row}"].value
+                sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"T{team_row}"].value
+            else:
+                sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"Q{team_row}"].value
+                sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"R{team_row}"].value
+
     wb.save(EXCEL_FILE)
     df = pd.read_excel(EXCEL_FILE, sheet_name="Fixtures", usecols="G:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
 
@@ -259,25 +338,30 @@ def update_fixture():
         sheet.cell(row=25, column=col, value=sheet[f"A{low_oi_idx + 2}"].value)
     
     for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index, low_oi_index, high_di_index, low_di_index):
-        sheet.cell(row=high_oi_idx + 2, column=COL_G).font = RED_TEXT
+        sheet.cell(row=high_oi_idx + 2, column=COL_G).fill = redFill
+        sheet.cell(row=low_di_idx + 2, column=COL_H).fill = redFill
 
         sheet.cell(row=low_oi_idx + 2, column=COL_G).fill = greenFill
         sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = greenFill
 
-        sheet.cell(row=high_di_idx + 2, column=COL_H).fill = yellowFill
-        sheet.cell(row=high_di_idx + 2, column=COL_A).fill = yellowFill
-
-        sheet.cell(row=low_di_idx + 2, column=COL_H).font = RED_TEXT
+        sheet.cell(row=high_di_idx + 2, column=COL_H).fill = blueFill
+        sheet.cell(row=high_di_idx + 2, column=COL_A).fill = blueFill
 
         if low_oi_idx in high_di_index:
-            sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = redFill
+            sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = yellowFill
         
         if high_di_idx in low_oi_index:
-            sheet.cell(row=high_di_idx + 2, column=COL_A).fill = redFill
+            sheet.cell(row=high_di_idx + 2, column=COL_A).fill = yellowFill
+        
+        if high_oi_idx in low_di_index:
+            sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = redFill
+        
+        if low_di_idx in high_oi_index:
+            sheet.cell(row=low_di_idx + 2, column=COL_A).fill = redFill
 
 
     print("Finished updating fixture data.")
-
+    print(df)
     wb.save(EXCEL_FILE)
 
 def show_summary():
@@ -497,7 +581,7 @@ def update_player():
     wb.save(EXCEL_FILE)
 
 
-def update_team():
+def update_my_team():
     gw = get_gameweek()
     url = f"https://fantasy.premierleague.com/api/entry/{ID}/event/{gw}/picks/"
     team = requests.get(url).json()["picks"]
@@ -551,13 +635,13 @@ def update_team():
     print("Finished updating my team - season")
 #region System arguments
 if __name__ == "__main__":  
-    if(sys.argv[1] == "update_data"):
-        update_data()
+    if(sys.argv[1] == "update_teams"):
+        update_teams()
     elif(sys.argv[1] == "update_fixture"):
         update_fixture()
     elif(sys.argv[1] == "show_summary"):
         show_summary()
     elif(sys.argv[1] == "update_player"):
         update_player()  
-    elif(sys.argv[1] == "update_team"):
-        update_team()
+    elif(sys.argv[1] == "update_my_team"):
+        update_my_team()   

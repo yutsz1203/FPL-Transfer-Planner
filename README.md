@@ -6,7 +6,7 @@ This program extracts Premier League data from [fpl.page](https://fpl.page) (tha
 
 ### (1) Gameweek Data
 
-The gameweek data is for calculating the Offensive Strength (Oi) and Defensive Strength (Di) of each team, and then predict the results of each match using a Poisson Predictive model.
+The gameweek data is for calculating the Offensive Strength (Oi) and Defensive Strength (Di) of each team, separated by Home and Away, and then predict the results of each match using a Poisson Predictive model.
 
 ### (2) Fixture Data
 
@@ -33,7 +33,7 @@ Pass the following arguments to get respective data
 
 ### (1) Gameweek Data
 
-`$ update_data`
+`$ update_teams`
 
 ### (2) Fixture Data
 
@@ -48,32 +48,9 @@ Pass the following arguments to get respective data
 `$ show_summary`
 
 ## Features to work on
-
-### team data
-
-- Provide Home / Away data separately
-
-### fixture data
-
-- Colour fixture cells based on opponent's strength in offense and defense (two versions for attackers and defenders), separate teams in 5 different categories, 4 teams a group.
-
-### fdr
-
-- Create a sheet that displays fdr for attackers, and fdr for defenders
-
-### update player
-
-- get all players past 5 gw records
-
-### update team
-
-- get team past 5 gw records
-
-### summary
-
-- show players with best points / $, per position
-- allow user to choose what summary to print
-
-### projected goals, assists
-
-- calculate players projected goals and assists by using their expected data, and opponent's offensive and defensive strength
+2. get all players past 5 gw records (update player)
+3. calculate players projected goals and assists by using their expected data, and opponent's offensive and defensive strength
+4. get my team past 5 gw records (update_my_team)
+5. Colour fixture cells based on opponent's strength in offense and defense (two versions for attackers and defenders), separate teams in 5 different categories, 4 teams a group (fixture data)
+6. Create a sheet that displays fdr for attackers, and fdr for defenderss (fdr)
+7. (1) show players with best points / $, per position (2) allow user to choose what summary to print (summary)
