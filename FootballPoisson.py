@@ -37,11 +37,29 @@ COL_T = 20
 COL_U = 21
 COL_V = 22
 
-GK_COLS = "A:AI"
-DEF_COLS = "A:AS"
-MID_COLS = "A:AS"
-FWD_COLS = "A:AS"
-TEAMS_COLS = "A:V"
+NEXT_FIXTURES_COLS = "A:R"
+NEXT_GK_COLS = "A:Z"
+NEXT_DEF_COLS = "A:AC"
+NEXT_MID_COLS = "A:AA"
+NEXT_FWD_COLS = "A:AA"
+
+NEXT5_FIXTURES_COLS = "A:H"
+NEXT5_GK_COLS = "A:AE"
+NEXT5_DEF_COLS = "A:AG"
+NEXT5_MID_COLS = "A:AG"
+NEXT5_FWD_COLS = "A:AG"
+
+LAST5_GK_COLS = "A:Q"
+LAST5_DEF_COLS = "A:U"
+LAST5_MID_COLS = "A:U"
+LAST5_FWD_COLS = "A:U"
+
+SEASON_TEAMS_COLS = "A:V"
+SEASON_GK_COLS = "A:AI"
+SEASON_DEF_COLS = "A:AS"
+SEASON_MID_COLS = "A:AS"
+SEASON_FWD_COLS = "A:AS"
+
 
 redFill = PatternFill(start_color='FFFF0000',end_color='FFFF0000', fill_type='solid')
 yellowFill = PatternFill(start_color='FFFFFF00', end_color='FFFFFF00',fill_type='solid')
@@ -110,6 +128,29 @@ teams = {
         19: "West Ham",
         20: "Wolves"
     }
+
+team_full_from = {
+    "ARS": "Arsenal",
+    "AVL": "Aston Villa",
+    "BOU": "Bournemouth",
+    "BRE": "Brentford",
+    "BHA": "Brighton",
+    "CHE": "Chelsea",
+    "CRY": "Crystal Palace",
+    "EVE": "Everton",
+    "FUL": "Fulham",
+    "IPS": "Ipswich",
+    "LEI": "Leicester",
+    "LIV": "Liverpool",
+    "MCI": "Man City",
+    "MUN": "Man Utd",
+    "NEW": "Newcastle",
+    "NFO": "Nott'm Forest",
+    "SOU": "Southampton",
+    "TOT": "Spurs",
+    "WHU": "West Ham",
+    "WOL": "Wolves"
+}
 position = {
         1: "GK",
         2: "DEF",
@@ -192,260 +233,190 @@ def get_players():
     fwd_df.to_excel("FWD.xlsx", sheet_name="FWD List", index=False)
 
 #region Main functions
-def update_teams_season():
-    print("Start updating teams season data.")
+def update_fixture_next():
     #web scrapping
-    url = "https://fpl.page/bonus"
-    page = requests.get(url)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver.get("https://fpl.page/fixtureTicker")
 
-    soup = BeautifulSoup(page.text, "html.parser")
-    
-    fixtures = soup.find_all("li", class_="fixture-item")
-    
-    teams = []
+    #get fixtures
+    table = driver.find_element(By.CSS_SELECTOR, ".transfers-body") 
+    table_soup = BeautifulSoup(table.get_attribute("innerHTML"), "html.parser")
+    teams = table_soup.find_all("tr")
+
+    fixtures = []
+
+    for team in teams:
+        team_name = team.find("td", class_="fdr-teamNames").text
+        td = team.find_all("td")[1]
+        opponent = td.find("span").text if td.find("span") else None
+        if opponent:
+            opponent_name = opponent.split(" ")[0]
+            side = opponent.split(" ")[1]
+        fixtures.append({team_name: opponent_name, "side": side})
+    print(fixtures)
+    print("Finished getting fixtures.")
+    driver.quit()
+
+    fixture_df = pd.read_excel(NEXT_EXCEL, sheet_name="Fixtures", usecols="A:O", header=0, nrows=20)
+    team_df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols="A:V", header=0, nrows=20)
+    team_sheet = load_workbook(SEASON_EXCEL)["Teams"]
+    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
+    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
+
+    columns_to_update = ["H_Oi", "H_Di", "A_Oi", "A_Di", "Oi", "Di"]
+    opponent_columns_to_update = ["O_H_Oi", "O_H_Di", "O_A_Oi", "O_A_Di", "O_Oi", "O_Di"]
+
+    match_up_rows = [[1,2], [18,19], [35,36], [52,53], [69,70]]
+    i = 0
+    match_up_cols = [["T", "U", "V"], ["AB", "AC", "AD"]]
+    j = 0
+
+    wb = load_workbook(NEXT_EXCEL)
+    fixture_sheet = wb["Fixtures"]
 
     for fixture in fixtures:
-        home_team = fixture.find("span", class_="home-text").text.strip()
-        away_team = fixture.find("span", class_="away-text").text.strip()
-        score_box = fixture.find("span", class_="score-box")
-        if score_box:
-            scores = score_box.text.split("-")
-            scores = list(map(int, scores))
-            
-            teams.append({"Team": home_team, "Side": "H", "GF": scores[0], "GA": scores[1]})
-            teams.append({"Team": away_team, "Side": "A", "GF": scores[1], "GA": scores[0]})
-            print(f"{home_team} {scores[0]} - {scores[1]} {away_team}")
+        team_name = list(fixture.keys())[0]
+        opponent = team_full_from[fixture[team_name]]
+        side = fixture["side"]
+        team_row = team_df.index[team_df["Team"] == team_name].tolist()[0]
+        fixture_team_row = fixture_df.index[fixture_df["Team"] == team_name].tolist()[0]
 
-    print("Finished getting gameweek data")
-    #update excel
-    wb = load_workbook(SEASON_EXCEL)
-    sheet = wb["Teams"]
+        best_def = def_df[def_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
+        best_mid = mid_df[mid_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
+        best_fwd = fwd_df[fwd_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
 
-    df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols=TEAMS_COLS, header=0, nrows=20)
-    for team in teams:
-        team_name = team["Team"]
-        team_row = df.index[df["Team"] == team_name].tolist()[0]
-        df.loc[team_row, "GF"] += team["GF"]
-        df.loc[team_row, "GA"] += team["GA"]
-        df.loc[team_row, "Games"] += 1
-        df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
-        df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
+        opponent_team_row = team_df.index[team_df["Team"] == opponent].tolist()[0]
+        fixture_df.loc[fixture_team_row, "Opponent"] = opponent
 
-        #update home side
-        if team["Side"] == "H":
-            df.loc[team_row, "H_GF"] += team["GF"]
-            df.loc[team_row, "H_GA"] += team["GA"]
-            df.loc[team_row, "H_Games"] += 1
-        #update away side
-        elif team["Side"] == "A":
-            df.loc[team_row, "A_GF"] += team["GF"]
-            df.loc[team_row, "A_GA"] += team["GA"]
-            df.loc[team_row, "A_Games"] += 1
-        print(f"Updated data of {team_name}")
-
-    df["H_Avg.GF"] = df["H_GF"] / df["H_Games"]
-    df["H_Avg.GA"] = df["H_GA"] / df["H_Games"]
-    df["A_Avg.GF"] = df["A_GF"] / df["A_Games"]
-    df["A_Avg.GA"] = df["A_GA"] / df["A_Games"]
-    df["Avg.GF"] = df["GF"] / df["Games"]
-    df["Avg.GA"] = df["GA"] / df["Games"]
-
-    lod = df["GF"].sum() / df["Games"].sum()
-    df["Oi"] = df["Avg.GF"] / lod
-    df["Di"] = df["Avg.GA"] / lod
-
-    h_lod = df["H_GF"].sum() / df["H_Games"].sum()
-    df["H_Oi"] = df["H_Avg.GF"] / h_lod
-    df["H_Di"] = df["H_Avg.GA"] / h_lod
-
-    a_lod = df["A_GF"].sum() / df["A_Games"].sum()
-    df["A_Oi"] = df["A_Avg.GF"] / a_lod
-    df["A_Di"] = df["A_Avg.GA"] / a_lod
-
-    cols = ["H_Avg.GF", "H_Avg.GA", "H_Oi", "H_Di", "A_Avg.GF", "A_Avg.GA", "A_Oi", "A_Di", "Avg.GF", "Avg.GA", "Oi", "Di"]
-    for col in cols:
-        df[col] = df[col].round(2)
-
-    sheet["B23"] = df["H_GF"].sum()
-    sheet["C23"] = df["H_GA"].sum()
-    sheet["D23"] = df["A_GF"].sum()
-    sheet["E23"] = df["A_GA"].sum()
-    sheet["F23"] = df["GF"].sum()
-    sheet["G23"] = df["GA"].sum()
-    sheet["H23"] = df["H_Games"].sum()
-    sheet["I23"] = df["A_Games"].sum()
-    sheet["J23"] = df["Games"].sum()
-
-    sheet["K23"] = df["H_Avg.GF"].mean()
-    sheet["L23"] = df["H_Avg.GA"].mean()
-    sheet["M23"] = df["A_Avg.GF"].mean()
-    sheet["N23"] = df["A_Avg.GA"].mean()
-    sheet["O23"] = df["Avg.GF"].mean()
-    sheet["P23"] = df["Avg.GA"].mean()
-    sheet["Q23"] = df["H_Oi"].mean()
-    sheet["R23"] = df["H_Di"].mean()
-    sheet["S23"] = df["A_Oi"].mean()
-    sheet["T23"] = df["A_Di"].mean()
-    sheet["U23"] = df["Oi"].mean()
-    sheet["V23"] = df["Di"].mean()
-
-    sheet["B24"] = h_lod
-    sheet["E24"] = a_lod
-    sheet["H24"] = lod
-
-    home_top_attacking = df.sort_values(by=["H_Oi"], ascending=False)["Team"].head(5).tolist()
-    away_top_attacking = df.sort_values(by=["A_Oi"], ascending=False)["Team"].head(5).tolist()
-    top_attacking = df.sort_values(by=["Oi"], ascending=False)["Team"].head(5).tolist()
-
-    home_top_defending = df.sort_values(by=["H_Di"], ascending=True)["Team"].head(5).tolist()
-    away_top_defending = df.sort_values(by=["A_Di"], ascending=True)["Team"].head(5).tolist()
-    top_defending = df.sort_values(by=["Di"], ascending=True)["Team"].head(5).tolist()
-
-
-    low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
-    high_oi_index = df.sort_values(by=["Oi"], ascending=False)["Oi"].head(5).index.tolist()
-    high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
-    low_di_index = df.sort_values(by=["Di"], ascending=True)["Di"].head(5).index.tolist()
-
-    columns = ["B", "C", "D", "E", "F"]
-
-    for i, col in enumerate(columns):
-        sheet[f"{col}26"] = home_top_attacking[i]
-        sheet[f"{col}27"] = away_top_attacking[i]
-        sheet[f"{col}28"] = top_attacking[i]
-
-        sheet[f"{col}30"] = home_top_defending[i]
-        sheet[f"{col}31"] = away_top_defending[i]
-        sheet[f"{col}32"] = top_defending[i]
-
-    for r_idx, row in enumerate(df.values, start=2):
-        for c_idx, value in enumerate(row, start=1):
-            sheet.cell(row=r_idx, column=c_idx, value=value)
-
-    for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index, low_oi_index, high_di_index, low_di_index):
-        sheet.cell(row=low_oi_idx + 2, column=COL_U).fill = redFill
-        sheet.cell(row=high_di_idx + 2, column=COL_V).fill = redFill
-
-        sheet.cell(row=high_oi_idx + 2, column=COL_U).fill = blueFill
-        sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = blueFill
-
-        sheet.cell(row=low_di_idx + 2, column=COL_V).fill = greenFill
-        sheet.cell(row=low_di_idx + 2, column=COL_A).fill = greenFill
-
-        if high_oi_idx in low_di_index:
-            sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = yellowFill
+        for column, opp_column in zip(columns_to_update, opponent_columns_to_update):
+            fixture_df.loc[fixture_team_row, "Side"] = side
+            fixture_df.loc[fixture_team_row, "DEF"] = best_def
+            fixture_df.loc[fixture_team_row, "MID"] = best_mid
+            fixture_df.loc[fixture_team_row, "FWD"] = best_fwd
+            fixture_df.loc[fixture_team_row, column] = team_df.loc[team_row, column]
+            fixture_df.loc[fixture_team_row, opp_column] = team_df.loc[opponent_team_row, column]
         
-        if low_di_idx in high_oi_index:
-            sheet.cell(row=low_di_idx + 2, column=COL_A).fill = yellowFill
+        if side == "(H)":
+            if i == 5:
+                i = 0
+                j = 1
+            fixture_sheet[f"{match_up_cols[j][0]}{match_up_rows[i][0]}"] = team_name
+            fixture_sheet[f"{match_up_cols[j][1]}{match_up_rows[i][0]}"] = fixture_df.loc[fixture_team_row, "Oi"]
+            fixture_sheet[f"{match_up_cols[j][2]}{match_up_rows[i][0]}"] = fixture_df.loc[fixture_team_row, "Di"]
+
+            fixture_sheet[f"{match_up_cols[j][0]}{match_up_rows[i][1]}"] = opponent
+            fixture_sheet[f"{match_up_cols[j][1]}{match_up_rows[i][1]}"] = fixture_df.loc[fixture_team_row, "O_Oi"]
+            fixture_sheet[f"{match_up_cols[j][2]}{match_up_rows[i][1]}"] = fixture_df.loc[fixture_team_row, "O_Di"]
+            i += 1
+
+    fixture_df = fixture_df.sort_values(by=["O_Di"], ascending=False)
+    print(fixture_df)
+ 
+    lod = team_sheet["H24"].value
+    fixture_sheet["B23"] = lod
+    write_df_to_sheet(fixture_df, fixture_sheet)
+    wb.save(NEXT_EXCEL)
+    print("Finished updating next fixture data.")
+
+
+def update_player_next():
+    fixture_df = pd.read_excel(NEXT_EXCEL, sheet_name="Fixtures", usecols="A:R", header=0, nrows=20)
+    lod = load_workbook(SEASON_EXCEL, data_only=True)["Teams"]["H24"].value
+    
+    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
+    gk_df.drop(["Starts","H_Points", "A_Points", "H_CS", "A_CS", "H_Goals Conceded", "A_Goals Conceded", "H_xG Conceded", "A_xG Conceded", "H_Saves", "A_Saves", "H_Bonus", "A_Bonus"], axis=1, inplace=True)
+    # Add home / away projected goals here after gw10
+    gk_df["Opponent"] = gk_df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "Opponent"].values[0])
+    gk_df["O_Oi"] = gk_df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "O_Oi"].values[0])
+    gk_df["Di"] = gk_df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "Di"].values[0])
+    gk_df["Projected Performance"] = -(gk_df["O_Oi"] * gk_df["Di"] * lod - (gk_df["xG Prevented"] / get_gameweek()))  
+    gk_df.sort_values(by=["Projected Performance"], ascending=False, inplace=True)
+    gk_df = gk_df.drop(gk_df[gk_df["Games"]==0].index)
+
+    outfield_cols = ["H_Points", "A_Points", "H_G", "A_G", "H_xG", "A_xG", "H_xGDiff", "A_xGDiff", "H_A", "A_A", "H_xA", "A_xA", "H_xADiff", "A_xADiff", "H_xGIDiff", "A_xGIDiff", "xGDiff", "xADiff", "H_Bonus", "A_Bonus", "Bonus"]
+    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
+    
+    def make_df(df, defender=False):
+        df.drop(outfield_cols, axis=1, inplace=True)
+        df["Opponent"] = df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "Opponent"].values[0])
+        if defender:
+            df["O_Oi"] = df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "O_Oi"].values[0])
+            df["O_Di"] = df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "O_Di"].values[0])
+            df["Di"] = df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "Di"].values[0])
+            df["Projected Performance"] = ((df["xGI"] / get_gameweek())) * df["O_Di"] * lod - (df["O_Oi"] * df["Di"] * lod)
+        else:
+            df["O_Di"] = df["Team"].apply(lambda team: fixture_df.loc[fixture_df["Team"] == team, "O_Di"].values[0])
+            df["Projected Performance"] = ((df["xGI"] / get_gameweek())) * df["O_Di"] * lod 
         
-        if low_oi_idx in high_di_index:
-            sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = redFill
-        
-        if high_di_idx in low_oi_index:
-            sheet.cell(row=high_di_idx + 2, column=COL_A).fill = redFill
+        df.sort_values(by=["Projected Performance"], ascending=False, inplace=True)
 
-    print("Finished updating team gameweek data.")    
-    wb.save(SEASON_EXCEL)
+    make_df(def_df, True)
+    def_df = def_df.drop(def_df[def_df["Games"]==0].index)
+    make_df(mid_df)
+    mid_df = mid_df.drop(mid_df[mid_df["Games"]==0].index)
+    make_df(fwd_df)
+    fwd_df = fwd_df.drop(fwd_df[fwd_df["Games"]==0].index)
+
+    wb = load_workbook(NEXT_EXCEL)
+    write_df_to_sheet(gk_df, wb["GK"])
+    print("Finished updating next GW GK data.")
+    write_df_to_sheet(def_df, wb["DEF"])
+    print("Finished updating next GW DEF data.")
+    write_df_to_sheet(mid_df, wb["MID"])
+    print("Finished updating next GW MID data.")
+    write_df_to_sheet(fwd_df, wb["FWD"])
+    print("Finished updating next GW FWD data.")
+    wb.save(NEXT_EXCEL)
 
 
-def update_player_season():
-    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=GK_COLS, header=0, nrows=GK_COUNT)
-    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=DEF_COLS, header=0, nrows=DEF_COUNT)
-    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=MID_COLS, header=0, nrows=MID_COUNT)
-    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=FWD_COLS, header=0, nrows=FWD_COUNT)
-
-    r = requests.get(BASE_URL).json() 
-    players = r["elements"] # 1 to 642
+def update_my_team_next():
     gw = get_gameweek()
+    url = f"https://fantasy.premierleague.com/api/entry/{ID}/event/{gw}/picks/"
+    team = requests.get(url).json()["picks"]
+    player_ids = [player["element"] for player in team]
+    r = requests.get(BASE_URL).json()["elements"]
+    players = [player for player in r if player["id"] in player_ids]
+
+    wb = load_workbook(NEXT_EXCEL)
+    gk_df = pd.read_excel(NEXT_EXCEL, sheet_name="GK", usecols="A:Z", header=0, nrows=GK_COUNT)
+    def_df = pd.read_excel(NEXT_EXCEL, sheet_name="DEF", usecols="A:AC", header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(NEXT_EXCEL, sheet_name="MID", usecols="A:AA", header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(NEXT_EXCEL, sheet_name="FWD", usecols="A:AA", header=0, nrows=FWD_COUNT)
+
+    team_gk_rows = []
+    team_def_rows = []
+    team_mid_rows = []
+    team_fwd_rows = []
+
     for player in players:
-        if player["minutes"] > MINUTES_THRESHOLD:
-            id = player["id"]
-            individual = requests.get(f"https://fantasy.premierleague.com/api/element-summary/{id}/").json()["history"]
-            start_round = individual[0]["round"]
-            # if I forgot to update after a gw, use to following line
-            # gameweeks = [i for i in range(gw-n-start_round, gw-n-start_round+1)] where n is the number of gws i missed
-            gameweeks = [i for i in range(gw-start_round, gw-start_round + 1)]
-            if player["element_type"] == 1:
-                df = gk_df
-                player_row = gk_df.index[gk_df["Name"] == player["web_name"]].tolist()[0]
-            elif player["element_type"] == 2:
-                df = def_df
-                player_row = def_df.index[def_df["Name"] == player["web_name"]].tolist()[0]
-            elif player["element_type"] == 3:
-                df = mid_df
-                player_row = mid_df.index[mid_df["Name"] == player["web_name"]].tolist()[0]
-            elif player["element_type"] == 4:
-                df = fwd_df
-                player_row = fwd_df.index[fwd_df["Name"] == player["web_name"]].tolist()[0]
-            for i in gameweeks:
-                gw_stat = individual[i]
-                side = "H" if gw_stat["was_home"] else "A"
-                if player["element_type"] == 1:
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_CS")] += gw_stat["clean_sheets"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")] += gw_stat["goals_conceded"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] += float(gw_stat["expected_goals_conceded"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Prevented")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] - df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Saves")] += gw_stat["saves"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
-                else:
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_G")] += gw_stat["goals_scored"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] += float(gw_stat["expected_goals"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_A")] += gw_stat["assists"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] += float(gw_stat["expected_assists"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xADiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] += float(gw_stat["expected_goal_involvements"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGIDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
-            if player["element_type"] == 1:
-                df.iloc[player_row, df.columns.get_loc("CS")] = df.iloc[player_row, df.columns.get_loc("H_CS")] + df.iloc[player_row, df.columns.get_loc("A_CS")]
-                df.iloc[player_row, df.columns.get_loc("Goals Conceded")] = df.iloc[player_row, df.columns.get_loc("H_Goals Conceded")] + df.iloc[player_row, df.columns.get_loc("A_Goals Conceded")]
-                df.iloc[player_row, df.columns.get_loc("xG Conceded")] = df.iloc[player_row, df.columns.get_loc("H_xG Conceded")] + df.iloc[player_row, df.columns.get_loc("A_xG Conceded")]
-                df.iloc[player_row, df.columns.get_loc("xG Prevented")] = df.iloc[player_row, df.columns.get_loc("H_xG Prevented")] + df.iloc[player_row, df.columns.get_loc("A_xG Prevented")]
-                df.iloc[player_row, df.columns.get_loc("H_xG Prevented / $")] = round(df.iloc[player_row, df.columns.get_loc("H_xG Prevented")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-                df.iloc[player_row, df.columns.get_loc("A_xG Prevented / $")] = round(df.iloc[player_row, df.columns.get_loc("A_xG Prevented")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-                df.iloc[player_row, df.columns.get_loc("xG Prevented / $")] = df.iloc[player_row, df.columns.get_loc("H_xG Prevented / $")] + df.iloc[player_row, df.columns.get_loc("A_xG Prevented / $")]
-                df.iloc[player_row, df.columns.get_loc("Saves")] = df.iloc[player_row, df.columns.get_loc("H_Saves")] + df.iloc[player_row, df.columns.get_loc("A_Saves")]
-            else: 
-                df.iloc[player_row, df.columns.get_loc("Form")] = float(player["form"])
-                df.iloc[player_row, df.columns.get_loc("G")] = df.iloc[player_row, df.columns.get_loc("H_G")] + df.iloc[player_row, df.columns.get_loc("A_G")]
-                df.iloc[player_row, df.columns.get_loc("xG")] = df.iloc[player_row, df.columns.get_loc("H_xG")] + df.iloc[player_row, df.columns.get_loc("A_xG")]
-                df.iloc[player_row, df.columns.get_loc("xGDiff")] = df.iloc[player_row, df.columns.get_loc("H_xGDiff")] + df.iloc[player_row, df.columns.get_loc("A_xGDiff")]
-                df.iloc[player_row, df.columns.get_loc("A")] = df.iloc[player_row, df.columns.get_loc("H_A")] + df.iloc[player_row, df.columns.get_loc("A_A")]
-                df.iloc[player_row, df.columns.get_loc("xA")] = df.iloc[player_row, df.columns.get_loc("H_xA")] + df.iloc[player_row, df.columns.get_loc("A_xA")]
-                df.iloc[player_row, df.columns.get_loc("xADiff")] = df.iloc[player_row, df.columns.get_loc("H_xADiff")] + df.iloc[player_row, df.columns.get_loc("A_xADiff")]
-                df.iloc[player_row, df.columns.get_loc("xGI")] = df.iloc[player_row, df.columns.get_loc("H_xGI")] + df.iloc[player_row, df.columns.get_loc("A_xGI")]
-                df.iloc[player_row, df.columns.get_loc("H_xGI / $")] = round(df.iloc[player_row, df.columns.get_loc("H_xGI")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-                df.iloc[player_row, df.columns.get_loc("A_xGI / $")] = round(df.iloc[player_row, df.columns.get_loc("A_xGI")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-                df.iloc[player_row, df.columns.get_loc("xGI / $")] = df.iloc[player_row, df.columns.get_loc("H_xGI / $")] + df.iloc[player_row, df.columns.get_loc("A_xGI / $")]
-                df.iloc[player_row, df.columns.get_loc("xGIDiff")] = df.iloc[player_row, df.columns.get_loc("H_xGIDiff")] + df.iloc[player_row, df.columns.get_loc("A_xGIDiff")]
-            
-            df.iloc[player_row, df.columns.get_loc(f"{side}_Games")] += 1 if gw_stat["minutes"] > 0 else 0
-            df.iloc[player_row, df.columns.get_loc("Starts")] += gw_stat["starts"]
-            df.iloc[player_row, df.columns.get_loc("Games")] = df.iloc[player_row, df.columns.get_loc("H_Games")] + df.iloc[player_row, df.columns.get_loc("A_Games")]
-            df.iloc[player_row, df.columns.get_loc("Points")] = df.iloc[player_row, df.columns.get_loc("H_Points")] + df.iloc[player_row, df.columns.get_loc("A_Points")]
-            df.iloc[player_row, df.columns.get_loc("Price")] = player["now_cost"] / 10.0
-            df.iloc[player_row, df.columns.get_loc("H_Points/$")] = round(df.iloc[player_row, df.columns.get_loc("H_Points")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-            df.iloc[player_row, df.columns.get_loc("A_Points/$")] = round(df.iloc[player_row, df.columns.get_loc("A_Points")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-            df.iloc[player_row, df.columns.get_loc("Points/$")] = round(df.iloc[player_row, df.columns.get_loc("Points")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
-            df.iloc[player_row, df.columns.get_loc("Bonus")] = df.iloc[player_row, df.columns.get_loc("H_Bonus")] + df.iloc[player_row, df.columns.get_loc("A_Bonus")]
-            print(f"Finished updating {player['web_name']}")
-    wb = load_workbook(SEASON_EXCEL)
+        if player["element_type"] == 1:
+            team_gk_rows.append(gk_df.loc[gk_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 2:
+            team_def_rows.append(def_df.loc[def_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 3:
+            team_mid_rows.append(mid_df.loc[mid_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 4:
+            team_fwd_rows.append(fwd_df.loc[fwd_df["Name"] == player["web_name"]])
+        print("Finished getting " + player["web_name"])
 
-    gk_sheet = wb["GK"]
-    def_sheet = wb["DEF"]
-    mid_sheet = wb["MID"]
-    fwd_sheet = wb["FWD"]
+    team_gk_df = pd.concat(team_gk_rows, ignore_index=True)
+    team_def_df = pd.concat(team_def_rows, ignore_index=True)
+    team_mid_df = pd.concat(team_mid_rows, ignore_index=True)
+    team_fwd_df = pd.concat(team_fwd_rows, ignore_index=True)
 
-    write_df_to_sheet(gk_df, gk_sheet)
-    write_df_to_sheet(def_df, def_sheet)
-    write_df_to_sheet(mid_df, mid_sheet)
-    write_df_to_sheet(fwd_df, fwd_sheet)
+    team_df = pd.concat([team_def_df, team_mid_df, team_fwd_df, team_gk_df], ignore_index=True, sort=False)
+    team_df = team_df.sort_values(by=["Projected Performance"], ascending=False)
 
-    wb.save(SEASON_EXCEL)
-    print("Finished updating player season data.")
+    team_season = wb["My Team"]
+    write_df_to_sheet(team_df, team_season)
+    wb.save(NEXT_EXCEL)
+    print("Finished updating my team - next GW")
+
+
 
 def update_fixture():
     #web scrapping
@@ -597,9 +568,9 @@ def update_player_next5():
          team_di[team] = fixture_df.loc[fixture_df["Team"] == team, "Di"].values[0]
 
     lod = load_workbook(SEASON_EXCEL, data_only=True)["Teams"]["H24"].value
-    teams_df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols=TEAMS_COLS, header=0, nrows=20)
+    teams_df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols=SEASON_TEAMS_COLS, header=0, nrows=20)
 
-    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=GK_COLS, header=0, nrows=GK_COUNT)
+    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
     gk_df.drop(["Starts","H_Points", "A_Points", "H_CS", "A_CS", "H_Goals Conceded", "A_Goals Conceded", "H_xG Conceded", "A_xG Conceded", "H_Saves", "A_Saves", "H_Bonus", "A_Bonus"], axis=1, inplace=True)
     gk_df["Oi"] = gk_df["Team"].apply(lambda team: team_oi.get(team, ""))  
     gk_df["Di"] = gk_df["Team"].apply(lambda team: teams_df.loc[teams_df["Team"] == team, "Di"].values[0])
@@ -622,9 +593,9 @@ def update_player_next5():
         gk_df[gameweek] = gk_df["Team"].apply(lambda team: fixtures.get(team, [])[i] if team in fixtures else None)
 
     outfield_cols = ["H_Points", "A_Points", "H_G", "A_G", "H_xG", "A_xG", "H_xGDiff", "A_xGDiff", "H_A", "A_A", "H_xA", "A_xA", "H_xADiff", "A_xADiff", "H_xGIDiff", "A_xGIDiff", "xGDiff", "xADiff", "H_Bonus", "A_Bonus", "Bonus"]
-    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=DEF_COLS, header=0, nrows=DEF_COUNT)
-    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=MID_COLS, header=0, nrows=MID_COUNT)
-    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=FWD_COLS, header=0, nrows=FWD_COUNT)
+    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
     
     def make_df(df):
         df.drop(outfield_cols, axis=1, inplace=True)
@@ -676,10 +647,10 @@ def update_my_team_next5():
     players = [player for player in r if player["id"] in player_ids]
 
     wb = load_workbook(NEXT5_EXCEL)
-    gk_df = pd.read_excel(NEXT5_EXCEL, sheet_name="GK", usecols="A:AE", header=0, nrows=GK_COUNT)
-    def_df = pd.read_excel(NEXT5_EXCEL, sheet_name="DEF", usecols="A:AG", header=0, nrows=DEF_COUNT)
-    mid_df = pd.read_excel(NEXT5_EXCEL, sheet_name="MID", usecols="A:AG", header=0, nrows=MID_COUNT)
-    fwd_df = pd.read_excel(NEXT5_EXCEL, sheet_name="FWD", usecols="A:AG", header=0, nrows=FWD_COUNT)
+    gk_df = pd.read_excel(NEXT5_EXCEL, sheet_name="GK", usecols=NEXT5_GK_COLS, header=0, nrows=GK_COUNT)
+    def_df = pd.read_excel(NEXT5_EXCEL, sheet_name="DEF", usecols=NEXT5_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(NEXT5_EXCEL, sheet_name="MID", usecols=NEXT5_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(NEXT5_EXCEL, sheet_name="FWD", usecols=NEXT5_FWD_COLS, header=0, nrows=FWD_COUNT)
 
     team_gk_rows = []
     team_def_rows = []
@@ -715,7 +686,7 @@ def show_summary():
     team_data_sheet = wb["Team Data"]
     fixture_sheet = wb["Fixtures"]
 
-    team_df = pd.read_excel(SEASON_EXCEL, sheet_name="Team Data", usecols=TEAMS_COLS, header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
+    team_df = pd.read_excel(SEASON_EXCEL, sheet_name="Team Data", usecols=SEASON_TEAMS_COLS, header=0, nrows=20, dtype={"Team": str, "GF": int, "GA": int, "Games": int, "Avg.GF": float, "Avg.GA": float, "Oi": float, "Di": float})
     top_attacking_team = []
     top_defending_team = []
 
@@ -792,9 +763,11 @@ def show_summary():
 
 
 def update_player_last5():
-    r = requests.get(BASE_URL).json() 
+    r = requests.get(BASE_URL).json()   
     players = r["elements"] # 1 to 642
     gw = get_gameweek()
+    gws = range(gw-4, gw+1) if gw > 5 else range(1, gw+1)
+    print([f"GW{gw}" for gw in gws])
     gks, defs, mids, fwds = [], [], [], []
     for player in players:
         if player["minutes"] > MINUTES_THRESHOLD:
@@ -806,35 +779,25 @@ def update_player_last5():
                 gameweeks = range(0, matches-start_round+1)
             else:
                 gameweeks = range(gw-start_round-4, gw-start_round+1) if gw > 5 else range(0, gw-start_round+1)
-            points, cs,  goals_conceded, xg_conceded, saves, bonus, xg, g, xa, a, xgi = [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]
-            total_starts, total_games = 0,0
+            points = dict.fromkeys(gws, 0)
+            cs, goals_conceded, xg_conceded, saves, bonus, xg, g, xa, a, xgi = 0,0,0,0,0,0,0,0,0,0
+            total_starts, total_games,  total_points = 0,0,0
             for i in gameweeks:
                 gw_stat = individual[i]
-                index = 0 if gw_stat["was_home"] else 1
-                points[index] += gw_stat["total_points"]
+                points[i+1] = gw_stat["total_points"]
+                total_points += gw_stat["total_points"]
                 total_starts += gw_stat["starts"]
                 total_games += 1 if gw_stat["minutes"] > 0 else 0
-                cs[index] += gw_stat["clean_sheets"]
-                goals_conceded[index] += gw_stat["goals_conceded"]
-                xg_conceded[index] += float(gw_stat["expected_goals_conceded"])
-                saves[index] += gw_stat["saves"]
-                bonus[index] += gw_stat["bonus"]
-                xg[index] += float(gw_stat["expected_goals"])
-                g[index] += gw_stat["goals_scored"]
-                xa[index] += float(gw_stat["expected_assists"])
-                a[index] += gw_stat["assists"]
-                xgi[index] += float(gw_stat["expected_goal_involvements"])
-            total_points = points[0] + points[1]
-            total_cs = cs[0] + cs[1]    
-            total_goals_conceded = goals_conceded[0] + goals_conceded[1]
-            total_xg_conceded = xg_conceded[0] + xg_conceded[1]
-            total_saves = saves[0] + saves[1]
-            total_bonus = bonus[0] + bonus[1]
-            total_xg = xg[0] + xg[1]
-            total_g = g[0] + g[1]
-            total_xa = xa[0] + xa[1]
-            total_a = a[0] + a[1]
-            total_xgi = xgi[0] + xgi[1]
+                cs += gw_stat["clean_sheets"]
+                goals_conceded += gw_stat["goals_conceded"]
+                xg_conceded += float(gw_stat["expected_goals_conceded"])
+                saves += gw_stat["saves"]
+                bonus += gw_stat["bonus"]
+                xg += float(gw_stat["expected_goals"])
+                g += gw_stat["goals_scored"]
+                xa += float(gw_stat["expected_assists"])
+                a += gw_stat["assists"]
+                xgi += float(gw_stat["expected_goal_involvements"])
             outfield_list = [player["web_name"],
                     teams[player["team"]],
                     (player["now_cost"] / 10.0),
@@ -842,39 +805,22 @@ def update_player_last5():
                     float(player["form"]),
                     total_starts,
                     total_games,
-                    points[0],
-                    points[1],
+                    points[gws[0]],
+                    points[gws[1]],
+                    points[gws[2]],
+                    #points[gws[3]],
+                    #points[gws[4]],
                     total_points,
-                    round(points[0] / (player["now_cost"] / 10.0), 2),
-                    round(points[1] / (player["now_cost"] / 10.0), 2),
                     round(total_points / (player["now_cost"] / 10.0), 2),
-                    g[0],
-                    float(xg[0]),
-                    float(xg[0] - g[0]),
-                    g[1],
-                    float(xg[1]),
-                    float(xg[1] - g[1]),
-                    total_g,
-                    float(total_xg),
-                    float(total_xg - total_g),
-                    a[0],
-                    float(xa[0]),
-                    float(xa[0] - a[0]),
-                    a[1],
-                    float(xa[1]),
-                    float(xa[1] - a[1]),
-                    total_a,
-                    float(total_xa),
-                    float(total_xa - total_a),
-                    float(xgi[0]),
-                    float(xgi[0] - g[0] - a[0]),
-                    float(xgi[1]),
-                    float(xgi[1] - g[1] - a[1]),
-                    float(total_xgi),
-                    float(total_xgi - total_g - total_a),
-                    bonus[0],
-                    bonus[1],
-                    total_bonus,]
+                    g,
+                    float(xg),
+                    float(xg - g),
+                    a,
+                    float(xa),
+                    float(xa - a),
+                    float(xgi),
+                    float(xgi - g - a),
+                    bonus,]
             if player["element_type"] == 1:
                 gks.append([
                     player["web_name"],
@@ -883,30 +829,19 @@ def update_player_last5():
                     position[player["element_type"]],
                     total_starts,
                     total_games,
-                    points[0],
-                    points[1],
+                    points[gws[0]],
+                    points[gws[1]],
+                    points[gws[2]],
+                    #points[gws[3]],
+                    #points[gws[4]],
                     total_points,
-                    round(points[0] / (player["now_cost"] / 10.0), 2),
-                    round(points[1] / (player["now_cost"] / 10.0), 2),
                     round(total_points / (player["now_cost"] / 10.0), 2),
-                    int(cs[0]),
-                    int(cs[1]),
-                    int(total_cs),
-                    goals_conceded[0],
-                    float(xg_conceded[0]),
-                    float(xg_conceded[0] - goals_conceded[0]),
-                    goals_conceded[1],
-                    float(xg_conceded[1]),
-                    float(xg_conceded[1] - goals_conceded[1]),
-                    total_goals_conceded,
-                    float(total_xg_conceded),
-                    float(total_xg_conceded - total_goals_conceded),
-                    saves[0],
-                    saves[1],
-                    total_saves,
-                    bonus[0],
-                    bonus[1],
-                    total_bonus,    
+                    int(cs),
+                    goals_conceded,
+                    float(xg_conceded),
+                    float(xg_conceded - goals_conceded),
+                    saves,
+                    bonus,    
                 ])
             elif player["element_type"] == 2:
                 defs.append(outfield_list)
@@ -916,22 +851,30 @@ def update_player_last5():
                 fwds.append(outfield_list)
             print("Finished updating " + player["web_name"])
 
-    gk_column = ["Name", "Team", "Price", "Pos", "Starts", "Games", "H_Points", "A_Points", "Points", "H_Points/$", "A_Points/$", "Points/$",
-    "H_CS", "A_CS", "CS", "H_Goals Conceded", "H_xG Conceded", "H_xG Prevented", "A_Goals Conceded", "A_xG Conceded",
-    "A_xG Prevented", "Goals Conceded", "xG Conceded", "xG Prevented", "H_Saves", "A_Saves", "Saves", "H_Bonus",
-    "A_Bonus", "Bonus"]
+    gk_column = ["Name", "Team", "Price", "Pos", "Starts", "Games", "Total_Points", "Points/$",
+    "CS", "Goals Conceded", "xG Conceded", "xG Prevented", "Saves","Bonus"]
+
+    gk_column = gk_column[0:6] + [f"GW{gw}" for gw in gws] + gk_column[6:]    
 
     column = [
-    "Name", "Team", "Price", "Pos", "Form", "Starts", "Games", "H_Points", "A_Points", "Points", "H_Points/$", "A_Points/$", "Points/$",
-    "H_G", "H_xG", "H_xGDiff", "A_G", "A_xG", "A_xGDiff", "G", "xG", "xGDiff", "H_A", "H_xA", "H_xADiff", "A_A", "A_xA",
-    "A_xADiff", "A", "xA", "xADiff", "H_xGI", "H_xGIDiff", "A_xGI", "A_xGIDiff", "xGI", "xGIDiff", "H_Bonus", "A_Bonus", "Bonus"
+    "Name", "Team", "Price", "Pos", "Form", "Starts", "Games", "Total_Points", "Points/$",
+    "G", "xG", "xGDiff", "A", "xA", "xADiff", "xGI", "xGIDiff", "Bonus"
     ]
 
+    column = column[0:7] + [f"GW{gw}" for gw in gws] + column[7:]
+
     gk_df = pd.DataFrame(gks, columns=gk_column)
+    gk_df = gk_df.sort_values(by=["Points/$", "xG Prevented"], ascending=[False, False])
+
     def_df = pd.DataFrame(defs, columns=column)
+    def_df = def_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
+
     mid_df = pd.DataFrame(mids, columns=column)
-    fwd_df = pd.DataFrame(fwds, columns=column)
+    mid_df = mid_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
     
+    fwd_df = pd.DataFrame(fwds, columns=column)
+    fwd_df = fwd_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
+
     wb = load_workbook(LAST5_EXCEL)
     gk_sheet = wb["GK"]
     def_sheet = wb["DEF"]
@@ -945,7 +888,14 @@ def update_player_last5():
     print("Finished updated player data.")
     wb.save(LAST5_EXCEL)
 
-def update_my_team_season():
+
+def update_results_last5():
+    gw = get_gameweek()
+    gws = [gw-4, gw-3, gw-2, gw-1, gw]
+    fixtures = requests.get("https://fantasy.premierleague.com/api/fixtures/").json()
+
+
+def update_my_team_last5():
     gw = get_gameweek()
     url = f"https://fantasy.premierleague.com/api/entry/{ID}/event/{gw}/picks/"
     team = requests.get(url).json()["picks"]
@@ -953,11 +903,11 @@ def update_my_team_season():
     r = requests.get(BASE_URL).json()["elements"]
     players = [player for player in r if player["id"] in player_ids]
 
-    wb = load_workbook(SEASON_EXCEL)
-    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=GK_COLS, header=0, nrows=GK_COUNT)
-    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=DEF_COLS, header=0, nrows=DEF_COUNT)
-    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=MID_COLS, header=0, nrows=MID_COUNT)
-    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=FWD_COLS, header=0, nrows=FWD_COUNT)
+    wb = load_workbook(LAST5_EXCEL)
+    gk_df = pd.read_excel(LAST5_EXCEL, sheet_name="GK", usecols=LAST5_GK_COLS, header=0, nrows=GK_COUNT)
+    def_df = pd.read_excel(LAST5_EXCEL, sheet_name="DEF", usecols=LAST5_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(LAST5_EXCEL, sheet_name="MID", usecols=LAST5_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(LAST5_EXCEL, sheet_name="FWD", usecols=LAST5_FWD_COLS, header=0, nrows=FWD_COUNT)
 
     team_gk_rows = []
     team_def_rows = []
@@ -981,13 +931,314 @@ def update_my_team_season():
     team_fwd_df = pd.concat(team_fwd_rows, ignore_index=True)
 
     team_df = pd.concat([team_def_df, team_mid_df, team_fwd_df, team_gk_df], ignore_index=True, sort=False)
+    team_df = team_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
+
+    team = wb["My Team"]
+    write_df_to_sheet(team_df, team)
+    wb.save(LAST5_EXCEL)
+    print("Finished updating my team - last 5")
+
+
+def update_teams_season():
+    print("Start updating teams season data.")
+    #web scrapping
+    url = "https://fpl.page/bonus"
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.text, "html.parser")
+    
+    fixtures = soup.find_all("li", class_="fixture-item")
+    
+    teams = []
+
+    for fixture in fixtures:
+        home_team = fixture.find("span", class_="home-text").text.strip()
+        away_team = fixture.find("span", class_="away-text").text.strip()
+        score_box = fixture.find("span", class_="score-box")
+        if score_box:
+            scores = score_box.text.split("-")
+            scores = list(map(int, scores))
+            
+            teams.append({"Team": home_team, "Side": "H", "GF": scores[0], "GA": scores[1]})
+            teams.append({"Team": away_team, "Side": "A", "GF": scores[1], "GA": scores[0]})
+            print(f"{home_team} {scores[0]} - {scores[1]} {away_team}")
+
+    print("Finished getting gameweek data")
+    #update excel
+    wb = load_workbook(SEASON_EXCEL)
+    sheet = wb["Teams"]
+
+    df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols=SEASON_TEAMS_COLS, header=0, nrows=20)
+    for team in teams:
+        team_name = team["Team"]
+        team_row = df.index[df["Team"] == team_name].tolist()[0]
+        df.loc[team_row, "GF"] += team["GF"]
+        df.loc[team_row, "GA"] += team["GA"]
+        df.loc[team_row, "Games"] += 1
+        df.loc[team_row, "Avg.GF"] = df.loc[team_row, "GF"] / df.loc[team_row, "Games"]
+        df.loc[team_row, "Avg.GA"] = df.loc[team_row, "GA"] / df.loc[team_row, "Games"]
+
+        #update home side
+        if team["Side"] == "H":
+            df.loc[team_row, "H_GF"] += team["GF"]
+            df.loc[team_row, "H_GA"] += team["GA"]
+            df.loc[team_row, "H_Games"] += 1
+        #update away side
+        elif team["Side"] == "A":
+            df.loc[team_row, "A_GF"] += team["GF"]
+            df.loc[team_row, "A_GA"] += team["GA"]
+            df.loc[team_row, "A_Games"] += 1
+        print(f"Updated data of {team_name}")
+
+    df["H_Avg.GF"] = df["H_GF"] / df["H_Games"]
+    df["H_Avg.GA"] = df["H_GA"] / df["H_Games"]
+    df["A_Avg.GF"] = df["A_GF"] / df["A_Games"]
+    df["A_Avg.GA"] = df["A_GA"] / df["A_Games"]
+    df["Avg.GF"] = df["GF"] / df["Games"]
+    df["Avg.GA"] = df["GA"] / df["Games"]
+
+    lod = df["GF"].sum() / df["Games"].sum()
+    df["Oi"] = df["Avg.GF"] / lod
+    df["Di"] = df["Avg.GA"] / lod
+
+    h_lod = df["H_GF"].sum() / df["H_Games"].sum()
+    df["H_Oi"] = df["H_Avg.GF"] / h_lod
+    df["H_Di"] = df["H_Avg.GA"] / h_lod
+
+    a_lod = df["A_GF"].sum() / df["A_Games"].sum()
+    df["A_Oi"] = df["A_Avg.GF"] / a_lod
+    df["A_Di"] = df["A_Avg.GA"] / a_lod
+
+    cols = ["H_Avg.GF", "H_Avg.GA", "H_Oi", "H_Di", "A_Avg.GF", "A_Avg.GA", "A_Oi", "A_Di", "Avg.GF", "Avg.GA", "Oi", "Di"]
+    for col in cols:
+        df[col] = df[col].round(2)
+
+    sheet["B23"] = df["H_GF"].sum()
+    sheet["C23"] = df["H_GA"].sum()
+    sheet["D23"] = df["A_GF"].sum()
+    sheet["E23"] = df["A_GA"].sum()
+    sheet["F23"] = df["GF"].sum()
+    sheet["G23"] = df["GA"].sum()
+    sheet["H23"] = df["H_Games"].sum()
+    sheet["I23"] = df["A_Games"].sum()
+    sheet["J23"] = df["Games"].sum()
+
+    sheet["K23"] = df["H_Avg.GF"].mean()
+    sheet["L23"] = df["H_Avg.GA"].mean()
+    sheet["M23"] = df["A_Avg.GF"].mean()
+    sheet["N23"] = df["A_Avg.GA"].mean()
+    sheet["O23"] = df["Avg.GF"].mean()
+    sheet["P23"] = df["Avg.GA"].mean()
+    sheet["Q23"] = df["H_Oi"].mean()
+    sheet["R23"] = df["H_Di"].mean()
+    sheet["S23"] = df["A_Oi"].mean()
+    sheet["T23"] = df["A_Di"].mean()
+    sheet["U23"] = df["Oi"].mean()
+    sheet["V23"] = df["Di"].mean()
+
+    sheet["B24"] = h_lod
+    sheet["E24"] = a_lod
+    sheet["H24"] = lod
+
+    home_top_attacking = df.sort_values(by=["H_Oi"], ascending=False)["Team"].head(5).tolist()
+    away_top_attacking = df.sort_values(by=["A_Oi"], ascending=False)["Team"].head(5).tolist()
+    top_attacking = df.sort_values(by=["Oi"], ascending=False)["Team"].head(5).tolist()
+
+    home_top_defending = df.sort_values(by=["H_Di"], ascending=True)["Team"].head(5).tolist()
+    away_top_defending = df.sort_values(by=["A_Di"], ascending=True)["Team"].head(5).tolist()
+    top_defending = df.sort_values(by=["Di"], ascending=True)["Team"].head(5).tolist()
+
+
+    low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
+    high_oi_index = df.sort_values(by=["Oi"], ascending=False)["Oi"].head(5).index.tolist()
+    high_di_index = df.sort_values(by=["Di"], ascending=False)["Di"].head(5).index.tolist()
+    low_di_index = df.sort_values(by=["Di"], ascending=True)["Di"].head(5).index.tolist()
+
+    columns = ["B", "C", "D", "E", "F"]
+
+    for i, col in enumerate(columns):
+        sheet[f"{col}26"] = home_top_attacking[i]
+        sheet[f"{col}27"] = away_top_attacking[i]
+        sheet[f"{col}28"] = top_attacking[i]
+
+        sheet[f"{col}30"] = home_top_defending[i]
+        sheet[f"{col}31"] = away_top_defending[i]
+        sheet[f"{col}32"] = top_defending[i]
+
+    for r_idx, row in enumerate(df.values, start=2):
+        for c_idx, value in enumerate(row, start=1):
+            sheet.cell(row=r_idx, column=c_idx, value=value)
+
+    for high_oi_idx, low_oi_idx, high_di_idx, low_di_idx in zip(high_oi_index, low_oi_index, high_di_index, low_di_index):
+        sheet.cell(row=low_oi_idx + 2, column=COL_U).fill = redFill
+        sheet.cell(row=high_di_idx + 2, column=COL_V).fill = redFill
+
+        sheet.cell(row=high_oi_idx + 2, column=COL_U).fill = blueFill
+        sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = blueFill
+
+        sheet.cell(row=low_di_idx + 2, column=COL_V).fill = greenFill
+        sheet.cell(row=low_di_idx + 2, column=COL_A).fill = greenFill
+
+        if high_oi_idx in low_di_index:
+            sheet.cell(row=high_oi_idx + 2, column=COL_A).fill = yellowFill
+        
+        if low_di_idx in high_oi_index:
+            sheet.cell(row=low_di_idx + 2, column=COL_A).fill = yellowFill
+        
+        if low_oi_idx in high_di_index:
+            sheet.cell(row=low_oi_idx + 2, column=COL_A).fill = redFill
+        
+        if high_di_idx in low_oi_index:
+            sheet.cell(row=high_di_idx + 2, column=COL_A).fill = redFill
+
+    print("Finished updating team gameweek data.")    
+    wb.save(SEASON_EXCEL)
+
+
+def update_player_season():
+    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
+    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
+
+    r = requests.get(BASE_URL).json() 
+    players = r["elements"] # 1 to 642
+    gw = get_gameweek()
+    for player in players:
+        if player["minutes"] > MINUTES_THRESHOLD:
+            id = player["id"]
+            individual = requests.get(f"https://fantasy.premierleague.com/api/element-summary/{id}/").json()["history"]
+            start_round = individual[0]["round"]
+            # if I forgot to update after a gw, use to following line
+            # gameweeks = [i for i in range(gw-n-start_round, gw-n-start_round+1)] where n is the number of gws i missed
+            gameweeks = [i for i in range(gw-start_round, gw-start_round + 1)]
+            if player["element_type"] == 1:
+                df = gk_df
+                player_row = gk_df.index[gk_df["Name"] == player["web_name"]].tolist()[0]
+            elif player["element_type"] == 2:
+                df = def_df
+                player_row = def_df.index[def_df["Name"] == player["web_name"]].tolist()[0]
+            elif player["element_type"] == 3:
+                df = mid_df
+                player_row = mid_df.index[mid_df["Name"] == player["web_name"]].tolist()[0]
+            elif player["element_type"] == 4:
+                df = fwd_df
+                player_row = fwd_df.index[fwd_df["Name"] == player["web_name"]].tolist()[0]
+            for i in gameweeks:
+                gw_stat = individual[i]
+                side = "H" if gw_stat["was_home"] else "A"
+                if player["element_type"] == 1:
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_CS")] += gw_stat["clean_sheets"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")] += gw_stat["goals_conceded"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] += float(gw_stat["expected_goals_conceded"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Prevented")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] - df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Saves")] += gw_stat["saves"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
+                else:
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_G")] += gw_stat["goals_scored"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] += float(gw_stat["expected_goals"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_A")] += gw_stat["assists"]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] += float(gw_stat["expected_assists"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xADiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] += float(gw_stat["expected_goal_involvements"])
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGIDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
+                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
+            if player["element_type"] == 1:
+                df.iloc[player_row, df.columns.get_loc("CS")] = df.iloc[player_row, df.columns.get_loc("H_CS")] + df.iloc[player_row, df.columns.get_loc("A_CS")]
+                df.iloc[player_row, df.columns.get_loc("Goals Conceded")] = df.iloc[player_row, df.columns.get_loc("H_Goals Conceded")] + df.iloc[player_row, df.columns.get_loc("A_Goals Conceded")]
+                df.iloc[player_row, df.columns.get_loc("xG Conceded")] = df.iloc[player_row, df.columns.get_loc("H_xG Conceded")] + df.iloc[player_row, df.columns.get_loc("A_xG Conceded")]
+                df.iloc[player_row, df.columns.get_loc("xG Prevented")] = df.iloc[player_row, df.columns.get_loc("H_xG Prevented")] + df.iloc[player_row, df.columns.get_loc("A_xG Prevented")]
+                df.iloc[player_row, df.columns.get_loc("H_xG Prevented / $")] = round(df.iloc[player_row, df.columns.get_loc("H_xG Prevented")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+                df.iloc[player_row, df.columns.get_loc("A_xG Prevented / $")] = round(df.iloc[player_row, df.columns.get_loc("A_xG Prevented")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+                df.iloc[player_row, df.columns.get_loc("xG Prevented / $")] = df.iloc[player_row, df.columns.get_loc("H_xG Prevented / $")] + df.iloc[player_row, df.columns.get_loc("A_xG Prevented / $")]
+                df.iloc[player_row, df.columns.get_loc("Saves")] = df.iloc[player_row, df.columns.get_loc("H_Saves")] + df.iloc[player_row, df.columns.get_loc("A_Saves")]
+            else: 
+                df.iloc[player_row, df.columns.get_loc("Form")] = float(player["form"])
+                df.iloc[player_row, df.columns.get_loc("G")] = df.iloc[player_row, df.columns.get_loc("H_G")] + df.iloc[player_row, df.columns.get_loc("A_G")]
+                df.iloc[player_row, df.columns.get_loc("xG")] = df.iloc[player_row, df.columns.get_loc("H_xG")] + df.iloc[player_row, df.columns.get_loc("A_xG")]
+                df.iloc[player_row, df.columns.get_loc("xGDiff")] = df.iloc[player_row, df.columns.get_loc("H_xGDiff")] + df.iloc[player_row, df.columns.get_loc("A_xGDiff")]
+                df.iloc[player_row, df.columns.get_loc("A")] = df.iloc[player_row, df.columns.get_loc("H_A")] + df.iloc[player_row, df.columns.get_loc("A_A")]
+                df.iloc[player_row, df.columns.get_loc("xA")] = df.iloc[player_row, df.columns.get_loc("H_xA")] + df.iloc[player_row, df.columns.get_loc("A_xA")]
+                df.iloc[player_row, df.columns.get_loc("xADiff")] = df.iloc[player_row, df.columns.get_loc("H_xADiff")] + df.iloc[player_row, df.columns.get_loc("A_xADiff")]
+                df.iloc[player_row, df.columns.get_loc("xGI")] = df.iloc[player_row, df.columns.get_loc("H_xGI")] + df.iloc[player_row, df.columns.get_loc("A_xGI")]
+                df.iloc[player_row, df.columns.get_loc("H_xGI / $")] = round(df.iloc[player_row, df.columns.get_loc("H_xGI")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+                df.iloc[player_row, df.columns.get_loc("A_xGI / $")] = round(df.iloc[player_row, df.columns.get_loc("A_xGI")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+                df.iloc[player_row, df.columns.get_loc("xGI / $")] = df.iloc[player_row, df.columns.get_loc("H_xGI / $")] + df.iloc[player_row, df.columns.get_loc("A_xGI / $")]
+                df.iloc[player_row, df.columns.get_loc("xGIDiff")] = df.iloc[player_row, df.columns.get_loc("H_xGIDiff")] + df.iloc[player_row, df.columns.get_loc("A_xGIDiff")]
+            
+            df.iloc[player_row, df.columns.get_loc(f"{side}_Games")] += 1 if gw_stat["minutes"] > 0 else 0
+            df.iloc[player_row, df.columns.get_loc("Starts")] += gw_stat["starts"]
+            df.iloc[player_row, df.columns.get_loc("Games")] = df.iloc[player_row, df.columns.get_loc("H_Games")] + df.iloc[player_row, df.columns.get_loc("A_Games")]
+            df.iloc[player_row, df.columns.get_loc("Points")] = df.iloc[player_row, df.columns.get_loc("H_Points")] + df.iloc[player_row, df.columns.get_loc("A_Points")]
+            df.iloc[player_row, df.columns.get_loc("Price")] = player["now_cost"] / 10.0
+            df.iloc[player_row, df.columns.get_loc("H_Points/$")] = round(df.iloc[player_row, df.columns.get_loc("H_Points")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+            df.iloc[player_row, df.columns.get_loc("A_Points/$")] = round(df.iloc[player_row, df.columns.get_loc("A_Points")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+            df.iloc[player_row, df.columns.get_loc("Points/$")] = round(df.iloc[player_row, df.columns.get_loc("Points")] / df.iloc[player_row, df.columns.get_loc("Price")], 2)
+            df.iloc[player_row, df.columns.get_loc("Bonus")] = df.iloc[player_row, df.columns.get_loc("H_Bonus")] + df.iloc[player_row, df.columns.get_loc("A_Bonus")]
+            print(f"Finished updating {player['web_name']}")
+    wb = load_workbook(SEASON_EXCEL)
+
+    gk_sheet = wb["GK"]
+    def_sheet = wb["DEF"]
+    mid_sheet = wb["MID"]
+    fwd_sheet = wb["FWD"]
+
+    write_df_to_sheet(gk_df, gk_sheet)
+    write_df_to_sheet(def_df, def_sheet)
+    write_df_to_sheet(mid_df, mid_sheet)
+    write_df_to_sheet(fwd_df, fwd_sheet)
+
+    wb.save(SEASON_EXCEL)
+    print("Finished updating player season data.")
+
+
+
+def update_my_team_season():
+    gw = get_gameweek()
+    url = f"https://fantasy.premierleague.com/api/entry/{ID}/event/{gw}/picks/"
+    team = requests.get(url).json()["picks"]
+    player_ids = [player["element"] for player in team]
+    r = requests.get(BASE_URL).json()["elements"]
+    players = [player for player in r if player["id"] in player_ids]
+
+    wb = load_workbook(SEASON_EXCEL)
+    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
+    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
+    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
+    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
+
+    team_gk_rows = []
+    team_def_rows = []
+    team_mid_rows = []
+    team_fwd_rows = []
+
+    for player in players:
+        if player["element_type"] == 1:
+            team_gk_rows.append(gk_df.loc[gk_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 2:
+            team_def_rows.append(def_df.loc[def_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 3:
+            team_mid_rows.append(mid_df.loc[mid_df["Name"] == player["web_name"]])
+        elif player["element_type"] == 4:
+            team_fwd_rows.append(fwd_df.loc[fwd_df["Name"] == player["web_name"]])
+        print("Finished getting " + player["web_name"])
+
+    team_gk_df = pd.concat(team_gk_rows, ignore_index=True)
+    team_def_df = pd.concat(team_def_rows, ignore_index=True)
+    team_mid_df = pd.concat(team_mid_rows, ignore_index=True)
+    team_fwd_df = pd.concat(team_fwd_rows, ignore_index=True)
+
+    team_df = pd.concat([team_def_df, team_mid_df, team_fwd_df, team_gk_df], ignore_index=True, sort=False)
+    team_df = team_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
 
     team_season = wb["My Team"]
-
     write_df_to_sheet(team_df, team_season)
     wb.save(SEASON_EXCEL)
     print("Finished updating my team - season")
-#region System arguments
+#region Main function
 if __name__ == "__main__":
     update = True
     while(update):
@@ -1018,19 +1269,19 @@ if __name__ == "__main__":
                 #show_summary_current()
                 break 
         elif(time_frame == 2):
-            print("1. Fixture Projection \t 2. Player Data Projection \t 3. My Team Projection")
+            print("1. Fixture Projection \t 2. Player Data Projection \t 3. My Team Projection \t 4. Summary")
             data = int(input("Choice: "))
             if (data > 3 or data == 0):
                 print("Invalid choice.")
                 continue
             if(data == 1):
-                # update_fixture_next()
-                break
+                update_fixture_next()
             elif(data == 2):
-                # update_player_next()
-                break
+                update_player_next()
             elif(data == 3):
-                # update_my_team_next()
+                update_my_team_next()
+            elif(data == 4):
+                # show_summary_next()
                 break
         elif(time_frame == 3):
             print("1. Team Data \t 2. Results \t 3. Player Data \t 4. My Team \t 5. Summary")
@@ -1042,13 +1293,11 @@ if __name__ == "__main__":
                 # update_teams_last5()
                 break
             elif(data == 2):
-                # update_results_last5()
-                break
+                update_results_last5()
             elif(data == 3):
                 update_player_last5()
             elif(data == 4):
-                # update_my_team_last5() 
-                break  
+                update_my_team_last5()  
             elif(data == 5):
                 # show_summary_last5()
                 break
@@ -1064,7 +1313,6 @@ if __name__ == "__main__":
                 update_player_next5()
             elif(data == 3):
                 update_my_team_next5()
-                break
             elif(data == 4):
                 # show_summary_next5()   
                 break
