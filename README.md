@@ -97,6 +97,10 @@ $\text{Projected Performance} =  \text{xGI} * D_j * LOd$
 1. Fixture / Results
 - Fetch odds from HKJC
 
+### Last 5 GW
+1. Teams data
+2. Results
+
 ### All
 1. Summary
 
