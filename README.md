@@ -36,7 +36,7 @@ $D_i = \text{Avg. GA} / LOd$
 
 High $D_i$ means the team is likely to concede more goals than other teams in the league.
 - Good team has low $D_i$
-- Bad team has hight $D_i$
+- Bad team has high $D_i$
 
 ### Fixtures / Results
 $X, Y$ are two teams.
