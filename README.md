@@ -45,9 +45,9 @@ Team X has offensive strength of $O_x$ and defensive strength of $D_x$.
 
 Team Y has offensive strength of $O_y$ and defensive strength of $D_y$.
 
-Probability of team $X$ scoring $n$ goals $ = \text{POISSON}(n, O_x * D_y * LOd)$
+Probability of team $X$ scoring $n$ goals $= \text{POISSON}(n, O_x * D_y * LOd)$
 
-Probability of team $Y$ scoring $n$ goals $ = \text{POISSON}(n, O_y * D_x * LOd)$
+Probability of team $Y$ scoring $n$ goals $= \text{POISSON}(n, O_y * D_x * LOd)$
 
 Suppose $LOd = 1.1$ Chelsea has $O_c$ of $2.5$, $D_c$ of $0.5$, Man U has $O_m$ of $1.4$, $D_m$ of $1.2$
 - the probability of Chelsea scoring 0 goals is $\text{POISSON}(0, 2.5 * 1.2 * 1.1)$
