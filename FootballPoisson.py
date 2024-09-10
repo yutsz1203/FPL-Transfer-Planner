@@ -597,6 +597,7 @@ def update_player_next5():
     mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
     fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
     
+    #Change calculation method for defenders, copy from update_player_next.
     def make_df(df):
         df.drop(outfield_cols, axis=1, inplace=True)
         df["Oi"] = df["Team"].apply(lambda team: teams_df.loc[teams_df["Team"] == team, "Oi"].values[0])
@@ -1257,7 +1258,6 @@ if __name__ == "__main__":
                 continue
             if(data == 1):
                 #update_player_current()
-                #get_players()
                 break
             elif(data == 2):
                 #update_results_current()

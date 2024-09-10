@@ -1,92 +1,109 @@
 # FootballPoisson
 
 ## Description
+---
 
-This program extracts Premier League data from [fpl.page](https://fpl.page) (thanks to FPL Focal) for assiting me in planning my transfers in Fantasy Premier League (FPL). It currently extracts (a) Gameweek Data (Goal for, Goal against),(b) Fixture Data (future 5 gws), (c) Player Data , (d) My Fantasy Team, and (e) Summary .
+This program extracts Premier League data from [fpl.page](https://fpl.page) and **official FPL API** for assiting in planning transfers for FPL. 
 
-I focus on getting data of the following time frames:
+The program focus on getting data for the following time frames:
 
 1. Current GW
 2. Next GW
-3. Last 5 GW
-4. Future 5 GW
+3. Last 5 GWs
+4. Future 5 GWs
 5. Season
 
-### (a) Gameweek Data
+Each time frame collects:
+1. Teams Data
+2. Fixtures / Results
+3. Players Data
+4. My FPL Team
 
-The gameweek data is for calculating the Offensive Strength (Oi) and Defensive Strength (Di) of each team, separated by Home and Away, and then predict the results of each match using a Poisson Predictive model.
+## Data Calculation
+---
+### Teams Data
+#### Mean Variable in the League $LOd$
+$LOd = \text{Total Goals} / \text{Total Games Played}$
 
-### (b) Fixture Data
+#### Offensive Strength of team i: $O_i$
+$O_i = \text{Avg. GF} / LOd$
 
-The fixture data provides the next 5 opponents of each team. Then, total Oi and total Di will be calculated. Teams that have opponents with the largest aggregated Di is favourable for attackes, and teams that have oponents with the smallest aggregated Oi is favourable for defenders.
+High $O_i$ means the team is likely to score more goals than other teams in the league.
+- Good team has high $O_i$
+- Bad team has low $O_i$
 
-### (c) Player Data
+#### Defensive Strength of team i: $D_i$
+$D_i = \text{Avg. GA} / LOd$
 
-It extracts all players data (for those who played more than one match) and write to excel.
-It is separated by position:
+High $D_i$ means the team is likely to concede more goals than other teams in the league.
+- Good team has low $D_i$
+- Bad team has hight $D_i$
 
-1. GK
-   It tracks "Name", "Team", "Price", "GW Points", "Total Points", "Points/$", "CS", "Goals Conceded", "xG Conceded", "xGoals Prevented", "Saves", "Bonus"
+### Fixtures / Results
+$X, Y$ are two teams.
 
-2. Outfield players: DEF, MID, FWD
-   It tracks "Name", "Team", "Price", "Form", "GW Points", "Total Points", "Points/$", "xG", "G", "xG+-","xA", "A", "xA+-", "xGI", "Bonus".
+Team X has offensive strength of $O_x$ and defensive strength of $D_x$.
 
-### (d) My FPL Team
+Team Y has offensive strength of $O_y$ and defensive strength of $D_y$.
 
-Showing data of players in my FPL Team.
+Probability of team $X$ scoring $n$ goals $ = \text{POISSON}(n, O_x * D_y * LOd)$
 
-### (e) Show summary
+Probability of team $Y$ scoring $n$ goals $ = \text{POISSON}(n, O_y * D_x * LOd)$
 
-Showing summary of all the data gathered from the program, including (1) Gameweek Data (2) Fixture Data
+Suppose $LOd = 1.1$ Chelsea has $O_c$ of $2.5$, $D_c$ of $0.5$, Man U has $O_m$ of $1.4$, $D_m$ of $1.2$
+- the probability of Chelsea scoring 0 goals is $\text{POISSON}(0, 2.5 * 1.2 * 1.1)$
+- the probability of Man U scoring 0 goals is $\text{POISSON}(0, 1.4 * 0.5 * 1.1)$
 
-## Data Provided
 
-### 1. Current GW
+### Players Data
+#### GK
+$\text{xG Prevented} = \text{xG Conceded} - \text{Goals Conceded}$
+- Positive xG Prevented = Good GK
 
-- (b) Results
-- (c) Player Data
-- (d) My FPL Team
-- (e) Summary
+$\text{Projected Performance} = O_j * D_i * LOd - \text{xG Prevented}$, 
 
-### 2. Next GW
+where $O_j$ is the offensive strength of opponent, and $D_i$ is the defensive strength of the GK's team
 
-- (b) Fixture
-- (c) Player Data
-- (d) My FPL Team
+#### DEF
+$\text{Projected Performance} =  \text{xGI} * D_j * LOd - (O_j * D_i * LOd)$
 
-### 3. Last 5 GW
-
-- (a) Team Data
-- (b) Results
-- (c) Player Data
-- (d) My FPL Team
-- (e) Summary
-
-### 4. Next 5 GW
-
-- (b) Fixtures
-- (c) Player Data
-- (d) My FPL Team
-- (e) Summary
-
-### 5. Season
-
-- (a) Team Data
-- (c) Player Data
-- (d) My FPL Team
-- (e) Summary
+#### MID, FWD
+$\text{Projected Performance} =  \text{xGI} * D_j * LOd$
 
 ## Running the program
-
-1. Update Season Data (5)
-2. Update next 5 fixtures (4, 1)
-3. Update desired data range.
+---
+1. `$ pip install -r requirements.txt` 
+2. `$ python FootballPoisson.py` 
+3. choose timeframe
+   1. Current GW
+   2. Next GW
+   3. Last 5 GWs
+   4. Next 5 GWs
+   5. Season
+4. choose data
+   1. Teams data
+   2. Fixtures / Results
+   3. Players data
+   4. My FPL Team
 
 ## Features to work on
+---
+### Current GW
+1. Player data
+2. GW Result
+3. My team
 
-2. get all players past 5 gw records (update player)
-3. calculate players projected goals and assists by using their expected data, and opponent's offensive and defensive strength
-4. get my team past 5 gw records (update_my_team)
-5. Colour fixture cells based on opponent's strength in offense and defense (two versions for attackers and defenders), separate teams in 5 different categories, 4 teams a group (fixture data)
-6. Create a sheet that displays fdr for attackers, and fdr for defenderss (fdr)
-7. (1) show players with best points / $, per position (2) allow user to choose what summary to print (summary)
+### Next GW
+1. Fixture / Results
+- Fetch odds from HKJC
+
+### All
+1. Summary
+
+### Others
+FDR and coloring
+
+## References
+---
+- [FPL API guide](https://www.game-change.co.uk/2023/02/10/a-complete-guide-to-the-fantasy-premier-league-fpl-api/)
+- [Match Prediction Poisson Model](https://www.jhse.ua.es/article/view/2021-v16-n4-poisson-model-goal-prediction-european-football/remote)  
