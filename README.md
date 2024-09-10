@@ -1,7 +1,7 @@
 # FootballPoisson
 
 ## Description
----
+
 
 This program extracts Premier League data from [fpl.page](https://fpl.page) and **official FPL API** for assiting in planning transfers for FPL. 
 
@@ -20,7 +20,6 @@ Each time frame collects:
 4. My FPL Team
 
 ## Data Calculation
----
 ### Teams Data
 #### Mean Variable in the League $LOd$
 $LOd = \text{Total Goals} / \text{Total Games Played}$
@@ -71,7 +70,7 @@ $\text{Projected Performance} =  \text{xGI} * D_j * LOd - (O_j * D_i * LOd)$
 $\text{Projected Performance} =  \text{xGI} * D_j * LOd$
 
 ## Running the program
----
+
 1. `$ pip install -r requirements.txt` 
 2. `$ python FootballPoisson.py` 
 3. choose timeframe
@@ -87,7 +86,7 @@ $\text{Projected Performance} =  \text{xGI} * D_j * LOd$
    4. My FPL Team
 
 ## Features to work on
----
+
 ### Current GW
 1. Player data
 2. GW Result
@@ -108,6 +107,6 @@ $\text{Projected Performance} =  \text{xGI} * D_j * LOd$
 FDR and coloring
 
 ## References
----
+
 - [FPL API guide](https://www.game-change.co.uk/2023/02/10/a-complete-guide-to-the-fantasy-premier-league-fpl-api/)
 - [Match Prediction Poisson Model](https://www.jhse.ua.es/article/view/2021-v16-n4-poisson-model-goal-prediction-european-football/remote)  
