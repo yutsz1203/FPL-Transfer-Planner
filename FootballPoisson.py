@@ -60,7 +60,7 @@ SEASON_DEF_COLS = "A:AS"
 SEASON_MID_COLS = "A:AS"
 SEASON_FWD_COLS = "A:AS"
 
-
+whiteFill = PatternFill(start_color='FFFFFFFF',end_color='FFFFFFFF',fill_type='solid')
 redFill = PatternFill(start_color='FFFF0000',end_color='FFFF0000', fill_type='solid')
 yellowFill = PatternFill(start_color='FFFFFF00', end_color='FFFFFF00',fill_type='solid')
 greenFill = PatternFill(start_color='ff00b050',end_color='ff00b050',fill_type='solid')
@@ -204,33 +204,33 @@ def get_players():
     for player in players:
         id = player["id"]
         individual = requests.get(f"https://fantasy.premierleague.com/api/element-summary/{id}/").json()["history"]
-        if len(individual) == 1 and individual[0]["round"] == 3:
-            # if player["element_type"] == 1:
-            #     gks.append([player["web_name"], teams[player["team"]],
-            #     (player["now_cost"] / 10.0),
-            #     position[player["element_type"]]])
-            # elif player["element_type"] == 2:
-            #     defs.append([player["web_name"], teams[player["team"]],
-            #     (player["now_cost"] / 10.0),
-            #     position[player["element_type"]]])
-            # elif player["element_type"] == 3:
-            #     mids.append([player["web_name"], teams[player["team"]],
-            #     (player["now_cost"] / 10.0),
-            #     position[player["element_type"]]])
+        if len(individual) == 1 and individual[0]["round"] == get_gameweek():
+            if player["element_type"] == 1:
+                gks.append([player["web_name"], teams[player["team"]],
+                (player["now_cost"] / 10.0),
+                position[player["element_type"]]])
+            elif player["element_type"] == 2:
+                defs.append([player["web_name"], teams[player["team"]],
+                (player["now_cost"] / 10.0),
+                position[player["element_type"]]])
+            elif player["element_type"] == 3:
+                mids.append([player["web_name"], teams[player["team"]],
+                (player["now_cost"] / 10.0),
+                position[player["element_type"]]])
             if player["element_type"] == 4:
                 fwds.append([player["web_name"], teams[player["team"]],
                 (player["now_cost"] / 10.0),
                 position[player["element_type"]]])
             print(player["web_name"])
-    # gk_df = pd.DataFrame(gks, columns=["Name", "Team", "Price", "Pos"])
-    # def_df = pd.DataFrame(defs, columns=["Name", "Team", "Price", "Pos"])
-    # mid_df = pd.DataFrame(mids, columns=["Name", "Team", "Price", "Pos"])
+    gk_df = pd.DataFrame(gks, columns=["Name", "Team", "Price", "Pos"])
+    def_df = pd.DataFrame(defs, columns=["Name", "Team", "Price", "Pos"])
+    mid_df = pd.DataFrame(mids, columns=["Name", "Team", "Price", "Pos"])
     fwd_df = pd.DataFrame(fwds, columns=["Name", "Team", "Price", "Pos"])
 
-    # gk_df.to_excel("GK.xlsx", sheet_name="GK List", index=False)
-    # def_df.to_excel("DEF.xlsx", sheet_name="DEF List", index=False)
-    # mid_df.to_excel("MID.xlsx", sheet_name="MID List", index=False)
-    fwd_df.to_excel("FWD.xlsx", sheet_name="FWD List", index=False)
+    gk_df.to_excel("NewPlayers/GK.xlsx", sheet_name="GK List", index=False)
+    def_df.to_excel("NewPlayers/DEF.xlsx", sheet_name="DEF List", index=False)
+    mid_df.to_excel("NewPlayers/MID.xlsx", sheet_name="MID List", index=False)
+    fwd_df.to_excel("NewPlayers/FWD.xlsx", sheet_name="FWD List", index=False)
 
 #region Main functions
 def update_fixture_next():
@@ -449,6 +449,10 @@ def update_fixture():
     #update excel
     wb = load_workbook(NEXT5_EXCEL, data_only=True)
     sheet = wb["Fixtures"]
+
+    for row in sheet.iter_rows(min_row=2, max_row=21, min_col=1, max_col=8):
+        for cell in row:
+            cell.fill = whiteFill
 
     for col, gameweek in enumerate(gameweeks, start=2):
         sheet.cell(row=1, column=col, value=gameweek)
@@ -1187,6 +1191,11 @@ def update_player_season():
     mid_sheet = wb["MID"]
     fwd_sheet = wb["FWD"]
 
+    gk_df = gk_df.sort_values(by=["Points/$", "xG Prevented"], ascending=[False, False])
+    def_df = def_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
+    mid_df = mid_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
+    fwd_df = fwd_df.sort_values(by=["Points/$", "xGI"], ascending=[False, False])
+
     write_df_to_sheet(gk_df, gk_sheet)
     write_df_to_sheet(def_df, def_sheet)
     write_df_to_sheet(mid_df, mid_sheet)
@@ -1251,9 +1260,9 @@ if __name__ == "__main__":
             continue
         print("What data would you like to update/get?")
         if(time_frame == 1):
-            print("1. Player Data \t 2. Results \t 3. My Team \t 4. Summary")
+            print("1. Player Data \t 2. Results \t 3. My Team \t 4. Summary \t 5. New Players")
             data = int(input("Choice: "))
-            if (data > 3 or data == 0):
+            if (data > 5 or data == 0):
                 print("Invalid choice.")
                 continue
             if(data == 1):
@@ -1267,7 +1276,9 @@ if __name__ == "__main__":
                 break
             elif(data == 4):
                 #show_summary_current()
-                break 
+                break
+            elif(data == 5):
+                get_players() 
         elif(time_frame == 2):
             print("1. Fixture Projection \t 2. Player Data Projection \t 3. My Team Projection \t 4. Summary")
             data = int(input("Choice: "))
