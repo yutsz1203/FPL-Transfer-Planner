@@ -1,4 +1,4 @@
-# FootballPoisson
+# FPL Transfer Planner
 
 ## Description
 
