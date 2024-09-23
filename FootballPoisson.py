@@ -459,38 +459,46 @@ def update_fixture():
 
     season_wb = load_workbook(SEASON_EXCEL)
     team_data_sheet = season_wb["Teams"]
-    for row in range (2,22):
-        sheet[f"A{row}"] = fixtures[row-2]["Team"]
+    teams_df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols="A:V", header=0, nrows=20)
+    for row, team in enumerate(fixtures, start=2):
+        sheet[f"A{row}"] = team["Team"]
         sheet[f"G{row}"] = 0
         sheet[f"H{row}"] = 0
-        home_count = 0
-        away_count = 0
-        for col, opponent in enumerate(fixtures[row - 2]["Next 5"], start=2):
+        sheet[f"I{row}"] = 0
+        sheet[f"J{row}"] = 0
+        # home_count = 0
+        # away_count = 0
+        for col, opponent in enumerate(team["Next 5"], start=2):
             #filling in opponents
             sheet.cell(row=row, column=col, value=opponent)
 
             #aggregating Oi and Di
             cleaned_opponent = opponent.split(" ")[0]
-            team_row = team_map[cleaned_opponent]
+            opponent_team = team_full_from[cleaned_opponent]
             #gets opponent's Away Oi, Di
-            if(opponent.split(" ")[1] == "(H)"):
-                home_count += 1
-                sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"S{team_row}"].value
-                sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"T{team_row}"].value
-            else:
-                away_count += 1
-                sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"Q{team_row}"].value
-                sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"R{team_row}"].value
-            
-        team_h_a_count[fixtures[row - 2]["Team"]] = [home_count, away_count]
-        print(f"Finished updating {fixtures[row - 2]['Team']}")
-    print(team_h_a_count)
-
+            #use after gw18
+            # if(opponent.split(" ")[1] == "(H)"):
+            #     home_count += 1
+            #     sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"S{opponent_team_row}"].value
+            #     sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"T{opponent_team_row}"].value
+            # else:
+            #     away_count += 1
+            #     sheet[f"G{row}"] = sheet[f"G{row}"].value + team_data_sheet[f"Q{opponent_team_row}"].value
+            #     sheet[f"H{row}"] = sheet[f"H{row}"].value + team_data_sheet[f"R{opponent_team_row}"].value
+            # team_h_a_count[fixtures[row - 2]["Team"]] = [home_count, away_count]
+            sheet[f"G{row}"] = sheet[f"G{row}"].value + teams_df.loc[teams_df["Team"] == opponent_team, "Oi"].values[0]
+            sheet[f"H{row}"] = sheet[f"H{row}"].value + teams_df.loc[teams_df["Team"] == opponent_team, "Di"].values[0]
+        sheet[f"I{row}"] = sheet[f"H{row}"].value * teams_df.loc[teams_df["Team"] == team["Team"], "Oi"].values[0] * 5
+        sheet[f"J{row}"] = sheet[f"G{row}"].value * teams_df.loc[teams_df["Team"] == team["Team"], "Di"].values[0] * 5
+        print(f"Finished updating {team['Team']}")
+    
     wb.save(NEXT5_EXCEL)
-    df = pd.read_excel(NEXT5_EXCEL, sheet_name="Fixtures", usecols="G:H", header=0, nrows=20, dtype={"Oi": float, "Di": float})
+    df = pd.read_excel(NEXT5_EXCEL, sheet_name="Fixtures", usecols="G:J", header=0, nrows=20)
 
     sheet["G23"].value = df["Oi"].mean()
     sheet["H23"].value = df["Di"].mean()
+    sheet["I23"].value = df["Expected Goals"].mean()
+    sheet["J23"].value = df["Expected Goals Conceded"].mean()
 
     low_oi_index = df.sort_values(by=["Oi"], ascending=True)["Oi"].head(5).index.tolist()
     high_oi_index = df.sort_values(by=["Oi"], ascending=False)["Oi"].head(5).index.tolist()
@@ -522,7 +530,6 @@ def update_fixture():
         
         if low_di_idx in high_oi_index:
             sheet.cell(row=low_di_idx + 2, column=COL_A).fill = redFill
-
 
     print("Finished updating fixture data.")
     wb.save(NEXT5_EXCEL)
