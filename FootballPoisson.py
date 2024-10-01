@@ -233,6 +233,79 @@ def get_players():
     fwd_df.to_excel("NewPlayers/FWD.xlsx", sheet_name="FWD List", index=False)
 
 #region Main functions
+def update_results_current():
+    url = "https://fpl.page/bonus"
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.text, "html.parser")
+    
+    fixtures = soup.find_all("li", class_="fixture-item")
+
+    df = pd.DataFrame(columns=["Home", "H_G", "A_G", "Away"])
+
+    wb = load_workbook(CURRENT_EXCEL)
+    sheet = wb["Results"]
+
+    for row, fixture in enumerate(fixtures, start=2):
+        home_team = fixture.find("span", class_="home-text").text.strip()
+        away_team = fixture.find("span", class_="away-text").text.strip()
+        score_box = fixture.find("span", class_="score-box")
+
+        home_returners = fixture.find_all("div", class_="scorers-box-home")
+        away_returners = fixture.find_all("div", class_="scorers-box-away")
+
+        home_scorers, home_assists, away_scorers, away_assists, bonus_list = "", "", "", "", ""
+
+        if home_returners:
+            for returner in home_returners:
+                scorers = returner.find_all("li", class_="scorer-item-goals")
+                passers = returner.find_all("li", class_="scorer-item")
+                if scorers:
+                    for scorer in scorers:
+                        goals = len(scorer.find_all("svg", attrs={"data-icon": "futbol"}))
+                        if goals > 0:
+                            home_scorers += f" {scorer.text.strip()} ({goals})"
+                if passers:
+                        for passer in passers:
+                            assists = len(passer.find_all("svg", attrs={"data-icon": "a"}))
+                            if assists > 0:
+                                home_assists += f" {passer.text.strip()} ({assists})"
+        bonuses = fixture.find_all("li", class_="bonus-item")
+        for bonus in bonuses:
+            bonus_list += f" {bonus.text.strip()}"
+                
+        if away_returners:
+            for returner in away_returners:
+                individuals = returner.find_all("li", class_="scorer-item")
+                if individuals:
+                    for individual in individuals:
+                        goals = len(individual.find_all("svg", attrs={"data-icon": "futbol"}))
+                        assists = len(individual.find_all("svg", attrs={"data-icon": "a"}))
+                        
+                        if goals > 0:
+                            away_scorers += f" {individual.text.strip()} ({goals})"
+                        
+                        if assists > 0:
+                            away_assists += f" {individual.text.strip()} ({assists})"
+        
+        if score_box:
+            scores = score_box.text.split("-")
+            scores = list(map(int, scores))
+            
+            df = df._append({"Home": home_team, "H_G": scores[0], "A_G": scores[1], "Away": away_team}, ignore_index=True)
+            print(f"{home_team} {scores[0]} - {scores[1]} {away_team}")
+
+        sheet[f"E{row}"] = home_scorers 
+        sheet[f"F{row}"] = home_assists
+        sheet[f"G{row}"] = away_scorers
+        sheet[f"H{row}"] = away_assists
+        sheet[f"I{row}"] = bonus_list
+        
+    write_df_to_sheet(df, sheet)
+
+    print("Finished updating current GW results.")
+    wb.save(CURRENT_EXCEL)
+
 def update_fixture_next():
     #web scrapping
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -1276,8 +1349,7 @@ if __name__ == "__main__":
                 #update_player_current()
                 break
             elif(data == 2):
-                #update_results_current()
-                break
+                update_results_current()
             elif(data == 3):
                 #update_my_team_current()
                 break

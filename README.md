@@ -107,6 +107,9 @@ $\text{Projected Performance} =  \text{xGI} * D_j * LOd$
 - 4.2 Next 5 Fixtures
 - 4.3 Next 5 Players
 - 4.4 Next 5 MyTeam
+- 2.2 Next Fixtures
+- 2.3 Next Players
+- 2.4 Next MyTeam
 
 ## Features to work on
 
