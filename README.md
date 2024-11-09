@@ -62,6 +62,8 @@ Suppose $LOd = 1.1$ Chelsea has $O_c$ of $2.5$, $D_c$ of $0.5$, Man U has $O_m$ 
 - the probability of Chelsea scoring 0 goals is $\text{POISSON}(0, 2.5 * 1.2 * 1.1)$
 - the probability of Man U scoring 0 goals is $\text{POISSON}(0, 1.4 * 0.5 * 1.1)$
 
+When to place the bet: Prob(Model) > P(Odds)
+
 ### Players Data
 
 #### GK
