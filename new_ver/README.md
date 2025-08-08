@@ -52,3 +52,7 @@
 ---
 
 - fbref api: https://fbrapi.com/documentation
+
+## Note
+
+- Please refer to the new_ver, as I won't be updating old_ver anymore
