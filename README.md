@@ -1,7 +1,5 @@
 ## Preseason Preperation
 
----
-
 1. team_id.py
 
 - Get team_id of promoted teams, and add to team_id_map
@@ -28,8 +26,6 @@
 
 ## Functions
 
----
-
 1. Project the next 5 gameweek of every team
 2. Project best players for each team according to the projection at (2)
 3. Players (last 5)
@@ -39,8 +35,6 @@
 
 ## Calculation timeframe
 
----
-
 1. Current season (update every week)
 2. Rolling 5 (starts at gw5)
 3. Incorporate with last season (always maintain 38 gameweeks)
@@ -48,8 +42,6 @@
    - then think about promoted teams
 
 ## References
-
----
 
 - fbref api: https://fbrapi.com/documentation
 
