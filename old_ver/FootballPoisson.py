@@ -307,41 +307,45 @@ def update_results_current():
     wb.save(CURRENT_EXCEL)
 
 def update_fixture_next():
-    #web scrapping
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.get("https://fpl.page/fixtureTicker")
+    # Manual inputting fixtures
+    fixtures = [
+    {"Bournemouth": "LEI", "side": "(H)"},
+    {"Leicester": "BOU", "side": "(A)"},
+    {"Fulham": "MCI", "side": "(H)"},
+    {"Man City": "FUL", "side": "(A)"},
+    {"Ipswich": "WHU", "side": "(H)"},
+    {"West Ham": "IPS", "side": "(A)"},
+    {"Liverpool": "CRY", "side": "(H)"},
+    {"Crystal Palace": "LIV", "side": "(A)"},
+    {"Man Utd": "AVL", "side": "(H)"},
+    {"Aston Villa": "MUN", "side": "(A)"},
+    {"Newcastle": "EVE", "side": "(H)"},
+    {"Everton": "NEW", "side": "(A)"},
+    {"Nott'm Forest": "CHE", "side": "(H)"},
+    {"Chelsea": "NFO", "side": "(A)"},
+    {"Southampton": "ARS", "side": "(H)"},
+    {"Arsenal": "SOU", "side": "(A)"},
+    {"Spurs": "BHA", "side": "(H)"},
+    {"Brighton": "TOT", "side": "(A)"},
+    {"Wolves": "BRE", "side": "(H)"},
+    {"Brentford": "WOL", "side": "(A)"}
+    ]
 
-    #get fixtures
-    table = driver.find_element(By.CSS_SELECTOR, ".transfers-body") 
-    table_soup = BeautifulSoup(table.get_attribute("innerHTML"), "html.parser")
-    teams = table_soup.find_all("tr")
-
-    fixtures = []
-
-    for team in teams:
-        team_name = team.find("td", class_="fdr-teamNames").text
-        td = team.find_all("td")[1]
-        opponent = td.find("span").text if td.find("span") else None
-        if opponent:
-            opponent_name = opponent.split(" ")[0]
-            side = opponent.split(" ")[1]
-        fixtures.append({team_name: opponent_name, "side": side})
     print(fixtures)
     print("Finished getting fixtures.")
-    driver.quit()
 
     fixture_df = pd.read_excel(NEXT_EXCEL, sheet_name="Fixtures", usecols="A:O", header=0, nrows=20)
     team_df = pd.read_excel(SEASON_EXCEL, sheet_name="Teams", usecols="A:V", header=0, nrows=20)
     team_sheet = load_workbook(SEASON_EXCEL)["Teams"]
-    gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
-    def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
-    mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
-    fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
+    # gk_df = pd.read_excel(SEASON_EXCEL, sheet_name="GK", usecols=SEASON_GK_COLS, header=0, nrows=GK_COUNT)
+    # def_df = pd.read_excel(SEASON_EXCEL, sheet_name="DEF", usecols=SEASON_DEF_COLS, header=0, nrows=DEF_COUNT)
+    # mid_df = pd.read_excel(SEASON_EXCEL, sheet_name="MID", usecols=SEASON_MID_COLS, header=0, nrows=MID_COUNT)
+    # fwd_df = pd.read_excel(SEASON_EXCEL, sheet_name="FWD", usecols=SEASON_FWD_COLS, header=0, nrows=FWD_COUNT)
 
     columns_to_update = ["H_Oi", "H_Di", "A_Oi", "A_Di", "Oi", "Di"]
     opponent_columns_to_update = ["O_H_Oi", "O_H_Di", "O_A_Oi", "O_A_Di", "O_Oi", "O_Di"]
 
-    match_up_rows = [[1,2], [18,19], [35,36], [52,53], [69,70]]
+    match_up_rows = [[1,2], [22,23], [43,44], [64,65], [85,86]]
     i = 0
     match_up_cols = [["T", "U", "V"], ["AB", "AC", "AD"]]
     j = 0
@@ -356,18 +360,18 @@ def update_fixture_next():
         team_row = team_df.index[team_df["Team"] == team_name].tolist()[0]
         fixture_team_row = fixture_df.index[fixture_df["Team"] == team_name].tolist()[0]
 
-        best_def = def_df[def_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
-        best_mid = mid_df[mid_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
-        best_fwd = fwd_df[fwd_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
+        # best_def = def_df[def_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
+        # best_mid = mid_df[mid_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
+        # best_fwd = fwd_df[fwd_df["Team"]==team_name].sort_values(by=["xGI"], ascending=False).head(1)["Name"].values[0]
 
         opponent_team_row = team_df.index[team_df["Team"] == opponent].tolist()[0]
         fixture_df.loc[fixture_team_row, "Opponent"] = opponent
 
         for column, opp_column in zip(columns_to_update, opponent_columns_to_update):
             fixture_df.loc[fixture_team_row, "Side"] = side
-            fixture_df.loc[fixture_team_row, "DEF"] = best_def
-            fixture_df.loc[fixture_team_row, "MID"] = best_mid
-            fixture_df.loc[fixture_team_row, "FWD"] = best_fwd
+            # fixture_df.loc[fixture_team_row, "DEF"] = best_def
+            # fixture_df.loc[fixture_team_row, "MID"] = best_mid
+            # fixture_df.loc[fixture_team_row, "FWD"] = best_fwd
             fixture_df.loc[fixture_team_row, column] = team_df.loc[team_row, column]
             fixture_df.loc[fixture_team_row, opp_column] = team_df.loc[opponent_team_row, column]
         
@@ -383,8 +387,6 @@ def update_fixture_next():
             fixture_sheet[f"{match_up_cols[j][1]}{match_up_rows[i][1]}"] = fixture_df.loc[fixture_team_row, "O_Oi"]
             fixture_sheet[f"{match_up_cols[j][2]}{match_up_rows[i][1]}"] = fixture_df.loc[fixture_team_row, "O_Di"]
             i += 1
-
-    fixture_df = fixture_df.sort_values(by=["O_Di"], ascending=False)
     print(fixture_df)
  
     lod = team_sheet["H24"].value
@@ -1190,13 +1192,15 @@ def update_player_season():
     players = r["elements"] # 1 to 642
     gw = get_gameweek()
     for player in players:
+        #Blank GW 
         if player["minutes"] > MINUTES_THRESHOLD:
+            print("Updating " + player["web_name"])
             id = player["id"]
             individual = requests.get(f"https://fantasy.premierleague.com/api/element-summary/{id}/").json()["history"]
             start_round = individual[0]["round"]
             # if I forgot to update after a gw, use to following line
             # gameweeks = [i for i in range(gw-n-start_round, gw-n-start_round+1)] where n is the number of gws i missed
-            gameweeks = [i for i in range(gw-start_round, gw-start_round + 1)]
+            # gameweeks = [i for i in range(gw-start_round, gw-start_round + 1)]
             if player["element_type"] == 1:
                 df = gk_df
                 player_row = gk_df.index[gk_df["Name"] == player["web_name"]].tolist()[0]
@@ -1209,28 +1213,27 @@ def update_player_season():
             elif player["element_type"] == 4:
                 df = fwd_df
                 player_row = fwd_df.index[fwd_df["Name"] == player["web_name"]].tolist()[0]
-            for i in gameweeks:
-                gw_stat = individual[i]
-                side = "H" if gw_stat["was_home"] else "A"
-                if player["element_type"] == 1:
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_CS")] += gw_stat["clean_sheets"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")] += gw_stat["goals_conceded"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] += float(gw_stat["expected_goals_conceded"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG Prevented")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] - df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Saves")] += gw_stat["saves"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
-                else:
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_G")] += gw_stat["goals_scored"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] += float(gw_stat["expected_goals"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_A")] += gw_stat["assists"]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] += float(gw_stat["expected_assists"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xADiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] += float(gw_stat["expected_goal_involvements"])
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_xGIDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
-                    df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
+            gw_stat = individual[len(individual)-1]
+            side = "H" if gw_stat["was_home"] else "A"
+            if player["element_type"] == 1:
+                df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_CS")] += gw_stat["clean_sheets"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")] += gw_stat["goals_conceded"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] += float(gw_stat["expected_goals_conceded"])
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xG Prevented")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG Conceded")] - df.iloc[player_row, df.columns.get_loc(f"{side}_Goals Conceded")]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_Saves")] += gw_stat["saves"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
+            else:
+                df.iloc[player_row, df.columns.get_loc(f"{side}_Points")] += gw_stat["total_points"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_G")] += gw_stat["goals_scored"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] += float(gw_stat["expected_goals"])
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xGDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xG")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_A")] += gw_stat["assists"]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] += float(gw_stat["expected_assists"])
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xADiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xA")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] += float(gw_stat["expected_goal_involvements"])
+                df.iloc[player_row, df.columns.get_loc(f"{side}_xGIDiff")] = df.iloc[player_row, df.columns.get_loc(f"{side}_xGI")] - df.iloc[player_row, df.columns.get_loc(f"{side}_G")] - df.iloc[player_row, df.columns.get_loc(f"{side}_A")]
+                df.iloc[player_row, df.columns.get_loc(f"{side}_Bonus")] += gw_stat["bonus"]
             if player["element_type"] == 1:
                 df.iloc[player_row, df.columns.get_loc("CS")] = df.iloc[player_row, df.columns.get_loc("H_CS")] + df.iloc[player_row, df.columns.get_loc("A_CS")]
                 df.iloc[player_row, df.columns.get_loc("Goals Conceded")] = df.iloc[player_row, df.columns.get_loc("H_Goals Conceded")] + df.iloc[player_row, df.columns.get_loc("A_Goals Conceded")]
