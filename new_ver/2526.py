@@ -42,11 +42,11 @@ all_players_match_stats = "all-players-match-stats"
 season_id = "2025-2026"
 league_id = 9
 
-api = requests.post(base_url + generate_api_key)
-api_key = api.json()['api_key']
-print("API Key:", api_key)
+# api = requests.post(base_url + generate_api_key)
+# api_key = api.json()['api_key']
+# print("API Key:", api_key)
 
-header = {"X-API-Key": api_key}
+# header = {"X-API-Key": api_key}
 
 team_id_map = {
     "Arsenal": "18bb7c10",
@@ -70,6 +70,9 @@ team_id_map = {
     "West Ham": "7c21e445",
     "Wolves": "8cec06e1"
 }
+
+prem_team_df = pd.read_csv("data/2526-prem-teams-pastseason.csv")
+
 
 
 

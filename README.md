@@ -13,7 +13,7 @@
   - {previous-season}-prem-teams.csv
   - {previous-season}-championship-teams.csv
 
-3. team_strengths
+3. team_strengths.py
 
 - Purpose:
   - Calculate offensive strength (Oi) and defensive strength (Di) of each team, and mean variable (lod) for the league.
@@ -22,7 +22,17 @@
   - {previous-season}-prem-teams.csv
   - {previous-season}-championship-teams.csv
 - Output:
-  - {current-season}-prem-teams.csv
+  - {current-season}-prem-teams-pastseason.csv
+
+4. adjust_team_strengths.py
+
+- Purpose:
+  - Adjust the Oi and Di for newly promoted teams
+  - For teams that were in the prem within the last two years, we search for that particular year
+  - Input:
+    - {current-season}-prem-teams-pastseason.csv
+- Output:
+  - {current-season}-prem-teams-pastseason.csv
 
 ## Functions
 

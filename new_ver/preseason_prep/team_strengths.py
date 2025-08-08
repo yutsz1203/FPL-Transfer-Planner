@@ -28,5 +28,5 @@ prem_team = pd.concat([prem_team, promoted_teams], ignore_index=True)
 prem_team = prem_team.sort_values(by=["team"])
 print(prem_team)
 
-prem_team.to_csv("data/2526-prem-teams.csv", index=False)
+prem_team.to_csv("data/2526-prem-teams-pastseason.csv", index=False)
 
