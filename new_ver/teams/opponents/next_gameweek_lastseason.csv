@@ -1,0 +1,21 @@
+team,side,team_Oi,team_Di,opponent,opponent_Oi,opponent_Di,expected gf,expected ga
+Liverpool,Home,1.58,0.6,Bournemouth,1.44,1.23,1.94,0.86
+Tottenham,Home,1.31,1.31,Burnley,0.78,1.25,1.64,1.02
+Arsenal,Away,1.4,0.7,Manchester Utd,0.86,1.05,1.47,0.6
+Manchester City,Away,1.19,0.86,Wolves,1.01,1.2,1.43,0.87
+Aston Villa,Home,1.28,0.75,Newcastle Utd,1.15,1.11,1.42,0.86
+Chelsea,Home,1.31,0.68,Crystal Palace,1.11,1.03,1.35,0.75
+West Ham,Away,0.94,1.15,Sunderland,0.7,1.23,1.16,0.8
+Brighton,Home,1.13,0.98,Fulham,1.11,0.99,1.12,1.09
+Fulham,Away,1.11,0.99,Brighton,1.13,0.98,1.09,1.12
+Burnley,Away,0.78,1.25,Tottenham,1.31,1.31,1.02,1.64
+Nott'ham Forest,Home,0.98,0.6,Brentford,1.07,0.9,0.88,0.64
+Wolves,Home,1.01,1.2,Manchester City,1.19,0.86,0.87,1.43
+Newcastle Utd,Away,1.15,1.11,Aston Villa,1.28,0.75,0.86,1.42
+Bournemouth,Away,1.44,1.23,Liverpool,1.58,0.6,0.86,1.94
+Sunderland,Home,0.7,1.23,West Ham,0.94,1.15,0.8,1.16
+Everton,Away,0.66,0.86,Leeds United,0.84,1.19,0.79,0.72
+Crystal Palace,Away,1.11,1.03,Chelsea,1.31,0.68,0.75,1.35
+Leeds United,Home,0.84,1.19,Everton,0.66,0.86,0.72,0.79
+Brentford,Away,1.07,0.9,Nott'ham Forest,0.98,0.6,0.64,0.88
+Manchester Utd,Home,0.86,1.05,Arsenal,1.4,0.7,0.6,1.47

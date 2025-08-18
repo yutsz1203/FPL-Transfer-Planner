@@ -50,11 +50,38 @@
 3. Incorporate with last season (always maintain 38 gameweeks)
    - do teams that were in prem last season
    - then think about promoted teams
+4. Last season (only used for first draft of the season)
+
+## Tasks
+
+- next 5 gws projection (player_projection.py)
+- projection of my own team for next gw, and next n gws (myteam_projection.py)
+- calculate augmented team strengths
+
+## Finished
+
+- Fetch fixtures (Need adjust for double gameweek)
+- Last season team strengths
+- Current season team strength
+- Next gameweek projections (team strength)
+- Next n gameweeks projections (team strength)
+- calculate last 5 games team strengths
+- get players basic information (id, team, pos, price, selected by)
+- calculate player current season stats, calculate player last 5 games stats (use official api) (player_stats.py)
+- season stats and last 5 games stats of my own team (myteam_stats.py)
+- next gameweek projection
 
 ## References
 
 - fbref api: https://fbrapi.com/documentation
+- official api guide: https://www.oliverlooney.com/blogs/FPL-APIs-Explained#how-to-use-authenticated-endpoints
 
 ## Note
 
 - Please refer to the new_ver, as I won't be updating old_ver anymore
+- official api and fbref api have name differences:
+  Leeds -> Leeds United
+  Man City -> Manchester City
+  Man Utd -> Manchester United
+  Newcastle -> Newcastle Utd
+  Spurs -> Tottenham
