@@ -7,10 +7,10 @@ from const import team_ids, team_id_map
 fixtures = pd.read_csv("teams/data/fixtures.csv")
 
 # Only for first gameweek
-last_season_strengths = pd.read_csv("teams/data/2526-prem-teams-lastseason.csv")
+# last_season_strengths = pd.read_csv("teams/data/2526-prem-teams-lastseason.csv")
 
 # Current season
-current_season_strengths = pd.read_csv("teams/data/2526-prem-teams-currentseason.csv")
+current_season_strengths = pd.read_csv("teams/data/teams_currentseason.csv")
 
 # Rolling 5
 # last5games_strengths = pd.read_csv("teams/data/2526-prem-teams-last5games.csv")
@@ -107,9 +107,9 @@ def get_next_n_gameweek(df, type, side_adjustment=True, n=5):
                 print("Without side adjustment:")
                 print(f"H: {team_name} vs A: {opponent}") if side == "Home" else print(f"H: {opponent} vs A: {team_name}")
                 total_team_Oi += df[df["team"] == team_name]["Oi"].values[0]
-                total_team_Di = df[df["team"] == team_name]["Di"].values[0]
-                total_opponents_Oi = df[df["team"] == opponent]["Oi"].values[0]
-                total_opponents_Di = df[df["team"] == opponent]["Di"].values[0]
+                total_team_Di += df[df["team"] == team_name]["Di"].values[0]
+                total_opponents_Oi += df[df["team"] == opponent]["Oi"].values[0]
+                total_opponents_Di += df[df["team"] == opponent]["Di"].values[0]
                 expected_gf += round(df[df["team"] == team_name]["Oi"].values[0] * df[df["team"] == opponent]["Di"].values[0], 2)
                 expected_ga += round(df[df["team"] == team_name]["Di"].values[0] * df[df["team"] == opponent]["Oi"].values[0], 2)
         next_n_gameweek.append({
@@ -141,7 +141,7 @@ def get_next_n_gameweek(df, type, side_adjustment=True, n=5):
 
 # current season strengths
 # change the last argument to true if want to adjust for home/away
-# get_next_gameweek(current_season_strengths, "currentseason", False)
+get_next_gameweek(current_season_strengths, "currentseason", False)
 
 # last 5 gameweeks strengths
 # get_next_gameweek(last5games_strengths, "last5games")
@@ -152,10 +152,10 @@ def get_next_n_gameweek(df, type, side_adjustment=True, n=5):
 # Next 5 weeks opponents
 
 # last season strengths, only for before first gameweek
-get_next_n_gameweek(last_season_strengths, "lastseason")
+# get_next_n_gameweek(last_season_strengths, "lastseason")
 
 # current season strengths
-# get_next_5_gameweek(current_season_strengths, "currentseason", False)
+get_next_n_gameweek(current_season_strengths, "currentseason", False)
 
 # last 5 gameweeks strengths
 # get_next_5_gameweek(last5games_strengths, "last5games")

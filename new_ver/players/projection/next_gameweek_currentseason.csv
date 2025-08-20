@@ -1,686 +1,686 @@
 Player ID,Name,Pos,Team,Cost,opponent,team_Oi,opponent_Di,xGI,projected GI,team_Di,opponent_Oi,xGc,projected Gc,projected net goals
-82,Semenyo,MID,Bournemouth,7.0,Wolves,1.39,2.78,0.93,2.59,2.78,0.0,2.21,0.0,2.59
-238,Estêvão,MID,Chelsea,6.5,West Ham,,2.09,0.71,1.48,,0.0,0.07,0.0,1.48
-84,Tavernier,MID,Bournemouth,5.5,Wolves,1.39,2.78,0.38,1.06,2.78,0.0,2.21,0.0,1.06
-86,Brooks,MID,Bournemouth,5.0,Wolves,1.39,2.78,0.38,1.06,2.78,0.0,1.9,0.0,1.06
-654,Strand Larsen,FWD,Wolves,6.5,Bournemouth,0.0,2.78,0.32,0.89,2.78,1.39,2.25,3.13,-2.24
-486,Elanga,MID,Newcastle Utd,7.0,Liverpool,0.0,1.39,0.63,0.88,0.0,2.78,0.17,0.47,0.41
-97,Evanilson,FWD,Bournemouth,7.0,Wolves,1.39,2.78,0.29,0.81,2.78,0.0,2.21,0.0,0.81
-485,Gordon,MID,Newcastle Utd,7.5,Liverpool,0.0,1.39,0.58,0.81,0.0,2.78,0.2,0.56,0.25
-236,Neto,MID,Chelsea,7.0,West Ham,,2.09,0.38,0.79,,0.0,1.07,0.0,0.79
-487,Barnes,MID,Newcastle Utd,6.5,Liverpool,0.0,1.39,0.56,0.78,0.0,2.78,0.2,0.56,0.22
-246,Andrey Santos,MID,Chelsea,4.5,West Ham,,2.09,0.37,0.77,,0.0,0.05,0.0,0.77
-249,João Pedro,FWD,Chelsea,7.5,West Ham,,2.09,0.32,0.67,,0.0,1.02,0.0,0.67
-235,Palmer,MID,Chelsea,10.5,West Ham,,2.09,0.24,0.5,,0.0,1.07,0.0,0.5
-224,Cucurella,DEF,Chelsea,6.0,West Ham,,2.09,0.22,0.46,,0.0,1.07,0.0,0.46
-544,Diarra,MID,Sunderland,5.5,Burnley,2.09,2.09,0.22,0.46,0.0,0.0,0.61,0.0,0.46
-531,Ballard,DEF,Sunderland,4.5,Burnley,2.09,2.09,0.2,0.42,0.0,0.0,0.61,0.0,0.42
-225,James,DEF,Chelsea,5.5,West Ham,,2.09,0.19,0.4,,0.0,1.02,0.0,0.4
-638,Hoever,DEF,Wolves,4.0,Bournemouth,0.0,2.78,0.14,0.39,2.78,1.39,2.2,3.06,-2.67
-233,Acheampong,DEF,Chelsea,4.0,West Ham,,2.09,0.18,0.38,,0.0,1.07,0.0,0.38
-543,Adingra,MID,Sunderland,5.5,Burnley,2.09,2.09,0.18,0.38,0.0,0.0,0.34,0.0,0.38
-119,Mbeumo,MID,Manchester Utd,8.0,Fulham,,0.7,0.52,0.36,,0.7,1.05,0.74,-0.38
-74,Truffert,DEF,Bournemouth,4.5,Wolves,1.39,2.78,0.13,0.36,2.78,0.0,2.21,0.0,0.36
-450,Cunha,MID,Manchester Utd,8.0,Fulham,,0.7,0.45,0.32,,0.7,1.05,0.74,-0.42
-449,B.Fernandes,MID,Manchester Utd,9.0,Fulham,,0.7,0.45,0.32,,0.7,1.05,0.74,-0.42
-85,Adams,MID,Bournemouth,5.0,Wolves,1.39,2.78,0.1,0.28,2.78,0.0,2.1,0.0,0.28
-257,Lacroix,DEF,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,0.4,0.28,0.0,2.09,1.81,3.78,-3.5
-645,Fer López,MID,Wolves,5.5,Bournemouth,0.0,2.78,0.1,0.28,2.78,1.39,0.24,0.33,-0.05
-64,Watkins,FWD,Aston Villa,9.0,Brentford,0.0,2.09,0.13,0.27,0.0,0.7,1.43,1.0,-0.73
-683,Alderete,DEF,Sunderland,4.0,Burnley,2.09,2.09,0.12,0.25,0.0,0.0,0.27,0.0,0.25
-491,Tonali,MID,Newcastle Utd,5.5,Liverpool,0.0,1.39,0.18,0.25,0.0,2.78,0.2,0.56,-0.31
-239,Gittens,MID,Chelsea,6.5,West Ham,,2.09,0.12,0.25,,0.0,1.0,0.0,0.25
-226,Chalobah,DEF,Chelsea,5.0,West Ham,,2.09,0.12,0.25,,0.0,1.07,0.0,0.25
-266,Eze,MID,Crystal Palace,7.5,Nott'ham Forest,0.0,0.7,0.33,0.23,0.0,2.09,1.37,2.86,-2.63
-73,Smith,DEF,Bournemouth,4.5,Wolves,1.39,2.78,0.08,0.22,2.78,0.0,2.1,0.0,0.22
-237,Enzo,MID,Chelsea,6.5,West Ham,,2.09,0.1,0.21,,0.0,1.02,0.0,0.21
-561,Mayenda,FWD,Sunderland,5.5,Burnley,2.09,2.09,0.1,0.21,0.0,0.0,0.34,0.0,0.21
-283,Mateta,FWD,Crystal Palace,7.5,Nott'ham Forest,0.0,0.7,0.29,0.2,0.0,2.09,1.81,3.78,-3.58
-648,Munetsi,MID,Wolves,5.5,Bournemouth,0.0,2.78,0.07,0.19,2.78,1.39,2.44,3.39,-3.2
-241,Caicedo,MID,Chelsea,5.5,West Ham,,2.09,0.09,0.19,,0.0,1.07,0.0,0.19
-54,McGinn,MID,Aston Villa,5.5,Brentford,0.0,2.09,0.09,0.19,0.0,0.7,1.33,0.93,-0.74
-532,Hume,DEF,Sunderland,4.5,Burnley,2.09,2.09,0.09,0.19,0.0,0.0,0.61,0.0,0.19
-436,De Ligt,DEF,Manchester Utd,5.0,Fulham,,0.7,0.26,0.18,,0.7,1.05,0.74,-0.56
-58,Kamara,MID,Aston Villa,5.0,Brentford,0.0,2.09,0.08,0.17,0.0,0.7,1.43,1.0,-0.83
-681,Šeško,FWD,Manchester Utd,7.5,Fulham,,0.7,0.2,0.14,,0.7,0.13,0.09,0.05
-488,Bruno G.,MID,Newcastle Utd,6.5,Liverpool,0.0,1.39,0.1,0.14,0.0,2.78,0.2,0.56,-0.42
-644,Bellegarde,MID,Wolves,5.5,Bournemouth,0.0,2.78,0.05,0.14,2.78,1.39,2.2,3.06,-2.92
-72,Senesi,DEF,Bournemouth,4.5,Wolves,1.39,2.78,0.05,0.14,2.78,0.0,2.21,0.0,0.14
-250,Delap,FWD,Chelsea,6.5,West Ham,,2.09,0.06,0.13,,0.0,0.05,0.0,0.13
-455,Mount,MID,Manchester Utd,6.0,Fulham,,0.7,0.17,0.12,,0.7,0.92,0.64,-0.52
-646,Gomes,MID,Wolves,5.5,Bournemouth,0.0,2.78,0.04,0.11,2.78,1.39,2.44,3.39,-3.28
-474,Schär,DEF,Newcastle Utd,5.5,Liverpool,0.0,1.39,0.07,0.1,0.0,2.78,0.2,0.56,-0.46
-47,Rogers,MID,Aston Villa,7.0,Brentford,0.0,2.09,0.05,0.1,0.0,0.7,1.43,1.0,-0.9
-560,Isidor,FWD,Sunderland,5.5,Burnley,2.09,2.09,0.04,0.08,0.0,0.0,0.27,0.0,0.08
-668,Xhaka,MID,Sunderland,5.0,Burnley,2.09,2.09,0.04,0.08,0.0,0.0,0.61,0.0,0.08
-631,Agbadou,DEF,Wolves,4.5,Bournemouth,0.0,2.78,0.03,0.08,2.78,1.39,2.44,3.39,-3.31
-478,Trippier,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.39,0.06,0.08,0.0,2.78,0.2,0.56,-0.48
-500,Osula,FWD,Newcastle Utd,5.5,Liverpool,0.0,1.39,0.05,0.07,0.0,2.78,0.0,0.0,0.07
-53,Malen,MID,Aston Villa,5.5,Brentford,0.0,2.09,0.03,0.06,0.0,0.7,0.1,0.07,-0.01
-642,Hee Chan,MID,Wolves,6.0,Bournemouth,0.0,2.78,0.02,0.06,2.78,1.39,0.18,0.25,-0.19
-663,J.Arias,MID,Wolves,5.5,Bournemouth,0.0,2.78,0.02,0.06,2.78,1.39,0.24,0.33,-0.27
-256,Muñoz,DEF,Crystal Palace,5.5,Nott'ham Forest,0.0,0.7,0.08,0.06,0.0,2.09,1.81,3.78,-3.72
-261,Richards,DEF,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,0.07,0.05,0.0,2.09,1.81,3.78,-3.73
-441,Dorgu,DEF,Manchester Utd,4.5,Fulham,,0.7,0.07,0.05,,0.7,1.05,0.74,-0.69
-273,Wharton,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,0.07,0.05,0.0,2.09,1.81,3.78,-3.73
-452,Amad,MID,Manchester Utd,6.5,Fulham,,0.7,0.07,0.05,,0.7,0.25,0.18,-0.13
-228,Gusto,DEF,Chelsea,5.0,West Ham,,2.09,0.02,0.04,,0.0,0.05,0.0,0.04
-477,Livramento,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.39,0.03,0.04,0.0,2.78,0.2,0.56,-0.52
-632,Doherty,DEF,Wolves,4.5,Bournemouth,0.0,2.78,0.01,0.03,2.78,1.39,2.44,3.39,-3.36
-490,Joelinton,MID,Newcastle Utd,6.0,Liverpool,0.0,1.39,0.02,0.03,0.0,2.78,0.17,0.47,-0.44
-633,H.Bueno,DEF,Wolves,4.5,Bournemouth,0.0,2.78,0.01,0.03,2.78,1.39,0.24,0.33,-0.3
-643,André,MID,Wolves,5.5,Bournemouth,0.0,2.78,0.01,0.03,2.78,1.39,2.2,3.06,-3.03
-459,Ugarte,MID,Manchester Utd,5.0,Fulham,,0.7,0.05,0.03,,0.7,0.13,0.09,-0.06
-48,Tielemans,MID,Aston Villa,6.0,Brentford,0.0,2.09,0.01,0.02,0.0,0.7,1.43,1.0,-0.98
-552,Sadiki,MID,Sunderland,5.0,Burnley,2.09,2.09,0.01,0.02,0.0,0.0,0.61,0.0,0.02
-38,Konsa,DEF,Aston Villa,4.5,Brentford,0.0,2.09,0.01,0.02,0.0,0.7,1.11,0.78,-0.76
-59,Onana,MID,Aston Villa,5.0,Brentford,0.0,2.09,0.01,0.02,0.0,0.7,1.43,1.0,-0.98
-553,Talbi,MID,Sunderland,5.0,Burnley,2.09,2.09,0.01,0.02,0.0,0.0,0.58,0.0,0.02
-37,Digne,DEF,Aston Villa,4.5,Brentford,0.0,2.09,0.01,0.02,0.0,0.7,1.43,1.0,-0.98
-440,Dalot,DEF,Manchester Utd,4.5,Fulham,,0.7,0.01,0.01,,0.7,0.8,0.56,-0.55
-489,J.Murphy,MID,Newcastle Utd,6.5,Liverpool,0.0,1.39,0.01,0.01,0.0,2.78,0.03,0.08,-0.07
-444,Yoro,DEF,Manchester Utd,4.5,Fulham,,0.7,0.01,0.01,,0.7,1.05,0.74,-0.73
-497,L.Miley,MID,Newcastle Utd,4.5,Liverpool,0.0,1.39,0.01,0.01,0.0,2.78,0.03,0.08,-0.07
-476,Burn,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.39,0.01,0.01,0.0,2.78,0.2,0.56,-0.55
-457,Casemiro,MID,Manchester Utd,5.5,Fulham,,0.7,0.02,0.01,,0.7,0.92,0.64,-0.63
-443,Shaw,DEF,Manchester Utd,4.5,Fulham,,0.7,0.02,0.01,,0.7,0.92,0.64,-0.63
-267,Sarr,MID,Crystal Palace,6.5,Nott'ham Forest,0.0,0.7,0.01,0.01,0.0,2.09,1.81,3.78,-3.77
-253,Henderson,GK,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,0.0,0.0,0.0,2.09,1.81,3.78,-3.78
-584,Tel,MID,Tottenham,6.5,Manchester City,2.09,0.0,0.0,0.0,0.0,2.78,0.0,0.0,0.0
-407,Matheus N.,DEF,Manchester City,5.5,Tottenham,2.78,0.0,0.0,0.0,0.0,2.09,0.19,0.4,-0.4
-588,Odobert,MID,Tottenham,5.5,Manchester City,2.09,0.0,0.01,0.0,0.0,2.78,0.0,0.0,0.0
-366,A.Becker,GK,Liverpool,5.5,Newcastle Utd,2.78,0.0,0.01,0.0,1.39,0.0,1.7,0.0,0.0
-518,Jota,MID,Nott'ham Forest,5.5,Crystal Palace,2.09,0.0,0.0,0.0,0.7,0.0,0.0,0.0,0.0
-585,Bentancur,MID,Tottenham,5.5,Manchester City,2.09,0.0,0.0,0.0,0.0,2.78,0.04,0.11,-0.11
-202,Bruun Larsen,MID,Burnley,5.5,Sunderland,0.0,0.0,0.01,0.0,2.09,2.09,0.91,1.9,-1.9
-122,Milambo,MID,Brentford,5.5,Aston Villa,0.7,0.0,0.01,0.0,2.09,0.0,1.49,0.0,0.0
-190,Ekdal,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.0,0.0,2.09,2.09,2.32,4.85,-4.85
-77,Hill,DEF,Bournemouth,4.0,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,0.11,0.0,0.0
-522,Yates,MID,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,0.01,0.0,0.7,0.0,0.0,0.0,0.0
-673,J.Palhinha,MID,Tottenham,5.5,Manchester City,2.09,0.0,0.0,0.0,0.0,2.78,0.0,0.0,0.0
-526,Igor Jesus,FWD,Nott'ham Forest,6.0,Crystal Palace,2.09,0.0,0.0,0.0,0.7,0.0,0.0,0.0,0.0
-210,Tchaouna,MID,Burnley,5.0,Sunderland,0.0,0.0,0.01,0.0,2.09,2.09,0.23,0.48,-0.48
-260,Guéhi,DEF,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,0.0,0.0,0.0,2.09,1.81,3.78,-3.78
-116,Hickey,DEF,Brentford,4.0,Aston Villa,0.7,0.0,0.0,0.0,2.09,0.0,0.0,0.0,0.0
-628,José Sá,GK,Wolves,4.5,Bournemouth,0.0,2.78,0.0,0.0,2.78,1.39,2.44,3.39,-3.39
-93,H.Traorè,MID,Bournemouth,4.5,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,0.4,0.0,0.0
-128,Onyeka,MID,Brentford,5.0,Aston Villa,0.7,0.0,0.0,0.0,2.09,0.0,0.0,0.0,0.0
-392,Endo,MID,Liverpool,5.0,Newcastle Utd,2.78,0.0,0.0,0.0,1.39,0.0,0.89,0.0,0.0
-470,Dúbravka,GK,Burnley,4.0,Sunderland,0.0,0.0,0.0,0.0,2.09,2.09,2.32,4.85,-4.85
-67,Petrović,GK,Bournemouth,4.5,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,2.21,0.0,0.0
-505,Milenković,DEF,Nott'ham Forest,5.5,Crystal Palace,2.09,0.0,0.0,0.0,0.7,0.0,1.5,0.0,0.0
-637,Toti,DEF,Wolves,4.5,Bournemouth,0.0,2.78,0.0,0.0,2.78,1.39,2.44,3.39,-3.39
-502,Sels,GK,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,0.0,0.0,0.7,0.0,1.5,0.0,0.0
-90,Scott,MID,Bournemouth,5.0,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,1.81,0.0,0.0
-431,Bayindir,GK,Manchester Utd,5.0,Fulham,,0.7,0.0,0.0,,0.7,1.05,0.74,-0.74
-542,Seelt,DEF,Sunderland,4.0,Burnley,2.09,2.09,0.0,0.0,0.0,0.0,0.34,0.0,0.0
-371,Kerkez,DEF,Liverpool,6.0,Newcastle Utd,2.78,0.0,0.01,0.0,1.39,0.0,0.81,0.0,0.0
-411,O’Reilly,DEF,Manchester City,5.0,Tottenham,2.78,0.0,0.01,0.0,0.0,2.09,0.19,0.4,-0.4
-406,Khusanov,DEF,Manchester City,5.5,Tottenham,2.78,0.0,0.0,0.0,0.0,2.09,0.08,0.17,-0.17
-96,Winterburn,MID,Bournemouth,4.5,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,0.31,0.0,0.0
-100,Kroupi.Jr,FWD,Bournemouth,4.5,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,0.11,0.0,0.0
-40,Mings,DEF,Aston Villa,4.5,Brentford,0.0,2.09,0.0,0.0,0.0,0.7,1.43,1.0,-1.0
-101,Kelleher,GK,Brentford,4.5,Aston Villa,0.7,0.0,0.0,0.0,2.09,0.0,1.86,0.0,0.0
-276,Devenny,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,0.0,0.0,0.0,2.09,0.44,0.92,-0.92
-442,Maguire,DEF,Manchester Utd,4.5,Fulham,,0.7,0.0,0.0,,0.7,0.13,0.09,-0.09
-635,R.Gomes,DEF,Wolves,4.5,Bournemouth,0.0,2.78,0.0,0.0,2.78,1.39,0.24,0.33,-0.33
-682,Møller Wolfe,DEF,Wolves,4.5,Bournemouth,0.0,2.78,0.0,0.0,2.78,1.39,2.2,3.06,-3.06
-220,Sánchez,GK,Chelsea,5.0,West Ham,,2.09,0.0,0.0,,0.0,1.07,0.0,0.0
-124,Henderson,MID,Brentford,5.0,Aston Villa,0.7,0.0,0.0,0.0,2.09,0.0,0.0,0.0,0.0
-182,Trafford,GK,Manchester City,5.0,Tottenham,2.78,0.0,0.0,0.0,0.0,2.09,0.49,1.02,-1.02
-541,Reinildo,DEF,Sunderland,4.0,Burnley,2.09,2.09,0.0,0.0,0.0,0.0,0.61,0.0,0.0
-206,Edwards,MID,Burnley,5.0,Sunderland,0.0,0.0,0.0,0.0,2.09,2.09,0.0,0.0,0.0
-272,Lerma,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,0.0,0.0,0.0,2.09,0.44,0.92,-0.92
-376,Gomez,DEF,Liverpool,5.0,Newcastle Utd,2.78,0.0,0.0,0.0,1.39,0.0,0.21,0.0,0.0
-33,M.Bizot,GK,Aston Villa,4.5,Brentford,0.0,2.09,0.0,0.0,0.0,0.7,1.43,1.0,-1.0
-670,Roefs,GK,Sunderland,4.5,Burnley,2.09,2.09,0.0,0.0,0.0,0.0,0.61,0.0,0.0
-36,Cash,DEF,Aston Villa,4.5,Brentford,0.0,2.09,0.0,0.0,0.0,0.7,1.43,1.0,-1.0
-547,E.Le Fée,MID,Sunderland,5.0,Burnley,2.09,2.09,0.0,0.0,0.0,0.0,0.27,0.0,0.0
-551,Rigg,MID,Sunderland,5.0,Burnley,2.09,2.09,0.0,0.0,0.0,0.0,0.03,0.0,0.0
-270,Hughes,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,0.0,0.0,0.0,2.09,1.37,2.86,-2.86
-215,Flemming,FWD,Burnley,5.5,Sunderland,0.0,0.0,0.0,0.0,2.09,2.09,0.23,0.48,-0.48
-469,Pope,GK,Newcastle Utd,5.0,Liverpool,0.0,1.39,0.0,0.0,0.0,2.78,0.2,0.56,-0.56
-374,Konaté,DEF,Liverpool,5.5,Newcastle Utd,2.78,0.0,0.0,0.0,1.39,0.0,1.7,0.0,0.0
-258,Mitchell,DEF,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,0.0,0.0,0.0,2.09,1.81,3.78,-3.78
-565,Vicario,GK,Tottenham,5.0,Manchester City,2.09,0.0,0.0,0.0,0.0,2.78,0.94,2.61,-2.61
-430,Haaland,FWD,Manchester City,14.0,Tottenham,2.78,0.0,2.01,0.0,0.0,2.09,0.29,0.61,-0.61
-409,Stones,DEF,Manchester City,5.5,Tottenham,2.78,0.0,0.01,0.0,0.0,2.09,0.4,0.84,-0.84
-427,Reijnders,MID,Manchester City,5.5,Tottenham,2.78,0.0,0.33,0.0,0.0,2.09,0.49,1.02,-1.02
-413,Marmoush,MID,Manchester City,8.5,Tottenham,2.78,0.0,0.14,0.0,0.0,2.09,0.19,0.4,-0.4
-126,Jensen,MID,Brentford,5.0,Aston Villa,0.7,0.0,0.16,0.0,2.09,0.0,1.86,0.0,0.0
-385,Chiesa,MID,Liverpool,6.5,Newcastle Utd,2.78,0.0,0.16,0.0,1.39,0.0,0.0,0.0,0.0
-387,Szoboszlai,MID,Liverpool,6.5,Newcastle Utd,2.78,0.0,0.19,0.0,1.39,0.0,1.7,0.0,0.0
-373,Virgil,DEF,Liverpool,6.0,Newcastle Utd,2.78,0.0,0.19,0.0,1.39,0.0,1.7,0.0,0.0
-113,Van den Berg,DEF,Brentford,4.5,Aston Villa,0.7,0.0,0.21,0.0,2.09,0.0,1.86,0.0,0.0
-593,P.M.Sarr,MID,Tottenham,5.0,Manchester City,2.09,0.0,0.22,0.0,0.0,2.78,0.94,2.61,-2.61
-209,Laurent,MID,Burnley,5.0,Sunderland,0.0,0.0,0.24,0.0,2.09,2.09,1.41,2.95,-2.95
-573,Spence,DEF,Tottenham,4.5,Manchester City,2.09,0.0,0.25,0.0,0.0,2.78,0.94,2.61,-2.61
-516,Hudson-Odoi,MID,Nott'ham Forest,6.0,Crystal Palace,2.09,0.0,0.26,0.0,0.7,0.0,1.5,0.0,0.0
-217,Foster,FWD,Burnley,5.0,Sunderland,0.0,0.0,0.26,0.0,2.09,2.09,2.09,4.37,-4.37
-205,Cullen,MID,Burnley,5.0,Sunderland,0.0,0.0,0.28,0.0,2.09,2.09,2.32,4.85,-4.85
-568,Pedro Porro,DEF,Tottenham,5.5,Manchester City,2.09,0.0,0.28,0.0,0.0,2.78,0.94,2.61,-2.61
-381,M.Salah,MID,Liverpool,14.5,Newcastle Utd,2.78,0.0,0.37,0.0,1.39,0.0,1.7,0.0,0.0
-107,Lewis-Potter,DEF,Brentford,5.0,Aston Villa,0.7,0.0,0.12,0.0,2.09,0.0,1.86,0.0,0.0
-382,Wirtz,MID,Liverpool,8.5,Newcastle Utd,2.78,0.0,0.42,0.0,1.39,0.0,1.7,0.0,0.0
-416,Bernardo,MID,Manchester City,6.5,Tottenham,2.78,0.0,0.44,0.0,0.0,2.09,0.29,0.61,-0.61
-410,Lewis,DEF,Manchester City,5.0,Tottenham,2.78,0.0,0.53,0.0,0.0,2.09,0.29,0.61,-0.61
-580,Johnson,MID,Tottenham,7.0,Manchester City,2.09,0.0,0.56,0.0,0.0,2.78,0.94,2.61,-2.61
-575,Van de Ven,DEF,Tottenham,4.5,Manchester City,2.09,0.0,0.6,0.0,0.0,2.78,0.94,2.61,-2.61
-384,Gakpo,MID,Liverpool,7.5,Newcastle Utd,2.78,0.0,0.64,0.0,1.39,0.0,1.7,0.0,0.0
-582,Kudus,MID,Tottenham,6.5,Manchester City,2.09,0.0,0.64,0.0,0.0,2.78,0.94,2.61,-2.61
-515,Gibbs-White,MID,Nott'ham Forest,7.5,Crystal Palace,2.09,0.0,0.66,0.0,0.7,0.0,1.5,0.0,0.0
-517,Anderson,MID,Nott'ham Forest,5.5,Crystal Palace,2.09,0.0,0.67,0.0,0.7,0.0,1.5,0.0,0.0
-597,Richarlison,FWD,Tottenham,6.5,Manchester City,2.09,0.0,0.79,0.0,0.0,2.78,0.89,2.47,-2.47
-200,Anthony,MID,Burnley,5.5,Sunderland,0.0,0.0,0.8,0.0,2.09,2.09,2.32,4.85,-4.85
-136,Thiago,FWD,Brentford,6.0,Aston Villa,0.7,0.0,0.92,0.0,2.09,0.0,1.86,0.0,0.0
-525,Wood,FWD,Nott'ham Forest,7.5,Crystal Palace,2.09,0.0,0.96,0.0,0.7,0.0,1.5,0.0,0.0
-586,Bergvall,MID,Tottenham,5.5,Manchester City,2.09,0.0,0.13,0.0,0.0,2.78,0.94,2.61,-2.61
-669,Ndoye,MID,Nott'ham Forest,6.0,Crystal Palace,2.09,0.0,0.11,0.0,0.7,0.0,1.5,0.0,0.0
-106,Collins,DEF,Brentford,5.0,Aston Villa,0.7,0.0,0.02,0.0,2.09,0.0,1.86,0.0,0.0
-676,Ugochukwu,MID,Burnley,5.0,Sunderland,0.0,0.0,0.05,0.0,2.09,2.09,0.91,1.9,-1.9
-370,Frimpong,DEF,Liverpool,6.0,Newcastle Utd,2.78,0.0,0.02,0.0,1.39,0.0,0.81,0.0,0.0
-506,Murillo,DEF,Nott'ham Forest,5.5,Crystal Palace,2.09,0.0,0.02,0.0,0.7,0.0,1.5,0.0,0.0
-418,Doku,MID,Manchester City,6.5,Tottenham,2.78,0.0,0.02,0.0,0.0,2.09,0.29,0.61,-0.61
-569,Romero,DEF,Tottenham,5.0,Manchester City,2.09,0.0,0.02,0.0,0.0,2.78,0.94,2.61,-2.61
-187,Walker,DEF,Burnley,4.5,Sunderland,0.0,0.0,0.03,0.0,2.09,2.09,2.32,4.85,-4.85
-521,Sangaré,MID,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,0.03,0.0,0.7,0.0,1.5,0.0,0.0
-372,Robertson,DEF,Liverpool,6.0,Newcastle Utd,2.78,0.0,0.04,0.0,1.39,0.0,0.89,0.0,0.0
-120,Schade,MID,Brentford,7.0,Aston Villa,0.7,0.0,0.04,0.0,2.09,0.0,0.37,0.0,0.0
-388,C.Jones,MID,Liverpool,5.5,Newcastle Utd,2.78,0.0,0.04,0.0,1.39,0.0,0.21,0.0,0.0
-109,Henry,DEF,Brentford,4.5,Aston Villa,0.7,0.0,0.04,0.0,2.09,0.0,1.86,0.0,0.0
-192,Hartman,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.04,0.0,2.09,2.09,2.32,4.85,-4.85
-207,Hannibal,MID,Burnley,5.0,Sunderland,0.0,0.0,0.04,0.0,2.09,2.09,1.41,2.95,-2.95
-507,Aina,DEF,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,0.04,0.0,0.7,0.0,1.5,0.0,0.0
-661,Ekitiké,FWD,Liverpool,8.5,Newcastle Utd,2.78,0.0,1.16,0.0,1.39,0.0,1.49,0.0,0.0
-197,Sonne,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.11,0.0,2.09,2.09,2.09,4.37,-4.37
-191,Estève,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.05,0.0,2.09,2.09,2.32,4.85,-4.85
-591,Gray,MID,Tottenham,5.0,Manchester City,2.09,0.0,0.05,0.0,0.0,2.78,0.89,2.47,-2.47
-386,Mac Allister,MID,Liverpool,6.5,Newcastle Utd,2.78,0.0,0.05,0.0,1.39,0.0,1.49,0.0,0.0
-123,Carvalho,MID,Brentford,5.0,Aston Villa,0.7,0.0,0.06,0.0,2.09,0.0,1.86,0.0,0.0
-424,Bobb,MID,Manchester City,5.5,Tottenham,2.78,0.0,0.07,0.0,0.0,2.09,0.49,1.02,-1.02
-596,Solanke,FWD,Tottenham,7.5,Manchester City,2.09,0.0,0.08,0.0,0.0,2.78,0.04,0.11,-0.11
-110,Kayode,DEF,Brentford,4.5,Aston Villa,0.7,0.0,0.08,0.0,2.09,0.0,1.86,0.0,0.0
-408,Rúben,DEF,Manchester City,5.5,Tottenham,2.78,0.0,0.08,0.0,0.0,2.09,0.49,1.02,-1.02
-402,Aït-Nouri,DEF,Manchester City,6.0,Tottenham,2.78,0.0,0.08,0.0,0.0,2.09,0.49,1.02,-1.02
-508,N.Williams,DEF,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,0.09,0.0,0.7,0.0,1.5,0.0,0.0
-129,Yarmoliuk,MID,Brentford,5.0,Aston Villa,0.7,0.0,0.09,0.0,2.09,0.0,1.86,0.0,0.0
-423,N.Gonzalez,MID,Manchester City,6.0,Tottenham,2.78,0.0,0.09,0.0,0.0,2.09,0.49,1.02,-1.02
-417,Cherki,MID,Manchester City,6.5,Tottenham,2.78,0.0,0.09,0.0,0.0,2.09,0.19,0.4,-0.4
-685,Diakité,DEF,Bournemouth,4.5,Wolves,1.39,2.78,0.0,0.0,2.78,0.0,2.21,0.0,0.0
-164,O'Riley,MID,Brighton,5.5,Everton,0.7,,0.93,,0.7,,0.49,,
-7,Calafiori,DEF,Arsenal,5.5,Leeds United,0.7,,0.62,,0.0,,0.85,,
-162,Gruda,MID,Brighton,5.5,Everton,0.7,,0.38,,0.7,,0.21,,
-335,King,MID,Fulham,4.5,Manchester Utd,0.7,,0.31,,0.7,,1.07,,
-337,Raúl,FWD,Fulham,6.5,Manchester Utd,0.7,,0.27,,0.7,,1.05,,
-324,Iwobi,MID,Fulham,6.5,Manchester Utd,0.7,,0.26,,0.7,,1.05,,
-603,Diouf,DEF,West Ham,4.5,Chelsea,0.0,,0.25,,2.09,,0.7,,
-624,Bowen,FWD,West Ham,8.0,Chelsea,0.0,,0.24,,2.09,,0.7,,
-17,Ødegaard,MID,Arsenal,8.0,Leeds United,0.7,,0.22,,0.0,,1.59,,
-625,Füllkrug,FWD,West Ham,6.0,Chelsea,0.0,,0.21,,2.09,,0.7,,
-21,Rice,MID,Arsenal,6.5,Leeds United,0.7,,0.18,,0.0,,1.1,,
-16,Saka,MID,Arsenal,10.0,Leeds United,0.7,,0.17,,0.0,,1.59,,
-338,Muniz,FWD,Fulham,5.5,Manchester Utd,0.7,,0.15,,0.7,,0.5,,
-151,Van Hecke,DEF,Brighton,4.5,Everton,0.7,,0.13,,0.7,,0.69,,
-166,Ayari,MID,Brighton,5.0,Everton,0.7,,0.12,,0.7,,0.69,,
-319,Castagne,DEF,Fulham,4.5,Manchester Utd,0.7,,0.12,,0.7,,0.47,,
-160,Minteh,MID,Brighton,6.0,Everton,0.7,,0.11,,0.7,,0.49,,
-157,Mitoma,MID,Brighton,6.5,Everton,0.7,,0.11,,0.7,,0.49,,
-145,De Cuyper,DEF,Brighton,4.5,Everton,0.7,,0.09,,0.7,,0.69,,
-146,Dunk,DEF,Brighton,4.5,Everton,0.7,,0.09,,0.7,,0.69,,
-329,Wilson,MID,Fulham,5.5,Manchester Utd,0.7,,0.08,,0.7,,1.54,,
-612,L.Paquetá,MID,West Ham,6.0,Chelsea,0.0,,0.08,,2.09,,0.7,,
-158,Georginio,MID,Brighton,6.0,Everton,0.7,,0.07,,0.7,,0.49,,
-610,Wan-Bissaka,DEF,West Ham,4.5,Chelsea,0.0,,0.07,,2.09,,0.7,,
-613,Souček,MID,West Ham,6.0,Chelsea,0.0,,0.07,,2.09,,0.08,,
-621,Irving,MID,West Ham,4.5,Chelsea,0.0,,0.06,,2.09,,0.04,,
-325,Smith Rowe,MID,Fulham,6.0,Manchester Utd,0.7,,0.06,,0.7,,0.47,,
-666,Gyökeres,FWD,Arsenal,9.0,Leeds United,0.7,,0.06,,0.0,,0.68,,
-169,Gomez,MID,Brighton,5.0,Everton,0.7,,0.06,,0.7,,0.21,,
-618,G.Rodriguez,MID,West Ham,5.0,Chelsea,0.0,,0.05,,2.09,,0.62,,
-19,Martinelli,MID,Arsenal,7.0,Leeds United,0.7,,0.05,,0.0,,0.68,,
-173,Wieffer,MID,Brighton,5.0,Everton,0.7,,0.04,,0.7,,0.69,,
-167,Baleba,MID,Brighton,5.0,Everton,0.7,,0.03,,0.7,,0.49,,
-605,Kilman,DEF,West Ham,4.5,Chelsea,0.0,,0.03,,2.09,,0.7,,
-11,White,DEF,Arsenal,5.5,Leeds United,0.7,,0.02,,0.0,,0.85,,
-614,Ward-Prowse,MID,West Ham,6.0,Chelsea,0.0,,0.02,,2.09,,0.62,,
-607,N.Aguerd,DEF,West Ham,4.5,Chelsea,0.0,,0.02,,2.09,,0.7,,
-671,Wilson,FWD,West Ham,6.0,Chelsea,0.0,,0.02,,2.09,,0.08,,
-18,Madueke,MID,Arsenal,7.0,Leeds United,0.7,,0.02,,0.0,,0.91,,
-26,Zubimendi,MID,Arsenal,5.5,Leeds United,0.7,,0.01,,0.0,,1.59,,
-317,Andersen,DEF,Fulham,4.5,Manchester Utd,0.7,,0.01,,0.7,,1.54,,
-321,J.Cuenca,DEF,Fulham,4.5,Manchester Utd,0.7,,0.01,,0.7,,1.07,,
-322,Tete,DEF,Fulham,4.5,Manchester Utd,0.7,,0.01,,0.7,,1.54,,
-330,Berge,MID,Fulham,5.0,Manchester Utd,0.7,,0.01,,0.7,,1.05,,
-332,Lukić,MID,Fulham,5.0,Manchester Utd,0.7,,0.01,,0.7,,1.54,,
-318,Bassey,DEF,Fulham,4.5,Manchester Utd,0.7,,0.01,,0.7,,1.54,,
-609,Todibo,DEF,West Ham,4.5,Chelsea,0.0,,0.01,,2.09,,0.66,,
-679,Hermansen,GK,West Ham,4.5,Chelsea,0.0,,0.01,,2.09,,0.7,,
-30,Havertz,FWD,Arsenal,7.5,Leeds United,0.7,,0.01,,0.0,,0.91,,
-1,Raya,GK,Arsenal,5.5,Leeds United,0.7,,0.0,,0.0,,1.59,,
-6,Saliba,DEF,Arsenal,6.0,Leeds United,0.7,,0.0,,0.0,,1.59,,
-5,Gabriel,DEF,Arsenal,6.0,Leeds United,0.7,,0.0,,0.0,,1.59,,
-314,Leno,GK,Fulham,5.0,Manchester Utd,0.7,,0.0,,0.7,,1.54,,
-139,Verbruggen,GK,Brighton,4.5,Everton,0.7,,0.0,,0.7,,0.69,,
-170,Milner,MID,Brighton,5.0,Everton,0.7,,0.0,,0.7,,0.21,,
-326,Adama,MID,Fulham,5.5,Manchester Utd,0.7,,0.0,,0.7,,0.5,,
-22,Merino,MID,Arsenal,6.0,Leeds United,0.7,,0.0,,0.0,,0.48,,
-178,Welbeck,FWD,Brighton,6.5,Everton,0.7,,0.0,,0.7,,0.21,,
-2,Arrizabalaga,GK,Arsenal,4.5,Leeds United,0.7,,,,0.0,,,,
-3,Hein,GK,Arsenal,4.0,Leeds United,0.7,,,,0.0,,,,
-4,Setford,GK,Arsenal,4.0,Leeds United,0.7,,,,0.0,,,,
-8,J.Timber,DEF,Arsenal,5.5,Leeds United,0.7,,0.0,,0.0,,0.74,,
-9,Kiwior,DEF,Arsenal,5.5,Leeds United,0.7,,,,0.0,,,,
-10,Lewis-Skelly,DEF,Arsenal,5.5,Leeds United,0.7,,0.0,,0.0,,0.74,,
-12,Zinchenko,DEF,Arsenal,5.0,Leeds United,0.7,,,,0.0,,,,
-13,Clarke,DEF,Arsenal,4.0,Leeds United,0.7,,,,0.0,,,,
-14,Kacurri,DEF,Arsenal,4.0,Leeds United,0.7,,,,0.0,,,,
-15,Nichols,DEF,Arsenal,4.0,Leeds United,0.7,,,,0.0,,,,
-20,Trossard,MID,Arsenal,7.0,Leeds United,0.7,,,,0.0,,,,
-23,Fábio Vieira,MID,Arsenal,5.5,Leeds United,0.7,,,,0.0,,,,
-24,Nørgaard,MID,Arsenal,5.5,Leeds United,0.7,,,,0.0,,,,
-25,Nwaneri,MID,Arsenal,5.5,Leeds United,0.7,,,,0.0,,,,
-27,Nelson,MID,Arsenal,5.0,Leeds United,0.7,,,,0.0,,,,
-28,Kabia,MID,Arsenal,4.5,Leeds United,0.7,,,,0.0,,,,
-29,Sambi,MID,Arsenal,4.5,Leeds United,0.7,,,,0.0,,,,
-31,G.Jesus,FWD,Arsenal,6.5,Leeds United,0.7,,,,0.0,,,,
-32,Martinez,GK,Aston Villa,5.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-34,Gauci,GK,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-35,Marschall,GK,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-39,Maatsen,DEF,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-41,Pau,DEF,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-42,A.García,DEF,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-43,Alex Moreno,DEF,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-44,Bogarde,DEF,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-45,Sousa,DEF,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-46,Yasin,DEF,Aston Villa,4.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-49,Bailey,MID,Aston Villa,5.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-50,Buendía,MID,Aston Villa,5.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-51,Iling Jr,MID,Aston Villa,5.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-52,J.Ramsey,MID,Aston Villa,5.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-55,Barkley,MID,Aston Villa,5.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-56,Barrenechea,MID,Aston Villa,5.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-57,Dobbin,MID,Aston Villa,5.0,Brentford,0.0,2.09,,,0.0,0.7,,,
-60,Broggio,MID,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-61,Dendoncker,MID,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-62,Jimoh-Aloba,MID,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-63,Young,MID,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-65,Redmond,FWD,Aston Villa,4.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-66,Neto,GK,Bournemouth,4.5,Wolves,1.39,2.78,,,2.78,0.0,,,
-68,Dennis,GK,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-69,McKenna,GK,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-70,Paulsen,GK,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-71,Zabarnyi,DEF,Bournemouth,5.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-75,Akinmboni,DEF,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-76,Bevan,DEF,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-78,J.Araujo,DEF,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-79,Mepham,DEF,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-80,Soler,DEF,Bournemouth,4.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-81,Kluivert,MID,Bournemouth,7.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-83,O.Dango,MID,Bournemouth,6.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-87,Christie,MID,Bournemouth,5.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-88,Cook,MID,Bournemouth,5.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-89,Philip,MID,Bournemouth,5.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-91,Sinisterra,MID,Bournemouth,5.0,Wolves,1.39,2.78,,,2.78,0.0,,,
-92,Faivre,MID,Bournemouth,4.5,Wolves,1.39,2.78,,,2.78,0.0,,,
-94,Sadi,MID,Bournemouth,4.5,Wolves,1.39,2.78,,,2.78,0.0,,,
-95,Silcott-Duberry,MID,Bournemouth,4.5,Wolves,1.39,2.78,,,2.78,0.0,,,
-98,Enes Ünal,FWD,Bournemouth,5.5,Wolves,1.39,2.78,,,2.78,0.0,,,
-99,Adu-Adjei,FWD,Bournemouth,4.5,Wolves,1.39,2.78,,,2.78,0.0,,,
-102,Balcombe,GK,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-103,Cox,GK,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-104,Eyestone,GK,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-105,Valdimarsson,GK,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-108,Ajer,DEF,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-111,Pinnock,DEF,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-112,Roerslev,DEF,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-114,Arthur,DEF,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-115,Fredrick,DEF,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-117,Ji-soo,DEF,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-118,Meghoma,DEF,Brentford,4.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-121,Damsgaard,MID,Brentford,6.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-125,Janelt,MID,Brentford,5.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-127,Nunes,MID,Brentford,5.0,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-130,Donovan,MID,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-131,Konak,MID,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-132,Maghoma,MID,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-133,Peart-Harris,MID,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-134,Trevitt,MID,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-135,Wissa,FWD,Brentford,7.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-137,Morgan,FWD,Brentford,4.5,Aston Villa,0.7,0.0,,,2.09,0.0,,,
-138,Steele,GK,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-140,McGill,GK,Brighton,4.0,Everton,0.7,,,,0.7,,,,
-141,Rushworth,GK,Brighton,4.0,Everton,0.7,,,,0.7,,,,
-142,Scherpen,GK,Brighton,4.0,Everton,0.7,,,,0.7,,,,
-143,Boscagli,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-144,Coppola,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-147,Estupiñan,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-148,F.Kadıoğlu,DEF,Brighton,4.5,Everton,0.7,,0.0,,0.7,,0.21,,
-149,Igor,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-150,Lamptey,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-152,Veltman,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-153,Webster,DEF,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-154,Cashin,DEF,Brighton,4.0,Everton,0.7,,,,0.7,,,,
-155,Slater,DEF,Brighton,4.0,Everton,0.7,,,,0.7,,,,
-156,Tasker,DEF,Brighton,4.0,Everton,0.7,,,,0.7,,,,
-159,March,MID,Brighton,6.0,Everton,0.7,,,,0.7,,,,
-161,Enciso,MID,Brighton,5.5,Everton,0.7,,,,0.7,,,,
-163,Hinshelwood,MID,Brighton,5.5,Everton,0.7,,,,0.7,,,,
-165,Sima,MID,Brighton,5.5,Everton,0.7,,,,0.7,,,,
-168,Buonanotte,MID,Brighton,5.0,Everton,0.7,,,,0.7,,,,
-171,Sarmiento,MID,Brighton,5.0,Everton,0.7,,,,0.7,,,,
-172,Watson,MID,Brighton,5.0,Everton,0.7,,,,0.7,,,,
-174,Yalcouye,MID,Brighton,5.0,Everton,0.7,,,,0.7,,,,
-175,Knight,MID,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-176,Mazilu,MID,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-177,Moran,MID,Brighton,4.5,Everton,0.7,,,,0.7,,,,
-179,Ferguson,FWD,Brighton,5.5,Everton,0.7,,,,0.7,,,,
-180,Tzimas,FWD,Brighton,5.5,Everton,0.7,,,,0.7,,,,
-181,Kostoulas,FWD,Brighton,5.0,Everton,0.7,,,,0.7,,,,
-183,Weiss,GK,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-184,Green,GK,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-185,Hladký,GK,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-186,Roberts,DEF,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-188,Delcroix,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-189,Dodgson,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-193,Humphreys,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-194,Jordan,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-195,Lucas Pires,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-196,Sambo,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-198,Tuanzebe,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-199,Worrall,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-201,Benson,MID,Burnley,5.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-203,Boateng,MID,Burnley,5.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-204,Churlinov,MID,Burnley,5.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-208,Koleosho,MID,Burnley,5.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-211,A.Ramsey,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-212,Adewumi,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-213,Banel,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-214,Trésor,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-216,Amdouni,FWD,Burnley,5.0,Sunderland,0.0,0.0,,,2.09,2.09,,,
-218,Barnes,FWD,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-219,Obafemi,FWD,Burnley,4.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-221,Jörgensen,GK,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-222,Penders,GK,Chelsea,4.0,West Ham,,2.09,,,,0.0,,,
-223,Slonina,GK,Chelsea,4.0,West Ham,,2.09,,,,0.0,,,
-227,Colwill,DEF,Chelsea,5.0,West Ham,,2.09,,,,0.0,,,
-229,B.Badiashile,DEF,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-230,Fofana,DEF,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-231,M.Sarr,DEF,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-232,Tosin,DEF,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-234,Anselmino,DEF,Chelsea,4.0,West Ham,,2.09,,,,0.0,,,
-240,Nkunku,MID,Chelsea,6.0,West Ham,,2.09,,,,0.0,,,
-242,Dewsbury-Hall,MID,Everton,5.0,Brighton,,0.7,,,,0.7,,,
-243,George,MID,Chelsea,5.0,West Ham,,2.09,,,,0.0,,,
-244,Lavia,MID,Chelsea,5.0,West Ham,,2.09,,,,0.0,,,
-245,Mudryk,MID,Chelsea,5.0,West Ham,,2.09,,,,0.0,,,
-247,D.Essugo,MID,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-248,Paez,MID,Chelsea,4.5,West Ham,,2.09,,,,0.0,,,
-251,N.Jackson,FWD,Chelsea,6.5,West Ham,,2.09,,,,0.0,,,
-252,Marc Guiu,FWD,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-254,Benitez,GK,Crystal Palace,4.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-255,Matthews,GK,Crystal Palace,4.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-259,Sosa,DEF,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-262,Chadi Riad,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-263,Clyne,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-264,Holding,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-265,Kporha,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-268,Doucouré,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-269,Esse,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-271,Kamada,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-274,Agbinone,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-275,Ahamada,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-277,Ebiowei,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-278,J.Rak-Sakyi,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-279,M.França,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-280,Ozoh,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-281,Rodney,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-282,Umeh,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-284,Nketiah,FWD,Crystal Palace,5.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-285,Édouard,FWD,Crystal Palace,5.0,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-286,Marsh,FWD,Crystal Palace,4.5,Nott'ham Forest,0.0,0.7,,,0.0,2.09,,,
-287,Pickford,GK,Everton,5.5,Brighton,,0.7,,,,0.7,,,
-288,Travers,GK,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-289,Tyrer,GK,Everton,4.0,Brighton,,0.7,,,,0.7,,,
-290,Branthwaite,DEF,Everton,5.5,Brighton,,0.7,,,,0.7,,,
-291,Tarkowski,DEF,Everton,5.5,Brighton,,0.7,,,,0.7,,,
-292,Mykolenko,DEF,Everton,5.0,Brighton,,0.7,,,,0.7,,,
-293,O'Brien,DEF,Everton,5.0,Brighton,,0.7,,,,0.7,,,
-294,Coleman,DEF,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-295,Keane,DEF,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-296,Patterson,DEF,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-297,Dixon,DEF,Everton,4.0,Brighton,,0.7,,,,0.7,,,
-298,Welch,DEF,Everton,4.0,Brighton,,0.7,,,,0.7,,,
-299,Ndiaye,MID,Everton,6.5,Brighton,,0.7,,,,0.7,,,
-300,McNeil,MID,Everton,6.0,Brighton,,0.7,,,,0.7,,,
-301,Alcaraz,MID,Everton,5.5,Brighton,,0.7,,,,0.7,,,
-302,Gana,MID,Everton,5.5,Brighton,,0.7,,,,0.7,,,
-303,Garner,MID,Everton,5.0,Brighton,,0.7,,,,0.7,,,
-304,Iroegbunam,MID,Everton,5.0,Brighton,,0.7,,,,0.7,,,
-305,Armstrong,MID,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-306,Bates,MID,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-307,Ebere,MID,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-308,Heath,MID,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-309,Metcalfe,MID,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-310,Barry,FWD,Everton,6.0,Brighton,,0.7,,,,0.7,,,
-311,Beto,FWD,Everton,5.5,Brighton,,0.7,,,,0.7,,,
-312,Y.Chermiti,FWD,Everton,5.0,Brighton,,0.7,,,,0.7,,,
-313,Sherif,FWD,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-315,Benda,GK,Fulham,4.0,Manchester Utd,0.7,,,,0.7,,,,
-316,Robinson,DEF,Fulham,5.0,Manchester Utd,0.7,,,,0.7,,,,
-320,Diop,DEF,Fulham,4.5,Manchester Utd,0.7,,,,0.7,,,,
-323,Amissah,DEF,Fulham,4.0,Manchester Utd,0.7,,,,0.7,,,,
-327,Andreas,MID,Fulham,5.5,Manchester Utd,0.7,,,,0.7,,,,
-328,Sessegnon,MID,Fulham,5.5,Manchester Utd,0.7,,,,0.7,,,,
-331,Cairney,MID,Fulham,5.0,Manchester Utd,0.7,,0.0,,0.7,,0.5,,
-333,Godo,MID,Fulham,4.5,Manchester Utd,0.7,,,,0.7,,,,
-334,Harris,MID,Fulham,4.5,Manchester Utd,0.7,,,,0.7,,,,
-336,Reed,MID,Fulham,4.5,Manchester Utd,0.7,,,,0.7,,,,
-339,Meslier,GK,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-340,Cairns,GK,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-341,Darlow,GK,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-342,Bogle,DEF,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-343,Struijk,DEF,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-344,Bijol,DEF,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-345,Bornauw,DEF,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-346,Byram,DEF,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-347,Gudmundsson,DEF,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-348,Rodon,DEF,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-349,Schmidt,DEF,Leeds United,4.0,Arsenal,,0.0,,,,0.7,,,
-350,Aaronson,MID,Leeds United,5.5,Arsenal,,0.0,,,,0.7,,,
-351,Gnonto,MID,Leeds United,5.5,Arsenal,,0.0,,,,0.7,,,
-352,Harrison,MID,Leeds United,5.5,Arsenal,,0.0,,,,0.7,,,
-353,James,MID,Leeds United,5.5,Arsenal,,0.0,,,,0.7,,,
-354,Ampadu,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-355,Greenwood,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-356,Gruev,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-357,Ramazani,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-358,Tanaka,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-359,Crew,MID,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-360,Gelhardt,MID,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-361,Gyabi,MID,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-362,Piroe,FWD,Leeds United,5.5,Arsenal,,0.0,,,,0.7,,,
-363,Bamford,FWD,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-364,Mateo Joseph,FWD,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-365,Nmecha,FWD,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-367,Mamardashvili,GK,Liverpool,4.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-368,Pécsi,GK,Liverpool,4.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-369,Woodman,GK,Liverpool,4.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-375,Bradley,DEF,Liverpool,5.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-377,Tsimikas,DEF,Liverpool,5.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-378,Nallo,DEF,Liverpool,4.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-379,R.Williams,DEF,Liverpool,4.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-380,Ramsay,DEF,Liverpool,4.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-383,Luis Díaz,MID,Liverpool,8.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-389,Elliott,MID,Liverpool,5.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-390,Gravenberch,MID,Liverpool,5.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-391,Doak,MID,Liverpool,5.0,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-393,Bajcetic,MID,Liverpool,4.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-394,McConnell,MID,Liverpool,4.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-395,Morton,MID,Liverpool,4.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-396,Nyoni,MID,Liverpool,4.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-397,Darwin,FWD,Liverpool,6.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-398,Danns,FWD,Liverpool,4.5,Newcastle Utd,2.78,0.0,,,1.39,0.0,,,
-399,Ederson M.,GK,Manchester City,5.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-400,Ortega Moreno,GK,Manchester City,5.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-401,Bettinelli,GK,Manchester City,4.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-403,Gvardiol,DEF,Manchester City,6.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-404,Akanji,DEF,Manchester City,5.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-405,Aké,DEF,Manchester City,5.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-412,Vitor Reis,DEF,Manchester City,5.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-414,Foden,MID,Manchester City,8.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-415,Savinho,MID,Manchester City,7.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-419,Grealish,MID,Everton,6.5,Brighton,,0.7,,,,0.7,,,
-420,Gündoğan,MID,Manchester City,6.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-421,Rodrigo,MID,Manchester City,6.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-422,Kovačić,MID,Manchester City,6.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-425,Echeverri,MID,Manchester City,5.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-426,McAtee,MID,Manchester City,5.5,Tottenham,2.78,0.0,,,0.0,2.09,,,
-428,Nypan,MID,Manchester City,5.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-429,Phillips,MID,Manchester City,5.0,Tottenham,2.78,0.0,,,0.0,2.09,,,
-432,Onana,GK,Manchester Utd,5.0,Fulham,,0.7,,,,0.7,,,
-433,Harrison,GK,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-434,Heaton,GK,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-435,Mee,GK,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-437,Martinez,DEF,Manchester Utd,5.0,Fulham,,0.7,,,,0.7,,,
-438,Mazraoui,DEF,Manchester Utd,5.0,Fulham,,0.7,,,,0.7,,,
-439,D.Leon,DEF,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-445,Amass,DEF,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-446,Fredricson,DEF,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-447,Heaven,DEF,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-448,Malacia,DEF,Manchester Utd,4.0,Fulham,,0.7,,,,0.7,,,
-451,Rashford,MID,Manchester Utd,7.0,Fulham,,0.7,,,,0.7,,,
-453,Garnacho,MID,Manchester Utd,6.5,Fulham,,0.7,,,,0.7,,,
-454,Antony,MID,Manchester Utd,6.0,Fulham,,0.7,,,,0.7,,,
-456,Sancho,MID,Manchester Utd,6.0,Fulham,,0.7,,,,0.7,,,
-458,Mainoo,MID,Manchester Utd,5.0,Fulham,,0.7,,,,0.7,,,
-460,Collyer,MID,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-461,Fitzgerald,MID,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-462,J.Fletcher,MID,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-463,Kone,MID,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-464,Moorhouse,MID,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-465,Højlund,FWD,Manchester Utd,6.5,Fulham,,0.7,,,,0.7,,,
-466,Zirkzee,FWD,Manchester Utd,6.0,Fulham,,0.7,,,,0.7,,,
-467,Obi,FWD,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-468,Wheatley,FWD,Manchester Utd,4.5,Fulham,,0.7,,,,0.7,,,
-471,Gillespie,GK,Newcastle Utd,4.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-472,Odysseas,GK,Newcastle Utd,4.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-473,Hall,DEF,Newcastle Utd,5.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-475,Botman,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-479,Krafth,DEF,Newcastle Utd,4.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-480,Lascelles,DEF,Newcastle Utd,4.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-481,A.Murphy,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-482,Ashby,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-483,Pivas,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-484,Targett,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-492,Antoñito C.,MID,Newcastle Utd,5.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-493,Longstaff,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-494,Willock,MID,Newcastle Utd,5.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-495,Hayden,MID,Newcastle Utd,4.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-496,Kuol,MID,Newcastle Utd,4.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-498,White,MID,Newcastle Utd,4.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-499,Isak,FWD,Newcastle Utd,10.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-501,Neave,FWD,Newcastle Utd,4.5,Liverpool,0.0,1.39,,,0.0,2.78,,,
-503,C.Miguel,GK,Nott'ham Forest,4.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-504,Turner,GK,Nott'ham Forest,4.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-509,David Carmo,DEF,Nott'ham Forest,4.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-510,Jair Cunha,DEF,Nott'ham Forest,4.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-511,Morato,DEF,Nott'ham Forest,4.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-512,O.Richards,DEF,Nott'ham Forest,4.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-513,Abbott,DEF,Nott'ham Forest,4.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-514,Boly,DEF,Nott'ham Forest,4.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-519,Dominguez,MID,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-520,O'Brien,MID,Nott'ham Forest,5.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-523,Da Silva Moreira,MID,Nott'ham Forest,4.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-524,Stamenic,MID,Nott'ham Forest,4.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-527,Awoniyi,FWD,Nott'ham Forest,5.5,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-528,Patterson,GK,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-529,Moore,GK,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-530,Nna Noukeu,GK,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-533,Alese,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-534,Anderson,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-535,Cirkin,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-536,Hjelde,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-537,Huggins,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-538,Johnson,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-539,O'Nien,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-540,Pembele,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-545,Roberts,MID,Sunderland,5.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-546,Aleksić,MID,Sunderland,5.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-548,Mundle,MID,Sunderland,5.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-549,Neil,MID,Sunderland,5.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-550,Poveda,MID,Sunderland,5.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-554,Ba,MID,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-555,Browne,MID,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-556,Ekwah,MID,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-557,H.Jones,MID,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-558,Matete,MID,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-559,Triantis,MID,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-562,Abdullahi,FWD,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-563,Luís Hemir,FWD,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-564,Rusyn,FWD,Sunderland,4.5,Burnley,2.09,2.09,,,0.0,0.0,,,
-566,Austin,GK,Tottenham,4.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-567,Kinsky,GK,Tottenham,4.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-570,Danso,DEF,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-571,Davies,DEF,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-572,Dragusin,DEF,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-574,Udogie,DEF,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-576,Phillips,DEF,Tottenham,4.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-577,Takai,DEF,Tottenham,4.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-578,Vuskovic,DEF,Tottenham,4.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-579,Son,MID,Tottenham,8.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-581,Maddison,MID,Tottenham,7.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-583,Kulusevski,MID,Tottenham,6.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-587,Bissouma,MID,Tottenham,5.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-589,Solomon,MID,Tottenham,5.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-590,Bryan,MID,Tottenham,5.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-592,Moore,MID,Tottenham,5.0,Manchester City,2.09,0.0,,,0.0,2.78,,,
-594,Min-hyeok,MID,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-595,Olusesi,MID,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-598,Lankshear,FWD,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-599,Scarlett,FWD,Tottenham,4.5,Manchester City,2.09,0.0,,,0.0,2.78,,,
-600,Areola,GK,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-601,Foderingham,GK,West Ham,4.0,Chelsea,0.0,,,,2.09,,,,
-602,Hegyi,GK,West Ham,4.0,Chelsea,0.0,,,,2.09,,,,
-604,Emerson,DEF,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-606,Mavropanos,DEF,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-608,Scarles,DEF,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-611,Casey,DEF,West Ham,4.0,Chelsea,0.0,,,,2.09,,,,
-615,Summerville,MID,West Ham,5.5,Chelsea,0.0,,,,2.09,,,,
-616,Álvarez,MID,West Ham,5.0,Chelsea,0.0,,,,2.09,,,,
-617,Cornet,MID,West Ham,5.0,Chelsea,0.0,,,,2.09,,,,
-619,L.Guilherme,MID,West Ham,5.0,Chelsea,0.0,,,,2.09,,,,
-620,Earthy,MID,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-622,Orford,MID,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-623,Potts,MID,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-626,Marshall,FWD,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-627,Johnstone,GK,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-629,Bentley,GK,Wolves,4.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-630,King,GK,Wolves,4.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-634,Mosquera,DEF,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-636,S.Bueno,DEF,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-639,Meupiyou,DEF,Wolves,4.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-640,Pedro Lima,DEF,Wolves,4.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-641,Pond,DEF,Wolves,4.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-647,Guedes,MID,Wolves,5.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-649,B.Traore,MID,Wolves,5.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-650,Chirewa,MID,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-651,Edozie,MID,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-652,Gonzalez,MID,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-653,Hodge,MID,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-655,Fábio Silva,FWD,Wolves,5.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-656,Kalajdžić,FWD,Wolves,5.0,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-657,Chiwome,FWD,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-658,Fraser,FWD,Wolves,4.5,Bournemouth,0.0,2.78,,,2.78,1.39,,,
-659,Walker-Peters,DEF,West Ham,4.5,Chelsea,0.0,,,,2.09,,,,
-660,Stach,MID,Leeds United,5.0,Arsenal,,0.0,,,,0.7,,,
-662,Mosquera,DEF,Arsenal,5.5,Leeds United,0.7,,,,0.0,,,,
-664,Lecomte,GK,Fulham,4.0,Manchester Utd,0.7,,,,0.7,,,,
-665,Perri,GK,Leeds United,4.5,Arsenal,,0.0,,,,0.7,,,
-667,Aznou,DEF,Everton,4.5,Brighton,,0.7,,,,0.7,,,
-672,Hato,DEF,Chelsea,5.0,West Ham,,2.09,,,,0.0,,,
-674,Ramsdale,GK,Newcastle Utd,5.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
-675,Gunn,GK,Nott'ham Forest,4.0,Crystal Palace,2.09,0.0,,,0.7,0.0,,,
-677,Guessand,MID,Aston Villa,6.5,Brentford,0.0,2.09,,,0.0,0.7,,,
-678,Masuaku,DEF,Sunderland,4.0,Burnley,2.09,2.09,,,0.0,0.0,,,
-680,Broja,FWD,Burnley,5.5,Sunderland,0.0,0.0,,,2.09,2.09,,,
-684,Thiaw,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.39,,,0.0,2.78,,,
+82,Semenyo,MID,Bournemouth,7.0,Wolves,1.67,3.33,0.93,3.1,3.33,0.0,2.21,0.0,3.1
+238,Estêvão,MID,Chelsea,6.5,West Ham,0.0,2.5,0.71,1.78,0.0,0.0,0.07,0.0,1.78
+654,Strand Larsen,FWD,Wolves,6.5,Bournemouth,0.0,3.33,0.39,1.3,3.33,1.67,2.28,3.81,-2.51
+86,Brooks,MID,Bournemouth,5.0,Wolves,1.67,3.33,0.38,1.27,3.33,0.0,1.9,0.0,1.27
+84,Tavernier,MID,Bournemouth,5.5,Wolves,1.67,3.33,0.38,1.27,3.33,0.0,2.21,0.0,1.27
+486,Elanga,MID,Newcastle Utd,7.0,Liverpool,0.0,1.67,0.63,1.05,0.0,3.33,0.17,0.57,0.48
+236,Neto,MID,Chelsea,7.0,West Ham,0.0,2.5,0.39,0.98,0.0,0.0,0.66,0.0,0.98
+485,Gordon,MID,Newcastle Utd,7.5,Liverpool,0.0,1.67,0.58,0.97,0.0,3.33,0.2,0.67,0.3
+97,Evanilson,FWD,Bournemouth,7.0,Wolves,1.67,3.33,0.29,0.97,3.33,0.0,2.21,0.0,0.97
+487,Barnes,MID,Newcastle Utd,6.5,Liverpool,0.0,1.67,0.56,0.94,0.0,3.33,0.2,0.67,0.27
+246,Andrey Santos,MID,Chelsea,4.5,West Ham,0.0,2.5,0.31,0.78,0.0,0.0,0.05,0.0,0.78
+164,O'Riley,MID,Brighton,5.5,Everton,0.83,0.83,0.93,0.77,0.83,0.0,0.52,0.0,0.77
+249,João Pedro,FWD,Chelsea,7.5,West Ham,0.0,2.5,0.3,0.75,0.0,0.0,0.6,0.0,0.75
+544,Diarra,MID,Sunderland,5.5,Burnley,2.5,2.5,0.24,0.6,0.0,0.0,0.56,0.0,0.6
+224,Cucurella,DEF,Chelsea,6.0,West Ham,0.0,2.5,0.21,0.52,0.0,0.0,0.66,0.0,0.52
+235,Palmer,MID,Chelsea,10.5,West Ham,0.0,2.5,0.2,0.5,0.0,0.0,0.66,0.0,0.5
+225,James,DEF,Chelsea,5.5,West Ham,0.0,2.5,0.19,0.48,0.0,0.0,0.61,0.0,0.48
+531,Ballard,DEF,Sunderland,4.5,Burnley,2.5,2.5,0.19,0.48,0.0,0.0,0.56,0.0,0.48
+638,Hoever,DEF,Wolves,4.0,Bournemouth,0.0,3.33,0.14,0.47,3.33,1.67,2.22,3.71,-3.24
+74,Truffert,DEF,Bournemouth,4.5,Wolves,1.67,3.33,0.13,0.43,3.33,0.0,2.21,0.0,0.43
+543,Adingra,MID,Sunderland,5.5,Burnley,2.5,2.5,0.16,0.4,0.0,0.0,0.33,0.0,0.4
+119,Mbeumo,MID,Manchester Utd,8.0,Fulham,0.0,0.83,0.47,0.39,0.83,0.83,1.31,1.09,-0.7
+449,B.Fernandes,MID,Manchester Utd,9.0,Fulham,0.0,0.83,0.45,0.37,0.83,0.83,1.31,1.09,-0.72
+450,Cunha,MID,Manchester Utd,8.0,Fulham,0.0,0.83,0.45,0.37,0.83,0.83,1.31,1.09,-0.72
+239,Gittens,MID,Chelsea,6.5,West Ham,0.0,2.5,0.14,0.35,0.0,0.0,0.59,0.0,0.35
+645,Fer López,MID,Wolves,5.5,Bournemouth,0.0,3.33,0.1,0.33,3.33,1.67,0.24,0.4,-0.07
+85,Adams,MID,Bournemouth,5.0,Wolves,1.67,3.33,0.1,0.33,3.33,0.0,2.1,0.0,0.33
+64,Watkins,FWD,Aston Villa,9.0,Brentford,0.0,2.5,0.13,0.32,0.0,0.83,1.43,1.19,-0.87
+226,Chalobah,DEF,Chelsea,5.0,West Ham,0.0,2.5,0.12,0.3,0.0,0.0,0.66,0.0,0.3
+491,Tonali,MID,Newcastle Utd,5.5,Liverpool,0.0,1.67,0.18,0.3,0.0,3.33,0.2,0.67,-0.37
+683,Alderete,DEF,Sunderland,4.0,Burnley,2.5,2.5,0.12,0.3,0.0,0.0,0.23,0.0,0.3
+73,Smith,DEF,Bournemouth,4.5,Wolves,1.67,3.33,0.08,0.27,3.33,0.0,2.1,0.0,0.27
+335,King,MID,Fulham,4.5,Manchester Utd,0.83,0.83,0.31,0.26,0.83,0.0,1.07,0.0,0.26
+162,Gruda,MID,Brighton,5.5,Everton,0.83,0.83,0.31,0.26,0.83,0.0,0.24,0.0,0.26
+237,Enzo,MID,Chelsea,6.5,West Ham,0.0,2.5,0.1,0.25,0.0,0.0,0.61,0.0,0.25
+233,Acheampong,DEF,Chelsea,4.0,West Ham,0.0,2.5,0.1,0.25,0.0,0.0,0.66,0.0,0.25
+283,Mateta,FWD,Crystal Palace,7.5,Nott'ham Forest,0.0,0.83,0.29,0.24,0.0,2.5,1.6,4.0,-3.76
+324,Iwobi,MID,Fulham,6.5,Manchester Utd,0.83,0.83,0.29,0.24,0.83,0.0,1.05,0.0,0.24
+337,Raúl,FWD,Fulham,6.5,Manchester Utd,0.83,0.83,0.29,0.24,0.83,0.0,1.05,0.0,0.24
+648,Munetsi,MID,Wolves,5.5,Bournemouth,0.0,3.33,0.07,0.23,3.33,1.67,2.47,4.12,-3.89
+532,Hume,DEF,Sunderland,4.5,Burnley,2.5,2.5,0.09,0.22,0.0,0.0,0.56,0.0,0.22
+436,De Ligt,DEF,Manchester Utd,5.0,Fulham,0.0,0.83,0.27,0.22,0.83,0.83,1.31,1.09,-0.87
+561,Mayenda,FWD,Sunderland,5.5,Burnley,2.5,2.5,0.09,0.22,0.0,0.0,0.33,0.0,0.22
+455,Mount,MID,Manchester Utd,6.0,Fulham,0.0,0.83,0.27,0.22,0.83,0.83,1.1,0.91,-0.69
+54,McGinn,MID,Aston Villa,5.5,Brentford,0.0,2.5,0.09,0.22,0.0,0.83,1.33,1.1,-0.88
+58,Kamara,MID,Aston Villa,5.0,Brentford,0.0,2.5,0.08,0.2,0.0,0.83,1.43,1.19,-0.99
+241,Caicedo,MID,Chelsea,5.5,West Ham,0.0,2.5,0.08,0.2,0.0,0.0,0.66,0.0,0.2
+242,Dewsbury-Hall,MID,Everton,5.0,Brighton,0.0,0.83,0.24,0.2,0.83,0.83,2.07,1.72,-1.52
+266,Eze,MID,Crystal Palace,7.5,Nott'ham Forest,0.0,0.83,0.24,0.2,0.0,2.5,1.22,3.05,-2.85
+644,Bellegarde,MID,Wolves,5.5,Bournemouth,0.0,3.33,0.05,0.17,3.33,1.67,2.22,3.71,-3.54
+488,Bruno G.,MID,Newcastle Utd,6.5,Liverpool,0.0,1.67,0.1,0.17,0.0,3.33,0.2,0.67,-0.5
+72,Senesi,DEF,Bournemouth,4.5,Wolves,1.67,3.33,0.05,0.17,3.33,0.0,2.21,0.0,0.17
+291,Tarkowski,DEF,Everton,5.5,Brighton,0.0,0.83,0.21,0.17,0.83,0.83,2.07,1.72,-1.55
+293,O'Brien,DEF,Everton,5.0,Brighton,0.0,0.83,0.18,0.15,0.83,0.83,2.07,1.72,-1.57
+250,Delap,FWD,Chelsea,6.5,West Ham,0.0,2.5,0.06,0.15,0.0,0.0,0.05,0.0,0.15
+302,Gana,MID,Everton,5.5,Brighton,0.0,0.83,0.18,0.15,0.83,0.83,2.07,1.72,-1.57
+681,Šeško,FWD,Manchester Utd,7.5,Fulham,0.0,0.83,0.17,0.14,0.83,0.83,0.21,0.17,-0.03
+646,Gomes,MID,Wolves,5.5,Bournemouth,0.0,3.33,0.04,0.13,3.33,1.67,2.47,4.12,-3.99
+474,Schär,DEF,Newcastle Utd,5.5,Liverpool,0.0,1.67,0.07,0.12,0.0,3.33,0.2,0.67,-0.55
+338,Muniz,FWD,Fulham,5.5,Manchester Utd,0.83,0.83,0.15,0.12,0.83,0.0,0.43,0.0,0.12
+440,Dalot,DEF,Manchester Utd,4.5,Fulham,0.0,0.83,0.15,0.12,0.83,0.83,1.03,0.85,-0.73
+47,Rogers,MID,Aston Villa,7.0,Brentford,0.0,2.5,0.05,0.12,0.0,0.83,1.43,1.19,-1.07
+151,Van Hecke,DEF,Brighton,4.5,Everton,0.83,0.83,0.13,0.11,0.83,0.0,0.76,0.0,0.11
+668,Xhaka,MID,Sunderland,5.0,Burnley,2.5,2.5,0.04,0.1,0.0,0.0,0.56,0.0,0.1
+166,Ayari,MID,Brighton,5.0,Everton,0.83,0.83,0.12,0.1,0.83,0.0,0.76,0.0,0.1
+478,Trippier,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.67,0.06,0.1,0.0,3.33,0.2,0.67,-0.57
+631,Agbadou,DEF,Wolves,4.5,Bournemouth,0.0,3.33,0.03,0.1,3.33,1.67,2.47,4.12,-4.02
+560,Isidor,FWD,Sunderland,5.5,Burnley,2.5,2.5,0.04,0.1,0.0,0.0,0.23,0.0,0.1
+157,Mitoma,MID,Brighton,6.5,Everton,0.83,0.83,0.11,0.09,0.83,0.0,0.52,0.0,0.09
+160,Minteh,MID,Brighton,6.0,Everton,0.83,0.83,0.11,0.09,0.83,0.0,0.52,0.0,0.09
+53,Malen,MID,Aston Villa,5.5,Brentford,0.0,2.5,0.03,0.08,0.0,0.83,0.1,0.08,0.0
+500,Osula,FWD,Newcastle Utd,5.5,Liverpool,0.0,1.67,0.05,0.08,0.0,3.33,0.0,0.0,0.08
+329,Wilson,MID,Fulham,5.5,Manchester Utd,0.83,0.83,0.09,0.07,0.83,0.0,1.48,0.0,0.07
+146,Dunk,DEF,Brighton,4.5,Everton,0.83,0.83,0.09,0.07,0.83,0.0,0.76,0.0,0.07
+325,Smith Rowe,MID,Fulham,6.0,Manchester Utd,0.83,0.83,0.09,0.07,0.83,0.0,0.4,0.0,0.07
+145,De Cuyper,DEF,Brighton,4.5,Everton,0.83,0.83,0.09,0.07,0.83,0.0,0.76,0.0,0.07
+663,J.Arias,MID,Wolves,5.5,Bournemouth,0.0,3.33,0.02,0.07,3.33,1.67,0.24,0.4,-0.33
+642,Hee Chan,MID,Wolves,6.0,Bournemouth,0.0,3.33,0.02,0.07,3.33,1.67,0.19,0.32,-0.25
+261,Richards,DEF,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,0.09,0.07,0.0,2.5,1.6,4.0,-3.93
+452,Amad,MID,Manchester Utd,6.5,Fulham,0.0,0.83,0.07,0.06,0.83,0.83,0.27,0.22,-0.16
+158,Georginio,MID,Brighton,6.0,Everton,0.83,0.83,0.07,0.06,0.83,0.0,0.52,0.0,0.06
+311,Beto,FWD,Everton,5.5,Brighton,0.0,0.83,0.07,0.06,0.83,0.83,2.07,1.72,-1.66
+441,Dorgu,DEF,Manchester Utd,4.5,Fulham,0.0,0.83,0.06,0.05,0.83,0.83,1.31,1.09,-1.04
+169,Gomez,MID,Brighton,5.0,Everton,0.83,0.83,0.06,0.05,0.83,0.0,0.24,0.0,0.05
+228,Gusto,DEF,Chelsea,5.0,West Ham,0.0,2.5,0.02,0.05,0.0,0.0,0.05,0.0,0.05
+477,Livramento,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.67,0.03,0.05,0.0,3.33,0.2,0.67,-0.62
+273,Wharton,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,0.05,0.04,0.0,2.5,1.6,4.0,-3.96
+256,Muñoz,DEF,Crystal Palace,5.5,Nott'ham Forest,0.0,0.83,0.05,0.04,0.0,2.5,1.6,4.0,-3.96
+490,Joelinton,MID,Newcastle Utd,6.0,Liverpool,0.0,1.67,0.02,0.03,0.0,3.33,0.17,0.57,-0.54
+632,Doherty,DEF,Wolves,4.5,Bournemouth,0.0,3.33,0.01,0.03,3.33,1.67,2.47,4.12,-4.09
+643,André,MID,Wolves,5.5,Bournemouth,0.0,3.33,0.01,0.03,3.33,1.67,2.22,3.71,-3.68
+303,Garner,MID,Everton,5.0,Brighton,0.0,0.83,0.04,0.03,0.83,0.83,2.07,1.72,-1.69
+459,Ugarte,MID,Manchester Utd,5.0,Fulham,0.0,0.83,0.04,0.03,0.83,0.83,0.21,0.17,-0.14
+633,H.Bueno,DEF,Wolves,4.5,Bournemouth,0.0,3.33,0.01,0.03,3.33,1.67,0.24,0.4,-0.37
+301,Alcaraz,MID,Everton,5.5,Brighton,0.0,0.83,0.04,0.03,0.83,0.83,1.87,1.55,-1.52
+173,Wieffer,MID,Brighton,5.0,Everton,0.83,0.83,0.04,0.03,0.83,0.0,0.76,0.0,0.03
+38,Konsa,DEF,Aston Villa,4.5,Brentford,0.0,2.5,0.01,0.02,0.0,0.83,1.11,0.92,-0.9
+552,Sadiki,MID,Sunderland,5.0,Burnley,2.5,2.5,0.01,0.02,0.0,0.0,0.56,0.0,0.02
+489,J.Murphy,MID,Newcastle Utd,6.5,Liverpool,0.0,1.67,0.01,0.02,0.0,3.33,0.03,0.1,-0.08
+48,Tielemans,MID,Aston Villa,6.0,Brentford,0.0,2.5,0.01,0.02,0.0,0.83,1.43,1.19,-1.17
+167,Baleba,MID,Brighton,5.0,Everton,0.83,0.83,0.03,0.02,0.83,0.0,0.52,0.0,0.02
+37,Digne,DEF,Aston Villa,4.5,Brentford,0.0,2.5,0.01,0.02,0.0,0.83,1.43,1.19,-1.17
+443,Shaw,DEF,Manchester Utd,4.5,Fulham,0.0,0.83,0.02,0.02,0.83,0.83,1.1,0.91,-0.89
+476,Burn,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.67,0.01,0.02,0.0,3.33,0.2,0.67,-0.65
+299,Ndiaye,MID,Everton,6.5,Brighton,0.0,0.83,0.02,0.02,0.83,0.83,2.07,1.72,-1.7
+59,Onana,MID,Aston Villa,5.0,Brentford,0.0,2.5,0.01,0.02,0.0,0.83,1.43,1.19,-1.17
+497,L.Miley,MID,Newcastle Utd,4.5,Liverpool,0.0,1.67,0.01,0.02,0.0,3.33,0.03,0.1,-0.08
+419,Grealish,MID,Everton,6.5,Brighton,0.0,0.83,0.02,0.02,0.83,0.83,1.14,0.95,-0.93
+553,Talbi,MID,Sunderland,5.0,Burnley,2.5,2.5,0.01,0.02,0.0,0.0,0.53,0.0,0.02
+457,Casemiro,MID,Manchester Utd,5.5,Fulham,0.0,0.83,0.02,0.02,0.83,0.83,1.1,0.91,-0.89
+267,Sarr,MID,Crystal Palace,6.5,Nott'ham Forest,0.0,0.83,0.01,0.01,0.0,2.5,1.6,4.0,-3.99
+444,Yoro,DEF,Manchester Utd,4.5,Fulham,0.0,0.83,0.01,0.01,0.83,0.83,1.31,1.09,-1.08
+321,J.Cuenca,DEF,Fulham,4.5,Manchester Utd,0.83,0.83,0.01,0.01,0.83,0.0,1.07,0.0,0.01
+322,Tete,DEF,Fulham,4.5,Manchester Utd,0.83,0.83,0.01,0.01,0.83,0.0,1.48,0.0,0.01
+330,Berge,MID,Fulham,5.0,Manchester Utd,0.83,0.83,0.01,0.01,0.83,0.0,1.05,0.0,0.01
+317,Andersen,DEF,Fulham,4.5,Manchester Utd,0.83,0.83,0.01,0.01,0.83,0.0,1.48,0.0,0.01
+332,Lukić,MID,Fulham,5.0,Manchester Utd,0.83,0.83,0.01,0.01,0.83,0.0,1.48,0.0,0.01
+318,Bassey,DEF,Fulham,4.5,Manchester Utd,0.83,0.83,0.01,0.01,0.83,0.0,1.48,0.0,0.01
+588,Odobert,MID,Tottenham,5.5,Manchester City,2.5,0.0,0.01,0.0,0.0,3.33,0.0,0.0,0.0
+565,Vicario,GK,Tottenham,5.0,Manchester City,2.5,0.0,0.0,0.0,0.0,3.33,0.94,3.13,-3.13
+148,F.Kadıoğlu,DEF,Brighton,4.5,Everton,0.83,0.83,0.0,0.0,0.83,0.0,0.24,0.0,0.0
+220,Sánchez,GK,Chelsea,5.0,West Ham,0.0,2.5,0.0,0.0,0.0,0.0,0.66,0.0,0.0
+348,Rodon,DEF,Leeds United,4.0,Arsenal,0.83,0.0,0.0,0.0,0.0,0.83,0.55,0.46,-0.46
+670,Roefs,GK,Sunderland,4.5,Burnley,2.5,2.5,0.0,0.0,0.0,0.0,0.56,0.0,0.0
+36,Cash,DEF,Aston Villa,4.5,Brentford,0.0,2.5,0.0,0.0,0.0,0.83,1.43,1.19,-1.19
+331,Cairney,MID,Fulham,5.0,Manchester Utd,0.83,0.83,0.0,0.0,0.83,0.0,0.43,0.0,0.0
+609,Todibo,DEF,West Ham,4.5,Chelsea,0.0,0.0,0.01,0.0,2.5,0.0,0.64,0.0,0.0
+679,Hermansen,GK,West Ham,4.5,Chelsea,0.0,0.0,0.01,0.0,2.5,0.0,0.68,0.0,0.0
+30,Havertz,FWD,Arsenal,7.5,Leeds United,0.83,0.0,0.01,0.0,0.0,0.83,0.82,0.68,-0.68
+628,José Sá,GK,Wolves,4.5,Bournemouth,0.0,3.33,0.0,0.0,3.33,1.67,2.47,4.12,-4.12
+210,Tchaouna,MID,Burnley,5.0,Sunderland,0.0,0.0,0.01,0.0,2.5,2.5,0.23,0.58,-0.58
+522,Yates,MID,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,0.01,0.0,0.83,0.0,0.0,0.0,0.0
+469,Pope,GK,Newcastle Utd,5.0,Liverpool,0.0,1.67,0.0,0.0,0.0,3.33,0.2,0.67,-0.67
+258,Mitchell,DEF,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,1.6,4.0,-4.0
+122,Milambo,MID,Brentford,5.5,Aston Villa,0.83,0.0,0.01,0.0,2.5,0.0,1.49,0.0,0.0
+1,Raya,GK,Arsenal,5.5,Leeds United,0.83,0.0,0.0,0.0,0.0,0.83,1.52,1.26,-1.26
+202,Bruun Larsen,MID,Burnley,5.5,Sunderland,0.0,0.0,0.01,0.0,2.5,2.5,0.91,2.28,-2.28
+411,O’Reilly,DEF,Manchester City,5.0,Tottenham,3.33,0.0,0.01,0.0,0.0,2.5,0.21,0.52,-0.52
+366,A.Becker,GK,Liverpool,5.5,Newcastle Utd,3.33,0.0,0.01,0.0,1.67,0.0,1.7,0.0,0.0
+637,Toti,DEF,Wolves,4.5,Bournemouth,0.0,3.33,0.0,0.0,3.33,1.67,2.47,4.12,-4.12
+10,Lewis-Skelly,DEF,Arsenal,5.5,Leeds United,0.83,0.0,0.0,0.0,0.0,0.83,0.66,0.55,-0.55
+371,Kerkez,DEF,Liverpool,6.0,Newcastle Utd,3.33,0.0,0.01,0.0,1.67,0.0,0.81,0.0,0.0
+116,Hickey,DEF,Brentford,4.0,Aston Villa,0.83,0.0,0.0,0.0,2.5,0.0,0.0,0.0,0.0
+101,Kelleher,GK,Brentford,4.5,Aston Villa,0.83,0.0,0.0,0.0,2.5,0.0,1.86,0.0,0.0
+257,Lacroix,DEF,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,1.6,4.0,-4.0
+272,Lerma,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,0.38,0.95,-0.95
+90,Scott,MID,Bournemouth,5.0,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,1.81,0.0,0.0
+270,Hughes,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,1.22,3.05,-3.05
+304,Iroegbunam,MID,Everton,5.0,Brighton,0.0,0.83,0.0,0.0,0.83,0.83,0.93,0.77,-0.77
+431,Bayindir,GK,Manchester Utd,5.0,Fulham,0.0,0.83,0.0,0.0,0.83,0.83,1.31,1.09,-1.09
+502,Sels,GK,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,0.0,0.0,0.83,0.0,1.5,0.0,0.0
+215,Flemming,FWD,Burnley,5.5,Sunderland,0.0,0.0,0.0,0.0,2.5,2.5,0.23,0.58,-0.58
+551,Rigg,MID,Sunderland,5.0,Burnley,2.5,2.5,0.0,0.0,0.0,0.0,0.03,0.0,0.0
+547,E.Le Fée,MID,Sunderland,5.0,Burnley,2.5,2.5,0.0,0.0,0.0,0.0,0.23,0.0,0.0
+493,Longstaff,MID,Leeds United,5.0,Arsenal,0.83,0.0,0.0,0.0,0.0,0.83,0.0,0.0,0.0
+376,Gomez,DEF,Liverpool,5.0,Newcastle Utd,3.33,0.0,0.0,0.0,1.67,0.0,0.21,0.0,0.0
+356,Gruev,MID,Leeds United,5.0,Arsenal,0.83,0.0,0.0,0.0,0.0,0.83,0.28,0.23,-0.23
+287,Pickford,GK,Everton,5.5,Brighton,0.0,0.83,0.0,0.0,0.83,0.83,2.07,1.72,-1.72
+206,Edwards,MID,Burnley,5.0,Sunderland,0.0,0.0,0.0,0.0,2.5,2.5,0.0,0.0,0.0
+352,Harrison,MID,Leeds United,5.5,Arsenal,0.83,0.0,0.0,0.0,0.0,0.83,0.28,0.23,-0.23
+505,Milenković,DEF,Nott'ham Forest,5.5,Crystal Palace,2.5,0.0,0.0,0.0,0.83,0.0,1.5,0.0,0.0
+77,Hill,DEF,Bournemouth,4.0,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,0.11,0.0,0.0
+170,Milner,MID,Brighton,5.0,Everton,0.83,0.83,0.0,0.0,0.83,0.0,0.24,0.0,0.0
+190,Ekdal,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.0,0.0,2.5,2.5,2.32,5.8,-5.8
+124,Henderson,MID,Brentford,5.0,Aston Villa,0.83,0.0,0.0,0.0,2.5,0.0,0.0,0.0,0.0
+542,Seelt,DEF,Sunderland,4.0,Burnley,2.5,2.5,0.0,0.0,0.0,0.0,0.33,0.0,0.0
+96,Winterburn,MID,Bournemouth,4.5,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,0.31,0.0,0.0
+682,Møller Wolfe,DEF,Wolves,4.5,Bournemouth,0.0,3.33,0.0,0.0,3.33,1.67,2.22,3.71,-3.71
+635,R.Gomes,DEF,Wolves,4.5,Bournemouth,0.0,3.33,0.0,0.0,3.33,1.67,0.24,0.4,-0.4
+442,Maguire,DEF,Manchester Utd,4.5,Fulham,0.0,0.83,0.0,0.0,0.83,0.83,0.21,0.17,-0.17
+319,Castagne,DEF,Fulham,4.5,Manchester Utd,0.83,0.83,0.0,0.0,0.83,0.0,0.4,0.0,0.0
+276,Devenny,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,0.38,0.95,-0.95
+326,Adama,MID,Fulham,5.5,Manchester Utd,0.83,0.83,0.0,0.0,0.83,0.0,0.43,0.0,0.0
+295,Keane,DEF,Everton,4.5,Brighton,0.0,0.83,0.0,0.0,0.83,0.83,2.07,1.72,-1.72
+33,M.Bizot,GK,Aston Villa,4.5,Brentford,0.0,2.5,0.0,0.0,0.0,0.83,1.43,1.19,-1.19
+93,H.Traorè,MID,Bournemouth,4.5,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,0.4,0.0,0.0
+6,Saliba,DEF,Arsenal,6.0,Leeds United,0.83,0.0,0.0,0.0,0.0,0.83,1.52,1.26,-1.26
+8,J.Timber,DEF,Arsenal,5.5,Leeds United,0.83,0.0,0.0,0.0,0.0,0.83,0.66,0.55,-0.55
+100,Kroupi.Jr,FWD,Bournemouth,4.5,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,0.11,0.0,0.0
+182,Trafford,GK,Manchester City,5.0,Tottenham,3.33,0.0,0.0,0.0,0.0,2.5,0.56,1.4,-1.4
+40,Mings,DEF,Aston Villa,4.5,Brentford,0.0,2.5,0.0,0.0,0.0,0.83,1.43,1.19,-1.19
+584,Tel,MID,Tottenham,6.5,Manchester City,2.5,0.0,0.0,0.0,0.0,3.33,0.0,0.0,0.0
+260,Guéhi,DEF,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,1.6,4.0,-4.0
+665,Perri,GK,Leeds United,4.5,Arsenal,0.83,0.0,0.0,0.0,0.0,0.83,0.55,0.46,-0.46
+253,Henderson,GK,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,0.0,0.0,0.0,2.5,1.6,4.0,-4.0
+178,Welbeck,FWD,Brighton,6.5,Everton,0.83,0.83,0.0,0.0,0.83,0.0,0.24,0.0,0.0
+5,Gabriel,DEF,Arsenal,6.0,Leeds United,0.83,0.0,0.0,0.0,0.0,0.83,1.52,1.26,-1.26
+526,Igor Jesus,FWD,Nott'ham Forest,6.0,Crystal Palace,2.5,0.0,0.0,0.0,0.83,0.0,0.0,0.0,0.0
+128,Onyeka,MID,Brentford,5.0,Aston Villa,0.83,0.0,0.0,0.0,2.5,0.0,0.0,0.0,0.0
+374,Konaté,DEF,Liverpool,5.5,Newcastle Utd,3.33,0.0,0.0,0.0,1.67,0.0,1.7,0.0,0.0
+310,Barry,FWD,Everton,6.0,Brighton,0.0,0.83,0.0,0.0,0.83,0.83,0.2,0.17,-0.17
+392,Endo,MID,Liverpool,5.0,Newcastle Utd,3.33,0.0,0.0,0.0,1.67,0.0,0.89,0.0,0.0
+22,Merino,MID,Arsenal,6.0,Leeds United,0.83,0.0,0.0,0.0,0.0,0.83,0.49,0.41,-0.41
+673,J.Palhinha,MID,Tottenham,5.5,Manchester City,2.5,0.0,0.0,0.0,0.0,3.33,0.0,0.0,0.0
+314,Leno,GK,Fulham,5.0,Manchester Utd,0.83,0.83,0.0,0.0,0.83,0.0,1.48,0.0,0.0
+470,Dúbravka,GK,Burnley,4.0,Sunderland,0.0,0.0,0.0,0.0,2.5,2.5,2.32,5.8,-5.8
+67,Petrović,GK,Bournemouth,4.5,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,2.21,0.0,0.0
+585,Bentancur,MID,Tottenham,5.5,Manchester City,2.5,0.0,0.0,0.0,0.0,3.33,0.04,0.13,-0.13
+139,Verbruggen,GK,Brighton,4.5,Everton,0.83,0.83,0.0,0.0,0.83,0.0,0.76,0.0,0.0
+518,Jota,MID,Nott'ham Forest,5.5,Crystal Palace,2.5,0.0,0.0,0.0,0.83,0.0,0.0,0.0,0.0
+407,Matheus N.,DEF,Manchester City,5.5,Tottenham,3.33,0.0,0.0,0.0,0.0,2.5,0.21,0.52,-0.52
+406,Khusanov,DEF,Manchester City,5.5,Tottenham,3.33,0.0,0.0,0.0,0.0,2.5,0.08,0.2,-0.2
+541,Reinildo,DEF,Sunderland,4.0,Burnley,2.5,2.5,0.0,0.0,0.0,0.0,0.56,0.0,0.0
+430,Haaland,FWD,Manchester City,14.0,Tottenham,3.33,0.0,1.99,0.0,0.0,2.5,0.35,0.88,-0.88
+26,Zubimendi,MID,Arsenal,5.5,Leeds United,0.83,0.0,0.01,0.0,0.0,0.83,1.52,1.26,-1.26
+624,Bowen,FWD,West Ham,8.0,Chelsea,0.0,0.0,0.2,0.0,2.5,0.0,0.68,0.0,0.0
+516,Hudson-Odoi,MID,Nott'ham Forest,6.0,Crystal Palace,2.5,0.0,0.26,0.0,0.83,0.0,1.5,0.0,0.0
+573,Spence,DEF,Tottenham,4.5,Manchester City,2.5,0.0,0.25,0.0,0.0,3.33,0.94,3.13,-3.13
+209,Laurent,MID,Burnley,5.0,Sunderland,0.0,0.0,0.24,0.0,2.5,2.5,1.41,3.52,-3.52
+16,Saka,MID,Arsenal,10.0,Leeds United,0.83,0.0,0.24,0.0,0.0,0.83,1.52,1.26,-1.26
+603,Diouf,DEF,West Ham,4.5,Chelsea,0.0,0.0,0.23,0.0,2.5,0.0,0.68,0.0,0.0
+593,P.M.Sarr,MID,Tottenham,5.0,Manchester City,2.5,0.0,0.22,0.0,0.0,3.33,0.94,3.13,-3.13
+625,Füllkrug,FWD,West Ham,6.0,Chelsea,0.0,0.0,0.22,0.0,2.5,0.0,0.68,0.0,0.0
+113,Van den Berg,DEF,Brentford,4.5,Aston Villa,0.83,0.0,0.21,0.0,2.5,0.0,1.86,0.0,0.0
+350,Aaronson,MID,Leeds United,5.5,Arsenal,0.83,0.0,0.21,0.0,0.0,0.83,0.47,0.39,-0.39
+353,James,MID,Leeds United,5.5,Arsenal,0.83,0.0,0.19,0.0,0.0,0.83,0.28,0.23,-0.23
+205,Cullen,MID,Burnley,5.0,Sunderland,0.0,0.0,0.28,0.0,2.5,2.5,2.32,5.8,-5.8
+373,Virgil,DEF,Liverpool,6.0,Newcastle Utd,3.33,0.0,0.19,0.0,1.67,0.0,1.7,0.0,0.0
+387,Szoboszlai,MID,Liverpool,6.5,Newcastle Utd,3.33,0.0,0.19,0.0,1.67,0.0,1.7,0.0,0.0
+385,Chiesa,MID,Liverpool,6.5,Newcastle Utd,3.33,0.0,0.16,0.0,1.67,0.0,0.0,0.0,0.0
+126,Jensen,MID,Brentford,5.0,Aston Villa,0.83,0.0,0.16,0.0,2.5,0.0,1.86,0.0,0.0
+351,Gnonto,MID,Leeds United,5.5,Arsenal,0.83,0.0,0.15,0.0,0.0,0.83,0.08,0.07,-0.07
+343,Struijk,DEF,Leeds United,4.5,Arsenal,0.83,0.0,0.14,0.0,0.0,0.83,0.55,0.46,-0.46
+21,Rice,MID,Arsenal,6.5,Leeds United,0.83,0.0,0.14,0.0,0.0,0.83,1.04,0.86,-0.86
+586,Bergvall,MID,Tottenham,5.5,Manchester City,2.5,0.0,0.13,0.0,0.0,3.33,0.94,3.13,-3.13
+358,Tanaka,MID,Leeds United,5.0,Arsenal,0.83,0.0,0.12,0.0,0.0,0.83,0.55,0.46,-0.46
+217,Foster,FWD,Burnley,5.0,Sunderland,0.0,0.0,0.26,0.0,2.5,2.5,2.09,5.22,-5.22
+568,Pedro Porro,DEF,Tottenham,5.5,Manchester City,2.5,0.0,0.28,0.0,0.0,3.33,0.94,3.13,-3.13
+413,Marmoush,MID,Manchester City,8.5,Tottenham,3.33,0.0,0.12,0.0,0.0,2.5,0.21,0.52,-0.52
+384,Gakpo,MID,Liverpool,7.5,Newcastle Utd,3.33,0.0,0.64,0.0,1.67,0.0,1.7,0.0,0.0
+525,Wood,FWD,Nott'ham Forest,7.5,Crystal Palace,2.5,0.0,0.96,0.0,0.83,0.0,1.5,0.0,0.0
+7,Calafiori,DEF,Arsenal,5.5,Leeds United,0.83,0.0,0.92,0.0,0.0,0.83,0.87,0.72,-0.72
+136,Thiago,FWD,Brentford,6.0,Aston Villa,0.83,0.0,0.92,0.0,2.5,0.0,1.86,0.0,0.0
+365,Nmecha,FWD,Leeds United,5.0,Arsenal,0.83,0.0,0.86,0.0,0.0,0.83,0.28,0.23,-0.23
+200,Anthony,MID,Burnley,5.5,Sunderland,0.0,0.0,0.8,0.0,2.5,2.5,2.32,5.8,-5.8
+597,Richarlison,FWD,Tottenham,6.5,Manchester City,2.5,0.0,0.79,0.0,0.0,3.33,0.89,2.96,-2.96
+517,Anderson,MID,Nott'ham Forest,5.5,Crystal Palace,2.5,0.0,0.67,0.0,0.83,0.0,1.5,0.0,0.0
+515,Gibbs-White,MID,Nott'ham Forest,7.5,Crystal Palace,2.5,0.0,0.66,0.0,0.83,0.0,1.5,0.0,0.0
+582,Kudus,MID,Tottenham,6.5,Manchester City,2.5,0.0,0.64,0.0,0.0,3.33,0.94,3.13,-3.13
+575,Van de Ven,DEF,Tottenham,4.5,Manchester City,2.5,0.0,0.6,0.0,0.0,3.33,0.94,3.13,-3.13
+347,Gudmundsson,DEF,Leeds United,4.0,Arsenal,0.83,0.0,0.31,0.0,0.0,0.83,0.55,0.46,-0.46
+410,Lewis,DEF,Manchester City,5.0,Tottenham,3.33,0.0,0.59,0.0,0.0,2.5,0.35,0.88,-0.88
+660,Stach,MID,Leeds United,5.0,Arsenal,0.83,0.0,0.56,0.0,0.0,0.83,0.55,0.46,-0.46
+580,Johnson,MID,Tottenham,7.0,Manchester City,2.5,0.0,0.56,0.0,0.0,3.33,0.94,3.13,-3.13
+416,Bernardo,MID,Manchester City,6.5,Tottenham,3.33,0.0,0.44,0.0,0.0,2.5,0.35,0.88,-0.88
+382,Wirtz,MID,Liverpool,8.5,Newcastle Utd,3.33,0.0,0.42,0.0,1.67,0.0,1.7,0.0,0.0
+17,Ødegaard,MID,Arsenal,8.0,Leeds United,0.83,0.0,0.38,0.0,0.0,0.83,1.52,1.26,-1.26
+381,M.Salah,MID,Liverpool,14.5,Newcastle Utd,3.33,0.0,0.37,0.0,1.67,0.0,1.7,0.0,0.0
+427,Reijnders,MID,Manchester City,5.5,Tottenham,3.33,0.0,0.34,0.0,0.0,2.5,0.56,1.4,-1.4
+362,Piroe,FWD,Leeds United,5.5,Arsenal,0.83,0.0,0.32,0.0,0.0,0.83,0.28,0.23,-0.23
+107,Lewis-Potter,DEF,Brentford,5.0,Aston Villa,0.83,0.0,0.12,0.0,2.5,0.0,1.86,0.0,0.0
+669,Ndoye,MID,Nott'ham Forest,6.0,Crystal Palace,2.5,0.0,0.11,0.0,0.83,0.0,1.5,0.0,0.0
+409,Stones,DEF,Manchester City,5.5,Tottenham,3.33,0.0,0.01,0.0,0.0,2.5,0.47,1.17,-1.17
+569,Romero,DEF,Tottenham,5.0,Manchester City,2.5,0.0,0.02,0.0,0.0,3.33,0.94,3.13,-3.13
+109,Henry,DEF,Brentford,4.5,Aston Villa,0.83,0.0,0.04,0.0,2.5,0.0,1.86,0.0,0.0
+388,C.Jones,MID,Liverpool,5.5,Newcastle Utd,3.33,0.0,0.04,0.0,1.67,0.0,0.21,0.0,0.0
+120,Schade,MID,Brentford,7.0,Aston Villa,0.83,0.0,0.04,0.0,2.5,0.0,0.37,0.0,0.0
+372,Robertson,DEF,Liverpool,6.0,Newcastle Utd,3.33,0.0,0.04,0.0,1.67,0.0,0.89,0.0,0.0
+521,Sangaré,MID,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,0.03,0.0,0.83,0.0,1.5,0.0,0.0
+187,Walker,DEF,Burnley,4.5,Sunderland,0.0,0.0,0.03,0.0,2.5,2.5,2.32,5.8,-5.8
+19,Martinelli,MID,Arsenal,7.0,Leeds United,0.83,0.0,0.03,0.0,0.0,0.83,0.7,0.58,-0.58
+605,Kilman,DEF,West Ham,4.5,Chelsea,0.0,0.0,0.03,0.0,2.5,0.0,0.68,0.0,0.0
+342,Bogle,DEF,Leeds United,4.5,Arsenal,0.83,0.0,0.02,0.0,0.0,0.83,0.55,0.46,-0.46
+11,White,DEF,Arsenal,5.5,Leeds United,0.83,0.0,0.02,0.0,0.0,0.83,0.87,0.72,-0.72
+207,Hannibal,MID,Burnley,5.0,Sunderland,0.0,0.0,0.04,0.0,2.5,2.5,1.41,3.52,-3.52
+354,Ampadu,MID,Leeds United,5.0,Arsenal,0.83,0.0,0.02,0.0,0.0,0.83,0.28,0.23,-0.23
+418,Doku,MID,Manchester City,6.5,Tottenham,3.33,0.0,0.02,0.0,0.0,2.5,0.35,0.88,-0.88
+506,Murillo,DEF,Nott'ham Forest,5.5,Crystal Palace,2.5,0.0,0.02,0.0,0.83,0.0,1.5,0.0,0.0
+614,Ward-Prowse,MID,West Ham,6.0,Chelsea,0.0,0.0,0.02,0.0,2.5,0.0,0.6,0.0,0.0
+607,N.Aguerd,DEF,West Ham,4.5,Chelsea,0.0,0.0,0.02,0.0,2.5,0.0,0.68,0.0,0.0
+370,Frimpong,DEF,Liverpool,6.0,Newcastle Utd,3.33,0.0,0.02,0.0,1.67,0.0,0.81,0.0,0.0
+671,Wilson,FWD,West Ham,6.0,Chelsea,0.0,0.0,0.02,0.0,2.5,0.0,0.08,0.0,0.0
+18,Madueke,MID,Arsenal,7.0,Leeds United,0.83,0.0,0.02,0.0,0.0,0.83,0.82,0.68,-0.68
+106,Collins,DEF,Brentford,5.0,Aston Villa,0.83,0.0,0.02,0.0,2.5,0.0,1.86,0.0,0.0
+192,Hartman,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.04,0.0,2.5,2.5,2.32,5.8,-5.8
+507,Aina,DEF,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,0.04,0.0,0.83,0.0,1.5,0.0,0.0
+197,Sonne,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.11,0.0,2.5,2.5,2.09,5.22,-5.22
+610,Wan-Bissaka,DEF,West Ham,4.5,Chelsea,0.0,0.0,0.07,0.0,2.5,0.0,0.68,0.0,0.0
+423,N.Gonzalez,MID,Manchester City,6.0,Tottenham,3.33,0.0,0.1,0.0,0.0,2.5,0.56,1.4,-1.4
+417,Cherki,MID,Manchester City,6.5,Tottenham,3.33,0.0,0.09,0.0,0.0,2.5,0.21,0.52,-0.52
+129,Yarmoliuk,MID,Brentford,5.0,Aston Villa,0.83,0.0,0.09,0.0,2.5,0.0,1.86,0.0,0.0
+508,N.Williams,DEF,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,0.09,0.0,0.83,0.0,1.5,0.0,0.0
+408,Rúben,DEF,Manchester City,5.5,Tottenham,3.33,0.0,0.08,0.0,0.0,2.5,0.56,1.4,-1.4
+612,L.Paquetá,MID,West Ham,6.0,Chelsea,0.0,0.0,0.08,0.0,2.5,0.0,0.68,0.0,0.0
+110,Kayode,DEF,Brentford,4.5,Aston Villa,0.83,0.0,0.08,0.0,2.5,0.0,1.86,0.0,0.0
+596,Solanke,FWD,Tottenham,7.5,Manchester City,2.5,0.0,0.08,0.0,0.0,3.33,0.04,0.13,-0.13
+424,Bobb,MID,Manchester City,5.5,Tottenham,3.33,0.0,0.07,0.0,0.0,2.5,0.56,1.4,-1.4
+613,Souček,MID,West Ham,6.0,Chelsea,0.0,0.0,0.07,0.0,2.5,0.0,0.08,0.0,0.0
+661,Ekitiké,FWD,Liverpool,8.5,Newcastle Utd,3.33,0.0,1.16,0.0,1.67,0.0,1.49,0.0,0.0
+402,Aït-Nouri,DEF,Manchester City,6.0,Tottenham,3.33,0.0,0.06,0.0,0.0,2.5,0.56,1.4,-1.4
+123,Carvalho,MID,Brentford,5.0,Aston Villa,0.83,0.0,0.06,0.0,2.5,0.0,1.86,0.0,0.0
+618,G.Rodriguez,MID,West Ham,5.0,Chelsea,0.0,0.0,0.06,0.0,2.5,0.0,0.6,0.0,0.0
+621,Irving,MID,West Ham,4.5,Chelsea,0.0,0.0,0.06,0.0,2.5,0.0,0.04,0.0,0.0
+666,Gyökeres,FWD,Arsenal,9.0,Leeds United,0.83,0.0,0.06,0.0,0.0,0.83,0.7,0.58,-0.58
+386,Mac Allister,MID,Liverpool,6.5,Newcastle Utd,3.33,0.0,0.05,0.0,1.67,0.0,1.49,0.0,0.0
+591,Gray,MID,Tottenham,5.0,Manchester City,2.5,0.0,0.05,0.0,0.0,3.33,0.89,2.96,-2.96
+191,Estève,DEF,Burnley,4.0,Sunderland,0.0,0.0,0.05,0.0,2.5,2.5,2.32,5.8,-5.8
+676,Ugochukwu,MID,Burnley,5.0,Sunderland,0.0,0.0,0.05,0.0,2.5,2.5,0.91,2.28,-2.28
+685,Diakité,DEF,Bournemouth,4.5,Wolves,1.67,3.33,0.0,0.0,3.33,0.0,2.21,0.0,0.0
+2,Arrizabalaga,GK,Arsenal,4.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+3,Hein,GK,Arsenal,4.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+4,Setford,GK,Arsenal,4.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+9,Kiwior,DEF,Arsenal,5.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+12,Zinchenko,DEF,Arsenal,5.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+13,Clarke,DEF,Arsenal,4.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+14,Kacurri,DEF,Arsenal,4.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+15,Nichols,DEF,Arsenal,4.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+20,Trossard,MID,Arsenal,7.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+23,Fábio Vieira,MID,Arsenal,5.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+24,Nørgaard,MID,Arsenal,5.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+25,Nwaneri,MID,Arsenal,5.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+27,Nelson,MID,Arsenal,5.0,Leeds United,0.83,0.0,,,0.0,0.83,,,
+28,Kabia,MID,Arsenal,4.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+29,Sambi,MID,Arsenal,4.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+31,G.Jesus,FWD,Arsenal,6.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+32,Martinez,GK,Aston Villa,5.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+34,Gauci,GK,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+35,Marschall,GK,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+39,Maatsen,DEF,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+41,Pau,DEF,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+42,A.García,DEF,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+43,Alex Moreno,DEF,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+44,Bogarde,DEF,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+45,Sousa,DEF,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+46,Yasin,DEF,Aston Villa,4.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+49,Bailey,MID,Aston Villa,5.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+50,Buendía,MID,Aston Villa,5.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+51,Iling Jr,MID,Aston Villa,5.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+52,J.Ramsey,MID,Aston Villa,5.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+55,Barkley,MID,Aston Villa,5.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+56,Barrenechea,MID,Aston Villa,5.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+57,Dobbin,MID,Aston Villa,5.0,Brentford,0.0,2.5,,,0.0,0.83,,,
+60,Broggio,MID,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+61,Dendoncker,MID,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+62,Jimoh-Aloba,MID,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+63,Young,MID,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+65,Redmond,FWD,Aston Villa,4.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+66,Neto,GK,Bournemouth,4.5,Wolves,1.67,3.33,,,3.33,0.0,,,
+68,Dennis,GK,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+69,McKenna,GK,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+70,Paulsen,GK,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+71,Zabarnyi,DEF,Bournemouth,5.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+75,Akinmboni,DEF,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+76,Bevan,DEF,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+78,J.Araujo,DEF,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+79,Mepham,DEF,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+80,Soler,DEF,Bournemouth,4.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+81,Kluivert,MID,Bournemouth,7.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+83,O.Dango,MID,Bournemouth,6.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+87,Christie,MID,Bournemouth,5.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+88,Cook,MID,Bournemouth,5.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+89,Philip,MID,Bournemouth,5.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+91,Sinisterra,MID,Bournemouth,5.0,Wolves,1.67,3.33,,,3.33,0.0,,,
+92,Faivre,MID,Bournemouth,4.5,Wolves,1.67,3.33,,,3.33,0.0,,,
+94,Sadi,MID,Bournemouth,4.5,Wolves,1.67,3.33,,,3.33,0.0,,,
+95,Silcott-Duberry,MID,Bournemouth,4.5,Wolves,1.67,3.33,,,3.33,0.0,,,
+98,Enes Ünal,FWD,Bournemouth,5.5,Wolves,1.67,3.33,,,3.33,0.0,,,
+99,Adu-Adjei,FWD,Bournemouth,4.5,Wolves,1.67,3.33,,,3.33,0.0,,,
+102,Balcombe,GK,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+103,Cox,GK,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+104,Eyestone,GK,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+105,Valdimarsson,GK,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+108,Ajer,DEF,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+111,Pinnock,DEF,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+112,Roerslev,DEF,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+114,Arthur,DEF,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+115,Fredrick,DEF,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+117,Ji-soo,DEF,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+118,Meghoma,DEF,Brentford,4.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+121,Damsgaard,MID,Brentford,6.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+125,Janelt,MID,Brentford,5.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+127,Nunes,MID,Brentford,5.0,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+130,Donovan,MID,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+131,Konak,MID,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+132,Maghoma,MID,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+133,Peart-Harris,MID,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+134,Trevitt,MID,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+135,Wissa,FWD,Brentford,7.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+137,Morgan,FWD,Brentford,4.5,Aston Villa,0.83,0.0,,,2.5,0.0,,,
+138,Steele,GK,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+140,McGill,GK,Brighton,4.0,Everton,0.83,0.83,,,0.83,0.0,,,
+141,Rushworth,GK,Brighton,4.0,Everton,0.83,0.83,,,0.83,0.0,,,
+142,Scherpen,GK,Brighton,4.0,Everton,0.83,0.83,,,0.83,0.0,,,
+143,Boscagli,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+144,Coppola,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+147,Estupiñan,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+149,Igor,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+150,Lamptey,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+152,Veltman,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+153,Webster,DEF,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+154,Cashin,DEF,Brighton,4.0,Everton,0.83,0.83,,,0.83,0.0,,,
+155,Slater,DEF,Brighton,4.0,Everton,0.83,0.83,,,0.83,0.0,,,
+156,Tasker,DEF,Brighton,4.0,Everton,0.83,0.83,,,0.83,0.0,,,
+159,March,MID,Brighton,6.0,Everton,0.83,0.83,,,0.83,0.0,,,
+161,Enciso,MID,Brighton,5.5,Everton,0.83,0.83,,,0.83,0.0,,,
+163,Hinshelwood,MID,Brighton,5.5,Everton,0.83,0.83,,,0.83,0.0,,,
+165,Sima,MID,Brighton,5.5,Everton,0.83,0.83,,,0.83,0.0,,,
+168,Buonanotte,MID,Brighton,5.0,Everton,0.83,0.83,,,0.83,0.0,,,
+171,Sarmiento,MID,Brighton,5.0,Everton,0.83,0.83,,,0.83,0.0,,,
+172,Watson,MID,Brighton,5.0,Everton,0.83,0.83,,,0.83,0.0,,,
+174,Yalcouye,MID,Brighton,5.0,Everton,0.83,0.83,,,0.83,0.0,,,
+175,Knight,MID,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+176,Mazilu,MID,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+177,Moran,MID,Brighton,4.5,Everton,0.83,0.83,,,0.83,0.0,,,
+179,Ferguson,FWD,Brighton,5.5,Everton,0.83,0.83,,,0.83,0.0,,,
+180,Tzimas,FWD,Brighton,5.5,Everton,0.83,0.83,,,0.83,0.0,,,
+181,Kostoulas,FWD,Brighton,5.0,Everton,0.83,0.83,,,0.83,0.0,,,
+183,Weiss,GK,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+184,Green,GK,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+185,Hladký,GK,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+186,Roberts,DEF,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+188,Delcroix,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+189,Dodgson,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+193,Humphreys,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+194,Jordan,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+195,Lucas Pires,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+196,Sambo,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+198,Tuanzebe,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+199,Worrall,DEF,Burnley,4.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+201,Benson,MID,Burnley,5.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+203,Boateng,MID,Burnley,5.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+204,Churlinov,MID,Burnley,5.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+208,Koleosho,MID,Burnley,5.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+211,A.Ramsey,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+212,Adewumi,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+213,Banel,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+214,Trésor,MID,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+216,Amdouni,FWD,Burnley,5.0,Sunderland,0.0,0.0,,,2.5,2.5,,,
+218,Barnes,FWD,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+219,Obafemi,FWD,Burnley,4.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+221,Jörgensen,GK,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+222,Penders,GK,Chelsea,4.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+223,Slonina,GK,Chelsea,4.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+227,Colwill,DEF,Chelsea,5.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+229,B.Badiashile,DEF,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+230,Fofana,DEF,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+231,M.Sarr,DEF,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+232,Tosin,DEF,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+234,Anselmino,DEF,Chelsea,4.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+240,Nkunku,MID,Chelsea,6.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+243,George,MID,Chelsea,5.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+244,Lavia,MID,Chelsea,5.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+245,Mudryk,MID,Chelsea,5.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+247,D.Essugo,MID,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+248,Paez,MID,Chelsea,4.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+251,N.Jackson,FWD,Chelsea,6.5,West Ham,0.0,2.5,,,0.0,0.0,,,
+252,Marc Guiu,FWD,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+254,Benitez,GK,Crystal Palace,4.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+255,Matthews,GK,Crystal Palace,4.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+259,Sosa,DEF,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+262,Chadi Riad,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+263,Clyne,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+264,Holding,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+265,Kporha,DEF,Crystal Palace,4.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+268,Doucouré,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+269,Esse,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+271,Kamada,MID,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+274,Agbinone,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+275,Ahamada,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+277,Ebiowei,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+278,J.Rak-Sakyi,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+279,M.França,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+280,Ozoh,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+281,Rodney,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+282,Umeh,MID,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+284,Nketiah,FWD,Crystal Palace,5.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+285,Édouard,FWD,Crystal Palace,5.0,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+286,Marsh,FWD,Crystal Palace,4.5,Nott'ham Forest,0.0,0.83,,,0.0,2.5,,,
+288,Travers,GK,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+289,Tyrer,GK,Everton,4.0,Brighton,0.0,0.83,,,0.83,0.83,,,
+290,Branthwaite,DEF,Everton,5.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+292,Mykolenko,DEF,Everton,5.0,Brighton,0.0,0.83,,,0.83,0.83,,,
+294,Coleman,DEF,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+296,Patterson,DEF,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+297,Dixon,DEF,Everton,4.0,Brighton,0.0,0.83,,,0.83,0.83,,,
+298,Welch,DEF,Everton,4.0,Brighton,0.0,0.83,,,0.83,0.83,,,
+300,McNeil,MID,Everton,6.0,Brighton,0.0,0.83,,,0.83,0.83,,,
+305,Armstrong,MID,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+306,Bates,MID,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+307,Ebere,MID,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+308,Heath,MID,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+309,Metcalfe,MID,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+312,Y.Chermiti,FWD,Everton,5.0,Brighton,0.0,0.83,,,0.83,0.83,,,
+313,Sherif,FWD,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+315,Benda,GK,Fulham,4.0,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+316,Robinson,DEF,Fulham,5.0,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+320,Diop,DEF,Fulham,4.5,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+323,Amissah,DEF,Fulham,4.0,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+327,Andreas,MID,Fulham,5.5,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+328,Sessegnon,MID,Fulham,5.5,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+333,Godo,MID,Fulham,4.5,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+334,Harris,MID,Fulham,4.5,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+336,Reed,MID,Fulham,4.5,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+339,Meslier,GK,Leeds United,4.5,Arsenal,0.83,0.0,,,0.0,0.83,,,
+340,Cairns,GK,Leeds United,4.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+341,Darlow,GK,Leeds United,4.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+344,Bijol,DEF,Leeds United,4.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+345,Bornauw,DEF,Leeds United,4.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+346,Byram,DEF,Leeds United,4.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+349,Schmidt,DEF,Leeds United,4.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+355,Greenwood,MID,Leeds United,5.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+357,Ramazani,MID,Leeds United,5.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+359,Crew,MID,Leeds United,4.5,Arsenal,0.83,0.0,,,0.0,0.83,,,
+360,Gelhardt,MID,Leeds United,4.5,Arsenal,0.83,0.0,,,0.0,0.83,,,
+361,Gyabi,MID,Leeds United,4.5,Arsenal,0.83,0.0,,,0.0,0.83,,,
+363,Bamford,FWD,Leeds United,5.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+364,Mateo Joseph,FWD,Leeds United,5.0,Arsenal,0.83,0.0,,,0.0,0.83,,,
+367,Mamardashvili,GK,Liverpool,4.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+368,Pécsi,GK,Liverpool,4.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+369,Woodman,GK,Liverpool,4.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+375,Bradley,DEF,Liverpool,5.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+377,Tsimikas,DEF,Liverpool,5.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+378,Nallo,DEF,Liverpool,4.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+379,R.Williams,DEF,Liverpool,4.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+380,Ramsay,DEF,Liverpool,4.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+383,Luis Díaz,MID,Liverpool,8.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+389,Elliott,MID,Liverpool,5.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+390,Gravenberch,MID,Liverpool,5.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+391,Doak,MID,Liverpool,5.0,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+393,Bajcetic,MID,Liverpool,4.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+394,McConnell,MID,Liverpool,4.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+395,Morton,MID,Liverpool,4.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+396,Nyoni,MID,Liverpool,4.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+397,Darwin,FWD,Liverpool,6.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+398,Danns,FWD,Liverpool,4.5,Newcastle Utd,3.33,0.0,,,1.67,0.0,,,
+399,Ederson M.,GK,Manchester City,5.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+400,Ortega Moreno,GK,Manchester City,5.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+401,Bettinelli,GK,Manchester City,4.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+403,Gvardiol,DEF,Manchester City,6.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+404,Akanji,DEF,Manchester City,5.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+405,Aké,DEF,Manchester City,5.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+412,Vitor Reis,DEF,Manchester City,5.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+414,Foden,MID,Manchester City,8.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+415,Savinho,MID,Manchester City,7.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+420,Gündoğan,MID,Manchester City,6.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+421,Rodrigo,MID,Manchester City,6.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+422,Kovačić,MID,Manchester City,6.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+425,Echeverri,MID,Manchester City,5.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+426,McAtee,MID,Manchester City,5.5,Tottenham,3.33,0.0,,,0.0,2.5,,,
+428,Nypan,MID,Manchester City,5.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+429,Phillips,MID,Manchester City,5.0,Tottenham,3.33,0.0,,,0.0,2.5,,,
+432,Onana,GK,Manchester Utd,5.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+433,Harrison,GK,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+434,Heaton,GK,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+435,Mee,GK,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+437,Martinez,DEF,Manchester Utd,5.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+438,Mazraoui,DEF,Manchester Utd,5.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+439,D.Leon,DEF,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+445,Amass,DEF,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+446,Fredricson,DEF,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+447,Heaven,DEF,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+448,Malacia,DEF,Manchester Utd,4.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+451,Rashford,MID,Manchester Utd,7.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+453,Garnacho,MID,Manchester Utd,6.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+454,Antony,MID,Manchester Utd,6.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+456,Sancho,MID,Manchester Utd,6.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+458,Mainoo,MID,Manchester Utd,5.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+460,Collyer,MID,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+461,Fitzgerald,MID,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+462,J.Fletcher,MID,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+463,Kone,MID,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+464,Moorhouse,MID,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+465,Højlund,FWD,Manchester Utd,6.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+466,Zirkzee,FWD,Manchester Utd,6.0,Fulham,0.0,0.83,,,0.83,0.83,,,
+467,Obi,FWD,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+468,Wheatley,FWD,Manchester Utd,4.5,Fulham,0.0,0.83,,,0.83,0.83,,,
+471,Gillespie,GK,Newcastle Utd,4.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+472,Odysseas,GK,Newcastle Utd,4.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+473,Hall,DEF,Newcastle Utd,5.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+475,Botman,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+479,Krafth,DEF,Newcastle Utd,4.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+480,Lascelles,DEF,Newcastle Utd,4.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+481,A.Murphy,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+482,Ashby,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+483,Pivas,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+484,Targett,DEF,Newcastle Utd,4.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+492,Antoñito C.,MID,Newcastle Utd,5.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+494,Willock,MID,Newcastle Utd,5.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+495,Hayden,MID,Newcastle Utd,4.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+496,Kuol,MID,Newcastle Utd,4.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+498,White,MID,Newcastle Utd,4.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+499,Isak,FWD,Newcastle Utd,10.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+501,Neave,FWD,Newcastle Utd,4.5,Liverpool,0.0,1.67,,,0.0,3.33,,,
+503,C.Miguel,GK,Nott'ham Forest,4.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+504,Turner,GK,Nott'ham Forest,4.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+509,David Carmo,DEF,Nott'ham Forest,4.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+510,Jair Cunha,DEF,Nott'ham Forest,4.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+511,Morato,DEF,Nott'ham Forest,4.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+512,O.Richards,DEF,Nott'ham Forest,4.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+513,Abbott,DEF,Nott'ham Forest,4.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+514,Boly,DEF,Nott'ham Forest,4.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+519,Dominguez,MID,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+520,O'Brien,MID,Nott'ham Forest,5.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+523,Da Silva Moreira,MID,Nott'ham Forest,4.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+524,Stamenic,MID,Nott'ham Forest,4.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+527,Awoniyi,FWD,Nott'ham Forest,5.5,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+528,Patterson,GK,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+529,Moore,GK,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+530,Nna Noukeu,GK,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+533,Alese,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+534,Anderson,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+535,Cirkin,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+536,Hjelde,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+537,Huggins,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+538,Johnson,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+539,O'Nien,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+540,Pembele,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+545,Roberts,MID,Sunderland,5.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+546,Aleksić,MID,Sunderland,5.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+548,Mundle,MID,Sunderland,5.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+549,Neil,MID,Sunderland,5.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+550,Poveda,MID,Sunderland,5.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+554,Ba,MID,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+555,Browne,MID,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+556,Ekwah,MID,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+557,H.Jones,MID,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+558,Matete,MID,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+559,Triantis,MID,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+562,Abdullahi,FWD,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+563,Luís Hemir,FWD,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+564,Rusyn,FWD,Sunderland,4.5,Burnley,2.5,2.5,,,0.0,0.0,,,
+566,Austin,GK,Tottenham,4.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+567,Kinsky,GK,Tottenham,4.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+570,Danso,DEF,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+571,Davies,DEF,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+572,Dragusin,DEF,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+574,Udogie,DEF,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+576,Phillips,DEF,Tottenham,4.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+577,Takai,DEF,Tottenham,4.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+578,Vuskovic,DEF,Tottenham,4.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+579,Son,MID,Tottenham,8.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+581,Maddison,MID,Tottenham,7.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+583,Kulusevski,MID,Tottenham,6.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+587,Bissouma,MID,Tottenham,5.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+589,Solomon,MID,Tottenham,5.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+590,Bryan,MID,Tottenham,5.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+592,Moore,MID,Tottenham,5.0,Manchester City,2.5,0.0,,,0.0,3.33,,,
+594,Min-hyeok,MID,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+595,Olusesi,MID,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+598,Lankshear,FWD,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+599,Scarlett,FWD,Tottenham,4.5,Manchester City,2.5,0.0,,,0.0,3.33,,,
+600,Areola,GK,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+601,Foderingham,GK,West Ham,4.0,Chelsea,0.0,0.0,,,2.5,0.0,,,
+602,Hegyi,GK,West Ham,4.0,Chelsea,0.0,0.0,,,2.5,0.0,,,
+604,Emerson,DEF,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+606,Mavropanos,DEF,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+608,Scarles,DEF,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+611,Casey,DEF,West Ham,4.0,Chelsea,0.0,0.0,,,2.5,0.0,,,
+615,Summerville,MID,West Ham,5.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+616,Álvarez,MID,West Ham,5.0,Chelsea,0.0,0.0,,,2.5,0.0,,,
+617,Cornet,MID,West Ham,5.0,Chelsea,0.0,0.0,,,2.5,0.0,,,
+619,L.Guilherme,MID,West Ham,5.0,Chelsea,0.0,0.0,,,2.5,0.0,,,
+620,Earthy,MID,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+622,Orford,MID,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+623,Potts,MID,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+626,Marshall,FWD,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+627,Johnstone,GK,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+629,Bentley,GK,Wolves,4.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+630,King,GK,Wolves,4.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+634,Mosquera,DEF,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+636,S.Bueno,DEF,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+639,Meupiyou,DEF,Wolves,4.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+640,Pedro Lima,DEF,Wolves,4.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+641,Pond,DEF,Wolves,4.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+647,Guedes,MID,Wolves,5.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+649,B.Traore,MID,Wolves,5.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+650,Chirewa,MID,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+651,Edozie,MID,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+652,Gonzalez,MID,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+653,Hodge,MID,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+655,Fábio Silva,FWD,Wolves,5.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+656,Kalajdžić,FWD,Wolves,5.0,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+657,Chiwome,FWD,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+658,Fraser,FWD,Wolves,4.5,Bournemouth,0.0,3.33,,,3.33,1.67,,,
+659,Walker-Peters,DEF,West Ham,4.5,Chelsea,0.0,0.0,,,2.5,0.0,,,
+662,Mosquera,DEF,Arsenal,5.5,Leeds United,0.83,0.0,,,0.0,0.83,,,
+664,Lecomte,GK,Fulham,4.0,Manchester Utd,0.83,0.83,,,0.83,0.0,,,
+667,Aznou,DEF,Everton,4.5,Brighton,0.0,0.83,,,0.83,0.83,,,
+672,Hato,DEF,Chelsea,5.0,West Ham,0.0,2.5,,,0.0,0.0,,,
+674,Ramsdale,GK,Newcastle Utd,5.0,Liverpool,0.0,1.67,,,0.0,3.33,,,
+675,Gunn,GK,Nott'ham Forest,4.0,Crystal Palace,2.5,0.0,,,0.83,0.0,,,
+677,Guessand,MID,Aston Villa,6.5,Brentford,0.0,2.5,,,0.0,0.83,,,
+678,Masuaku,DEF,Sunderland,4.0,Burnley,2.5,2.5,,,0.0,0.0,,,
+680,Broja,FWD,Burnley,5.5,Sunderland,0.0,0.0,,,2.5,2.5,,,
+684,Thiaw,DEF,Newcastle Utd,5.0,Liverpool,0.0,1.67,,,0.0,3.33,,,

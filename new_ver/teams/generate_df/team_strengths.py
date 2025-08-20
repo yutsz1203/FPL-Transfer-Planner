@@ -26,8 +26,9 @@ def strength_calculation(df):
     df["a_Di"] = df["a_Di"].round(2)
 
 gw = int(input("Enter gameweek number: "))
+n = int(input("Enter number of last n gameweeks to include in calculation: "))
 current_season_team = []
-last5games_team = []
+lastngames_team = []
 
 wait("match statistics")
 print(f"{gw} down, {38-gw} to go. The league is {round(gw/38 * 100.0, 2)}% done.")
@@ -42,7 +43,7 @@ for team_id in team_ids:
     team_name = team_id_map[team_id]
     print(f"Fetching data for {team_name} as at Gameweek {gw}...")
     h_gf, h_ga, a_gf, a_ga, h_games, a_games = 0, 0, 0, 0, 0, 0
-    last5_h_gf, last5_h_ga, last5_a_gf, last5_a_ga, last5_h_games, last5_a_games = 0, 0, 0, 0, 0, 0
+    lastn_h_gf, lastn_h_ga, lastn_a_gf, lastn_a_ga, lastn_h_games, lastn_a_games = 0, 0, 0, 0, 0, 0
     for i in range(gw):
         match = data[i]
         # skipping bgw
@@ -50,18 +51,18 @@ for team_id in team_ids:
              print(f"Blank gameweek for {team_name}")
              break
         # i = 4 for gw 5, 0-4 are last 5
-        if i >= gw - 5:
+        if i >= gw - n: # changed here, if have bug check out this line
             if match["home_away"] == "Home":
-                last5_h_gf += match["gf"]
-                last5_h_ga += match["ga"]
-                last5_h_games += 1
+                lastn_h_gf += match["gf"]
+                lastn_h_ga += match["ga"]
+                lastn_h_games += 1
                 h_gf += match["gf"]
                 h_ga += match["ga"]
                 h_games += 1
             else:
-                last5_a_gf += match["gf"]
-                last5_a_ga += match["ga"]
-                last5_a_games += 1
+                lastn_a_gf += match["gf"]
+                lastn_a_ga += match["ga"]
+                lastn_a_games += 1
                 a_gf += match["gf"]
                 a_ga += match["ga"]
                 a_games += 1
@@ -89,17 +90,17 @@ for team_id in team_ids:
         "a_games": a_games
     })
 
-    last5games_team.append({
+    lastngames_team.append({
         "team": team_name,
-        "games": last5_h_games + last5_a_games,
-        "gf": last5_h_gf + last5_a_gf,
-        "ga": last5_h_ga + last5_a_ga,
-        "h_games": last5_h_games,
-        "h_gf": last5_h_gf,
-        "h_ga": last5_h_ga,
-        "a_gf": last5_a_gf,
-        "a_ga": last5_a_ga,
-        "a_games": last5_a_games     
+        "games": lastn_h_games + lastn_a_games,
+        "gf": lastn_h_gf + lastn_a_gf,
+        "ga": lastn_h_ga + lastn_a_ga,
+        "h_games": lastn_h_games,
+        "h_gf": lastn_h_gf,
+        "h_ga": lastn_h_ga,
+        "a_gf": lastn_a_gf,
+        "a_ga": lastn_a_ga,
+        "a_games": lastn_a_games     
     })
     if team_name == "Wolves":
             print("Fetches statistics for all teams from Premier League in the last season.")
@@ -111,11 +112,13 @@ for team_id in team_ids:
 
 current_season_df = pd.DataFrame(current_season_team)
 strength_calculation(current_season_df)
+current_season_df.sort_values(by=["Oi"], ascending=False, inplace=True)
 print(current_season_df)
-current_season_df.to_csv("teams/data/2526-prem-teams-currentseason.csv", index=False)
+current_season_df.to_csv("teams/data/teams_currentseason.csv", index=False)
 
-last5games_df = pd.DataFrame(last5games_team)
-strength_calculation(last5games_df)
-print(last5games_df)
-last5games_df.to_csv("teams/data/2526-prem-teams-last5games.csv", index=False)
+lastngames_df = pd.DataFrame(lastngames_team)
+strength_calculation(lastngames_df)
+lastngames_df.sort_values(by=["Oi"], ascending=False, inplace=True)
+print(lastngames_df)
+lastngames_df.to_csv(f"teams/data/teams_last{n}games.csv", index=False)
         

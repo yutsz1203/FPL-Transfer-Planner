@@ -93,7 +93,7 @@ def build_dict(element_id,player, pos, team, cost, points, games, goals, assists
 
 if __name__ == "__main__":
     gw = int(input("Enter current gameweek number: "))
-    n = int(input("Enter number of last n gameweeks to include in stats: "))
+    n = int(input("Enter number of last n gameweeks to include in calculation: "))
     player_basic_df = pd.read_csv("players/data/players.csv")
     player_ids = player_basic_df.index.tolist()
     df = []
