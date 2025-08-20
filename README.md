@@ -52,10 +52,23 @@
    - then think about promoted teams
 4. Last season (only used for first draft of the season)
 
+## Using the planner
+
+After Gameweek ended
+
+1. team_strengths: get team strengths of current season and last n games
+2. (only for fixture changes)fixtures: get fixtures (get_fixtures.py)
+3. team projection: get_next_gameweek and get_next_n_gameweek (fixture_projection.py)
+4. player stats: get player stats of current season and last n games (player_stats.py)
+5. player projection: get_next_gameweek and get_next_n_gameweek (player_projection.py)
+6. myteam: get player stats and player projection from my team (myteam_stats, myteam_projection)
+7. get new players: (get_players.py)
+
 ## Tasks
 
+- fixture_projection.py: import data of teams from last n games
 - next 5 gws projection (player_projection.py)
-- projection of my own team for next gw, and next n gws (myteam_projection.py)
+- change getting last 5 games of team strengths to last n games (team_strengths.py)
 - calculate augmented team strengths
 
 ## Finished
