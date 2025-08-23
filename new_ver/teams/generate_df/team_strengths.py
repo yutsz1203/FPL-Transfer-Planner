@@ -115,10 +115,11 @@ strength_calculation(current_season_df)
 current_season_df.sort_values(by=["Oi"], ascending=False, inplace=True)
 print(current_season_df)
 current_season_df.to_csv("teams/data/teams_currentseason.csv", index=False)
+print("Team strengths of current season saved to teams/data/teams_currentseason.csv")
 
 lastngames_df = pd.DataFrame(lastngames_team)
 strength_calculation(lastngames_df)
 lastngames_df.sort_values(by=["Oi"], ascending=False, inplace=True)
 print(lastngames_df)
 lastngames_df.to_csv(f"teams/data/teams_last{n}games.csv", index=False)
-        
+print(f"Team strengths of last {n} games saved to teams/data/teams_last{n}games.csv")

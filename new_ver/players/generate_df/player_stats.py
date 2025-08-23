@@ -116,11 +116,13 @@ if __name__ == "__main__":
 
     df = pd.DataFrame(df)
     df.sort_values(by=["xGI", "Points/$"], ascending=False, inplace=True)
-    df.to_csv("players/results/player_season_stats.csv", index=False)
+    df.to_csv("players/results/players_currentseason.csv", index=False)
+    print(f"Player stats of current season saved to players/results/players_currentseason.csv")
 
     lastngamesdf = pd.DataFrame(lastngamesdf)
     lastngamesdf.sort_values(by=["xGI", "Points/$"], ascending=False, inplace=True)
-    lastngamesdf.to_csv(f"players/results/player_last{n}games_stats.csv", index=False)
+    lastngamesdf.to_csv(f"players/results/players_last{n}games.csv", index=False)
+    print(f"Player stats of last {n} games saved to players/results/players_last{n}games.csv")
 
     print(df.head())
     print(lastngamesdf.head())

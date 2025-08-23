@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import sys
 import os
+from pathlib import Path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 from const import official_base_url, element_type_map, official_team_id_map
 
@@ -24,4 +25,7 @@ df = pd.DataFrame(players, index=index)
 df.sort_index(inplace=True)
 df.index.name = "Player ID"
 print(df)
-df.to_csv("players/data/players.csv")
+
+current_dir = Path(__file__).parent
+player_dir = current_dir.parent
+df.to_csv(player_dir / "data" / "players.csv")

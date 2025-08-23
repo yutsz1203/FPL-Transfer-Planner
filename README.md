@@ -54,6 +54,10 @@
 
 ## Using the planner
 
+Before Gameweek starts
+
+1. get new players: (get_players.py)
+
 After Gameweek ended
 
 1. team_strengths: get team strengths of current season and last n games
@@ -62,7 +66,6 @@ After Gameweek ended
 4. player stats: get player stats of current season and last n games (player_stats.py)
 5. player projection: get_next_gameweek and get_next_n_gameweek (player_projection.py)
 6. myteam: get player stats and player projection from my team (myteam_stats, myteam_projection)
-7. get new players: (get_players.py)
 
 ## Tasks
 

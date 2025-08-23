@@ -65,8 +65,9 @@ def get_next_gameweek(df, type, side_adjustment=True):
         print("*" * 90)
     next_gameweek_df = pd.DataFrame(next_gameweek)
     next_gameweek_df.sort_values(by=["expected_gf"], ascending=False, inplace=True)
-    next_gameweek_df.to_csv(f"teams/opponents/next_gameweek_{type}.csv", index=False)
+    next_gameweek_df.to_csv(f"teams/projection/teams_next_gameweek_{type}.csv", index=False)
     print(next_gameweek_df)
+    print(f"Team projection of next gameweek using data of {type} saved to teams/projection/teams_next_gameweek_{type}.csv")
 
 # Uncomment to get the next gameweek opponents
 # get_next_gameweek(last_season_strengths, "last_season")
@@ -131,9 +132,9 @@ def get_next_n_gameweek(df, type, side_adjustment=True, n=5):
         print("*" * 90)
     next_n_gameweek_df = pd.DataFrame(next_n_gameweek)
     next_n_gameweek_df.sort_values(by=["expected_gf"], ascending=False, inplace=True)
-    next_n_gameweek_df.to_csv(f"teams/opponents/next_{n}_gameweek_{type}.csv", index=False)
+    next_n_gameweek_df.to_csv(f"teams/projection/teams_next{n}gameweeks_{type}.csv", index=False)
     print(next_n_gameweek_df)
-
+    print(f"Team projection of next {n} gameweeks using data of {type} saved to teams/projection/teams_next{n}gameweeks_{type}.csv")
 # Next week opponents
 
 # last season strengths, only for before first gameweek

@@ -19,9 +19,11 @@ def get_myteam_projection_nextgw(gw, type, n=1):
     player_ids = [player["element"] for player in players]
     new_df = players_df[players_df["Player ID"].isin(player_ids)]
     if type == "lastngames":
-        new_df.to_csv(f"myteam/projection/myteam_nextgw_last{n}games.csv", index=False)
+        new_df.to_csv(f"myteam/projection/myteam_last{n}games_projection_nextgw.csv", index=False)
+        print(f"Player stats of my teams using data from current season saved to myteam/results/myteam_currentseason_stats.csv")
     else:
-        new_df.to_csv(f"myteam/projection/myteam_nextgw_currentseason.csv", index=False)
+        new_df.to_csv(f"myteam/projection/myteam_currentseason_projection_nextgw.csv", index=False)
+        print(f"Player stats of my teams using data from current season saved to myteam/results/myteam_currentseason_stats.csv")
     print(new_df.to_string(index=False))
 
 def get_myteam_projection_nextngw(gw, type, n=1, ngw=5):
@@ -35,8 +37,10 @@ def get_myteam_projection_nextngw(gw, type, n=1, ngw=5):
     new_df = players_df[players_df["Player ID"].isin(player_ids)] 
     if type == "lastngames":
         new_df.to_csv(f"myteam/projection/myteam_next{ngw}gws_last{n}games.csv", index=False)
+        print(f"Player stats of my teams using data from current season saved to myteam/results/myteam_currentseason_stats.csv")
     else:
         new_df.to_csv(f"myteam/projection/myteam_next{ngw}gws_currentseason.csv", index=False)
+        print(f"Player stats of my teams using data from current season saved to myteam/results/myteam_currentseason_stats.csv")
     print(new_df.to_string(index=False))
 
 if __name__ == "__main__":

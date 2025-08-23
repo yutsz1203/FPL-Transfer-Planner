@@ -134,7 +134,7 @@ def get_next_n_gameweek(fixtures, player_df, team_df, type, gw, side_adjustment=
     next_n_gameweek_df["projected_net_goals"] = round(next_n_gameweek_df["projected_GI"] - next_n_gameweek_df["projected_Gc"], 2)
     next_n_gameweek_df = next_n_gameweek_df.reindex(columns=["Player ID", "Name", "Pos", "Team", "Cost", "team_Oi", "opponent_Di", "xGI", "projected_GI", "team_Di", "opponent_Oi", "xGc", "projected_Gc", "projected_net_goals", "opponents"])
     next_n_gameweek_df.sort_values(by=["projected_GI"], ascending=False, inplace=True)
-    next_n_gameweek_df.to_csv(f"players/projection/next_{n}_gameweeks_{type}.csv", index=False)
+    next_n_gameweek_df.to_csv(f"players/projection/next{n}gameweeks_{type}.csv", index=False)
     print(next_n_gameweek_df.head())
 
 if __name__ == "__main__":
@@ -142,11 +142,11 @@ if __name__ == "__main__":
 
     # Current season
     team_current_season = pd.read_csv("teams/data/teams_currentseason.csv")
-    player_current_season = pd.read_csv("players/results/player_season_stats.csv")
+    player_current_season = pd.read_csv("players/results/players_currentseason.csv")
 
     # Last n games
     n = int(input("Please input n, number of previous games for calculation of player statistics: "))
-    player_lastngames = pd.read_csv(f"players/results/player_last{n}games_stats.csv")
+    player_lastngames = pd.read_csv(f"players/results/players_last{n}games.csv")
 
     # Augmented
     # augmented_strengths = pd.read_csv("teams/data/2526-prem-teams-augmented.csv")
