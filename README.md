@@ -34,58 +34,26 @@
 - Output:
   - {current-season}-prem-teams-pastseason.csv
 
-## Functions
-
-1. Project the next 5 gameweek of every team
-2. Project best players for each team according to the projection at (2)
-3. Players (last 5)
-4. Next game week calculation.
-   - opponent projection
-   - gambling matrix
-
-## Calculation timeframe
-
-1. Current season (update every week)
-2. Rolling 5 (starts at gw5)
-3. Incorporate with last season (always maintain 38 gameweeks)
-   - do teams that were in prem last season
-   - then think about promoted teams
-4. Last season (only used for first draft of the season)
-
 ## Using the planner
-
-Before Gameweek starts
-
-1. get new players: (get_players.py)
 
 After Gameweek ended
 
-1. team_strengths: get team strengths of current season and last n games
-2. (only for fixture changes)fixtures: get fixtures (get_fixtures.py)
-3. team projection: get_next_gameweek and get_next_n_gameweek (fixture_projection.py)
-4. player stats: get player stats of current season and last n games (player_stats.py)
-5. player projection: get_next_gameweek and get_next_n_gameweek (player_projection.py)
-6. myteam: get player stats and player projection from my team (myteam_stats, myteam_projection)
+1. get new players: (get_players.py)
+2. team_strengths: get team strengths of current season and last n games
+3. (only for fixture changes)fixtures: get fixtures (get_fixtures.py)
+4. team projection: get_next_gameweek and get_next_n_gameweek (fixture_projection.py)
+5. player stats: get player stats of current season and last n games (player_stats.py)
+6. player projection: get_next_gameweek and get_next_n_gameweek (player_projection.py)
+7. myteam: get player stats and player projection from my team (myteam_stats, myteam_projection)
 
 ## Tasks
 
+- file importing / exporting (use pathlib to add project path to const.py)
 - fixture_projection.py: import data of teams from last n games
 - next 5 gws projection (player_projection.py)
 - change getting last 5 games of team strengths to last n games (team_strengths.py)
+- calculate current gameweek player stats & team stats
 - calculate augmented team strengths
-
-## Finished
-
-- Fetch fixtures (Need adjust for double gameweek)
-- Last season team strengths
-- Current season team strength
-- Next gameweek projections (team strength)
-- Next n gameweeks projections (team strength)
-- calculate last 5 games team strengths
-- get players basic information (id, team, pos, price, selected by)
-- calculate player current season stats, calculate player last 5 games stats (use official api) (player_stats.py)
-- season stats and last 5 games stats of my own team (myteam_stats.py)
-- next gameweek projection
 
 ## References
 

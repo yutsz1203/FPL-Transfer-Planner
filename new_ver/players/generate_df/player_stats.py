@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 import sys
 import os
+from pathlib import Path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 from const import official_base_url, official_to_fbref_team_map
 
@@ -14,7 +15,6 @@ def stats_calculation(player, matches):
 
     for match in matches:
         if match["minutes"] == 0:
-            print(f"{player} did not played, skipping...")
             continue
         side = "Home" if match["was_home"] else "Away"
         points += match["total_points"]
@@ -94,7 +94,9 @@ def build_dict(element_id,player, pos, team, cost, points, games, goals, assists
 if __name__ == "__main__":
     gw = int(input("Enter current gameweek number: "))
     n = int(input("Enter number of last n gameweeks to include in calculation: "))
-    player_basic_df = pd.read_csv("players/data/players.csv")
+
+    PLAYERS_DIR = Path(__file__).parent.parent
+    player_basic_df = pd.read_csv(PLAYERS_DIR/"data"/"players.csv")
     player_ids = player_basic_df.index.tolist()
     df = []
     lastngamesdf = []
@@ -116,13 +118,13 @@ if __name__ == "__main__":
 
     df = pd.DataFrame(df)
     df.sort_values(by=["xGI", "Points/$"], ascending=False, inplace=True)
-    df.to_csv("players/results/players_currentseason.csv", index=False)
-    print(f"Player stats of current season saved to players/results/players_currentseason.csv")
+    df.to_csv(PLAYERS_DIR / "results" / "players_currentseason.csv", index=False)
+    print(f"Player stats of current season saved to {PLAYERS_DIR/ "results" / "players_currentseason.csv"}")
 
     lastngamesdf = pd.DataFrame(lastngamesdf)
     lastngamesdf.sort_values(by=["xGI", "Points/$"], ascending=False, inplace=True)
-    lastngamesdf.to_csv(f"players/results/players_last{n}games.csv", index=False)
-    print(f"Player stats of last {n} games saved to players/results/players_last{n}games.csv")
+    lastngamesdf.to_csv(PLAYERS_DIR / "results" / f"players_last{n}games.csv", index=False)
+    print(f"Player stats of last {n} games saved to {PLAYERS_DIR / "results" / f"players_last{n}games.csv"}")
 
     print(df.head())
     print(lastngamesdf.head())

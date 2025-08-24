@@ -1,8 +1,7 @@
-import pandas as pd
-from pandas import Series, DataFrame
 import numpy as np
-
+import pandas as pd
 import requests
+from pandas import DataFrame, Series
 
 """
 Documentation: https://fbrapi.com/documentation
@@ -31,21 +30,8 @@ league_id = 9
 # print("API Key:", api_key)
 
 # header = {"X-API-Key": api_key}
+from pathlib import Path
 
-df = pd.read_csv("players/results/player_season_stats.csv")
-print(df.columns)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(Path(__file__).parent)
+# df = pd.read_csv("players/results/player_season_stats.csv")
+# print(df.columns)

@@ -1,9 +1,21 @@
-import requests
-import pandas as pd
-import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-from const import base_url, matches_api, header, league_id, season_id, team_ids, team_id_map, wait
+import sys
+
+import pandas as pd
+import requests
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from const import (  # noqa: E402
+    base_url,
+    header,
+    league_id,
+    matches_api,
+    season_id,
+    team_id_map,
+    team_ids,
+    wait,
+)
+
 
 def strength_calculation(df):
     # Strength Calculation
@@ -25,6 +37,7 @@ def strength_calculation(df):
     df["a_Di"] = df["a_ga"] / df["a_games"] / a_lod
     df["a_Di"] = df["a_Di"].round(2)
 
+
 gw = int(input("Enter gameweek number: "))
 n = int(input("Enter number of last n gameweeks to include in calculation: "))
 current_season_team = []
@@ -36,22 +49,31 @@ print(f"Start fetching team statistics after gameweek {gw}...")
 print("*" * 90)
 
 for team_id in team_ids:
-    response = requests.get(base_url + matches_api,
-                        params={"team_id": team_id, "season_id": season_id, "league_id": league_id},
-                        headers=header)
+    response = requests.get(
+        base_url + matches_api,
+        params={"team_id": team_id, "season_id": season_id, "league_id": league_id},
+        headers=header,
+    )
     data = response.json()["data"]
     team_name = team_id_map[team_id]
     print(f"Fetching data for {team_name} as at Gameweek {gw}...")
     h_gf, h_ga, a_gf, a_ga, h_games, a_games = 0, 0, 0, 0, 0, 0
-    lastn_h_gf, lastn_h_ga, lastn_a_gf, lastn_a_ga, lastn_h_games, lastn_a_games = 0, 0, 0, 0, 0, 0
+    lastn_h_gf, lastn_h_ga, lastn_a_gf, lastn_a_ga, lastn_h_games, lastn_a_games = (
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+    )
     for i in range(gw):
         match = data[i]
         # skipping bgw
         if not match["match_id"]:
-             print(f"Blank gameweek for {team_name}")
-             break
+            print(f"Blank gameweek for {team_name}")
+            break
         # i = 4 for gw 5, 0-4 are last 5
-        if i >= gw - n: # changed here, if have bug check out this line
+        if i >= gw - n:  # changed here, if have bug check out this line
             if match["home_away"] == "Home":
                 lastn_h_gf += match["gf"]
                 lastn_h_ga += match["ga"]
@@ -76,34 +98,40 @@ for team_id in team_ids:
                 a_gf += match["gf"]
                 a_ga += match["ga"]
                 a_games += 1
-    
-    current_season_team.append({
-        "team": team_name,
-        "games": h_games + a_games,
-        "gf": h_gf + a_gf,
-        "ga": h_ga + a_ga,
-        "h_games": h_games,
-        "h_gf": h_gf,
-        "h_ga": h_ga,
-        "a_gf": a_gf,
-        "a_ga": a_ga,
-        "a_games": a_games
-    })
 
-    lastngames_team.append({
-        "team": team_name,
-        "games": lastn_h_games + lastn_a_games,
-        "gf": lastn_h_gf + lastn_a_gf,
-        "ga": lastn_h_ga + lastn_a_ga,
-        "h_games": lastn_h_games,
-        "h_gf": lastn_h_gf,
-        "h_ga": lastn_h_ga,
-        "a_gf": lastn_a_gf,
-        "a_ga": lastn_a_ga,
-        "a_games": lastn_a_games     
-    })
+    current_season_team.append(
+        {
+            "team": team_name,
+            "games": h_games + a_games,
+            "gf": h_gf + a_gf,
+            "ga": h_ga + a_ga,
+            "h_games": h_games,
+            "h_gf": h_gf,
+            "h_ga": h_ga,
+            "a_gf": a_gf,
+            "a_ga": a_ga,
+            "a_games": a_games,
+        }
+    )
+
+    lastngames_team.append(
+        {
+            "team": team_name,
+            "games": lastn_h_games + lastn_a_games,
+            "gf": lastn_h_gf + lastn_a_gf,
+            "ga": lastn_h_ga + lastn_a_ga,
+            "h_games": lastn_h_games,
+            "h_gf": lastn_h_gf,
+            "h_ga": lastn_h_ga,
+            "a_gf": lastn_a_gf,
+            "a_ga": lastn_a_ga,
+            "a_games": lastn_a_games,
+        }
+    )
     if team_name == "Wolves":
-            print("Fetches statistics for all teams from Premier League in the last season.")
+        print(
+            "Fetches statistics for all teams from Premier League in the last season."
+        )
     else:
         print("*" * 90)
         wait("next team.")
