@@ -14,6 +14,7 @@ from const import (  # noqa: E402
     team_id_map,
     team_ids,
     wait,
+    TEAMS_DATA_DIR,
 )
 
 
@@ -142,12 +143,14 @@ current_season_df = pd.DataFrame(current_season_team)
 strength_calculation(current_season_df)
 current_season_df.sort_values(by=["Oi"], ascending=False, inplace=True)
 print(current_season_df)
-current_season_df.to_csv("teams/data/teams_currentseason.csv", index=False)
-print("Team strengths of current season saved to teams/data/teams_currentseason.csv")
+file_path = TEAMS_DATA_DIR / "teams_currentseason.csv"
+current_season_df.to_csv(file_path, index=False)
+print(f"Team strengths of current season saved to {file_path}")
 
 lastngames_df = pd.DataFrame(lastngames_team)
 strength_calculation(lastngames_df)
 lastngames_df.sort_values(by=["Oi"], ascending=False, inplace=True)
 print(lastngames_df)
-lastngames_df.to_csv(f"teams/data/teams_last{n}games.csv", index=False)
-print(f"Team strengths of last {n} games saved to teams/data/teams_last{n}games.csv")
+file_path = TEAMS_DATA_DIR / f"teams_last{n}games.csv"
+lastngames_df.to_csv(file_path, index=False)
+print(f"Team strengths of last {n} games saved to {file_path}")

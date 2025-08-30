@@ -184,5 +184,25 @@ def wait(context):
 
 
 # /Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver
-PROJECT_PATH = Path(__file__).parent
-print(PROJECT_PATH)
+PROJECT_DIR = Path(__file__).parent
+print(PROJECT_DIR)
+PROJECT_DIR = Path("/Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver")
+print(PROJECT_DIR)
+
+PLAYERS_RESULT_DIR = PROJECT_DIR / "players" / "results"
+print(PLAYERS_RESULT_DIR)
+
+PLAYERS_PROJECTION_DIR = PROJECT_DIR / "players" / "projection"
+print(PLAYERS_PROJECTION_DIR)
+
+MYTEAM_RESULT_DIR = PROJECT_DIR / "myteam" / "results"
+print(MYTEAM_RESULT_DIR)
+
+MYTEAM_PROJECTION_DIR = PROJECT_DIR / "myteam" / "projection"
+print(MYTEAM_PROJECTION_DIR)
+
+TEAMS_DATA_DIR = PROJECT_DIR / "teams" / "data"
+print(TEAMS_DATA_DIR)
+
+TEAMS_PROJECTION_DIR = PROJECT_DIR / "teams" / "projection"
+print(TEAMS_PROJECTION_DIR)

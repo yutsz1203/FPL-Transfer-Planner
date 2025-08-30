@@ -2,19 +2,17 @@ import os
 import sys
 
 import pandas as pd
-from const import PROJECT_PATH, team_id_map, team_ids
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from const import TEAMS_DATA_DIR, TEAMS_PROJECTION_DIR, team_id_map, team_ids  # noqa: E402
 
-TEAMS_PATH = PROJECT_PATH / "teams"
-
-fixtures = pd.read_csv(TEAMS_PATH / "data" / "fixtures.csv")
+fixtures = pd.read_csv(TEAMS_DATA_DIR / "fixtures.csv")
 
 # Only for first gameweek
 # last_season_strengths = pd.read_csv("teams/data/2526-prem-teams-lastseason.csv")
 
 # Current season
-current_season_strengths = pd.read_csv(TEAMS_PATH / "data" / "teams_currentseason.csv")
+current_season_strengths = pd.read_csv(TEAMS_DATA_DIR / "teams_currentseason.csv")
 
 # Rolling 5
 # last5games_strengths = pd.read_csv("teams/data/2526-prem-teams-last5games.csv")
@@ -76,12 +74,10 @@ def get_next_gameweek(df, type, side_adjustment=True):
         print("*" * 90)
     next_gameweek_df = pd.DataFrame(next_gameweek)
     next_gameweek_df.sort_values(by=["expected_gf"], ascending=False, inplace=True)
-    output_path = TEAMS_PATH / "projection" / f"teams_next_gameweek_{type}.csv"
-    next_gameweek_df.to_csv(output_path, index=False)
+    file_path = TEAMS_PROJECTION_DIR / f"teams_next_gameweek_{type}.csv"
+    next_gameweek_df.to_csv(file_path, index=False)
     print(next_gameweek_df)
-    print(
-        f"Team projection of next gameweek using data of {type} saved to {output_path}"
-    )
+    print(f"Team projection of next gameweek using data of {type} saved to {file_path}")
 
 
 # Uncomment to get the next gameweek opponents
@@ -190,11 +186,11 @@ def get_next_n_gameweek(df, type, side_adjustment=True, n=5):
         print("*" * 90)
     next_n_gameweek_df = pd.DataFrame(next_n_gameweek)
     next_n_gameweek_df.sort_values(by=["expected_gf"], ascending=False, inplace=True)
-    output_path = TEAMS_PATH / "projection" / f"teams_next{n}gameweeks_{type}.csv"
-    next_n_gameweek_df.to_csv(output_path, index=False)
+    file_path = TEAMS_PROJECTION_DIR / f"teams_next{n}gameweeks_{type}.csv"
+    next_n_gameweek_df.to_csv(file_path, index=False)
     print(next_n_gameweek_df)
     print(
-        f"Team projection of next {n} gameweeks using data of {type} saved to {output_path}"
+        f"Team projection of next {n} gameweeks using data of {type} saved to {file_path}"
     )
 
 
