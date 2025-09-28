@@ -91,7 +91,7 @@ Use the package manager pip to install the dependencies for this project.
 
 Due to mid-week cup matches and various reason that leads to postponements (e.g. bad weather), PL games may be rearranged. It leads to the occurences of what we called Blank Gameweek (BGW) or Double Gameweek (DGW). Therefore, we need to update the fixtures for each team before proceeding.
 
-`python teams/get_fixtures.py`
+`$ python teams/get_fixtures.py`
 
 The fixture list for each team: stored at `teams/data/fixtures.csv`.
 
@@ -99,13 +99,13 @@ The fixture list for each team: stored at `teams/data/fixtures.csv`.
 
 There may be new players in every gameweek, such as new signings and/or players promoted from the u-teams. Therefore, we need to update the player list as well.
 
-`python players/generate_df/get_players.py`
+`$ python players/generate_df/get_players.py`
 
 The player list: stored at `players/data/players.csv`
 
 #### Calculate teams' strengths
 
-`python teams/generate_df/team_strengths.py`
+`$ python teams/generate_df/team_strengths.py`
 
 Prompts:
 
@@ -123,7 +123,7 @@ Team strength of last n gameweeks: stored at `teams/results/teams_last{n}games.c
 
 #### Project teams' performances
 
-`python teams/fixture_projection.py`
+`$ python teams/fixture_projection.py`
 
 Prompts:
 
@@ -138,7 +138,7 @@ Fixture projection for next 5 gameweeks: stored at `teams/projection/teams_next5
 
 #### Calculate players' statistics
 
-`python players/generate_df/player_stats.py`
+`$ python players/generate_df/player_stats.py`
 
 Prompts:
 
@@ -156,7 +156,7 @@ Player statistics of last n games: stored at `players/results/players_last{n}gam
 
 #### Project players' performances
 
-`python players/player_projection.py`
+`$ python players/player_projection.py`
 
 Prompts:
 
@@ -176,7 +176,7 @@ Fixture projection for next 5 gameweeks: stored at `players/projection/players_n
 
 Individual player statistics
 
-`python myteam/myteam_stats.py`
+`$ python myteam/myteam_stats.py`
 
 Prompts:
 
@@ -192,7 +192,7 @@ Your FPL team's individual player statistics: stored at `new_ver/myteam/results/
 
 Player performance projection
 
-`python myteam/myteam_projection.py`
+`$ python myteam/myteam_projection.py`
 
 Prompts:
 
