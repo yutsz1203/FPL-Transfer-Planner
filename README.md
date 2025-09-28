@@ -188,7 +188,7 @@ Prompts:
 
 - Use the same n as here: `players/results/players_last{n}games.csv`
 
-Your FPL team's individual player statistics: stored at `new_ver/myteam/results/myteam_currentseason_stats.csv` and `new_ver/myteam/results/myteam_last{n}games_stats.csv`
+Your FPL team's individual player statistics: stored at `myteam/results/myteam_currentseason_stats.csv` and `myteam/results/myteam_last{n}games_stats.csv`
 
 Player performance projection
 
@@ -204,7 +204,7 @@ Prompts:
 
 - Use the same n as here: `players/results/players_last{n}games.csv`
 
-Your FPL team's projection: stored at `new_ver/myteam/projection/myteam_nextgw_projection_currentseason.csv` and `new_ver/myteam/projection/myteam_next5gws_currentseason.csv`
+Your FPL team's projection: stored at `myteam/projection/myteam_nextgw_projection_currentseason.csv` and `myteam/projection/myteam_next5gws_currentseason.csv`
 
 ## References and APIs
 
