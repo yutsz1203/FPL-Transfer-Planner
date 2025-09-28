@@ -75,6 +75,6 @@ def get_myteam_projection_nextngw(gw, type, n=1, ngw=5):
 
 if __name__ == "__main__":
     gw = int(input("Enter current gameweek number: "))
-    n = int(input("Enter n, number of gameweek used in projection: "))
+    n = int(input("Enter n, number of previous games taking into account: "))
     get_myteam_projection_nextgw(gw, "currentseason")
     get_myteam_projection_nextngw(gw, "currentseason")

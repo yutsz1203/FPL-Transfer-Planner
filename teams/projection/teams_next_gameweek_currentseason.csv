@@ -1,0 +1,21 @@
+team,side,team_Oi,team_Di,opponent,opponent_Oi,opponent_Di,expected_gf,expected_ga
+Everton,H,1.28,0.77,West Ham,1.03,2.05,2.62,0.79
+Tottenham,H,1.28,0.26,Wolves,0.51,2.05,2.62,0.13
+Manchester City,H,1.28,1.03,Burnley,1.03,1.54,1.97,1.06
+Chelsea,H,1.79,0.26,Brighton,0.77,1.03,1.84,0.2
+Sunderland,A,1.28,0.77,Nott'ham Forest,1.03,1.28,1.64,0.79
+Bournemouth,A,1.03,1.03,Leeds United,0.26,1.28,1.32,0.27
+Manchester Utd,A,1.03,1.03,Brentford,0.77,1.28,1.32,0.79
+Arsenal,A,1.54,0.26,Newcastle Utd,0.51,0.77,1.19,0.13
+Burnley,A,1.03,1.54,Manchester City,1.28,1.03,1.06,1.97
+Crystal Palace,H,1.03,0.26,Liverpool,2.05,1.03,1.06,0.53
+Nott'ham Forest,H,1.03,1.28,Sunderland,1.28,0.77,0.79,1.64
+Brentford,H,0.77,1.28,Manchester Utd,1.03,1.03,0.79,1.32
+West Ham,A,1.03,2.05,Everton,1.28,0.77,0.79,2.62
+Fulham,A,0.51,1.03,Aston Villa,0.0,1.03,0.53,0.0
+Liverpool,A,2.05,1.03,Crystal Palace,1.03,0.26,0.53,1.06
+Leeds United,H,0.26,1.28,Bournemouth,1.03,1.03,0.27,1.32
+Brighton,A,0.77,1.03,Chelsea,1.79,0.26,0.2,1.84
+Newcastle Utd,H,0.51,0.77,Arsenal,1.54,0.26,0.13,1.19
+Wolves,A,0.51,2.05,Tottenham,1.28,0.26,0.13,2.62
+Aston Villa,H,0.0,1.03,Fulham,0.51,1.03,0.0,0.53

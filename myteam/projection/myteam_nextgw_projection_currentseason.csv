@@ -1,0 +1,16 @@
+Player ID,Name,Pos,Team,Cost,opponent,team_Oi,opponent_Di,xGI,projected GI,team_Di,opponent_Oi,xGc,projected Gc,projected net goals
+525,Wood,FWD,Nott'ham Forest,7.6,Burnley,1.03,1.54,0.4325,0.67,1.28,1.03,1.235,1.27,-0.6
+235,Palmer,MID,Chelsea,10.4,Manchester Utd,1.79,1.03,0.46,0.47,0.26,1.03,0.765,0.79,-0.32
+249,João Pedro,FWD,Chelsea,7.7,Manchester Utd,1.79,1.03,0.4175,0.43,0.26,1.03,0.765,0.79,-0.36
+517,Anderson,MID,Nott'ham Forest,5.5,Burnley,1.03,1.54,0.22,0.34,1.28,1.03,1.715,1.77,-1.43
+381,M.Salah,MID,Liverpool,14.5,Everton,2.05,0.77,0.4,0.31,1.03,1.28,0.8125,1.04,-0.73
+568,Pedro Porro,DEF,Tottenham,5.6,Brighton,1.28,1.03,0.2225,0.23,0.26,0.77,1.1625,0.9,-0.67
+449,B.Fernandes,MID,Manchester Utd,9.0,Chelsea,1.03,0.26,0.705,0.18,1.03,1.79,1.6975,3.04,-2.86
+508,N.Williams,DEF,Nott'ham Forest,5.0,Burnley,1.03,1.54,0.045,0.07,1.28,1.03,1.715,1.77,-1.7
+427,Reijnders,MID,Manchester City,5.7,Arsenal,1.28,0.26,0.2325,0.06,1.03,1.54,1.37,2.11,-2.05
+373,Virgil,DEF,Liverpool,6.1,Everton,2.05,0.77,0.0675,0.05,1.03,1.28,0.8125,1.04,-0.99
+476,Burn,DEF,Newcastle Utd,5.0,Bournemouth,0.51,1.03,0.035,0.04,0.77,1.03,0.5225,0.54,-0.5
+191,Estève,DEF,Burnley,4.0,Nott'ham Forest,1.03,1.28,0.015,0.02,1.54,1.03,2.265,2.33,-2.31
+252,Marc Guiu,FWD,Chelsea,4.4,Manchester Utd,1.79,1.03,0.015,0.02,0.26,1.03,0.33,0.34,-0.32
+470,Dúbravka,GK,Burnley,4.0,Nott'ham Forest,1.03,1.28,0.0,0.0,1.54,1.03,2.2925,2.36,-2.36
+220,Sánchez,GK,Chelsea,5.0,Manchester Utd,1.79,1.03,0.0,0.0,0.26,1.03,0.96,0.99,-0.99
