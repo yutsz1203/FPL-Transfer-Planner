@@ -4,7 +4,13 @@ import sys
 import pandas as pd
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from const import TEAMS_DATA_DIR, TEAMS_PROJECTION_DIR, team_id_map, team_ids  # noqa: E402
+from const import (  # noqa: E402
+    TEAMS_DATA_DIR,
+    TEAMS_RESULTS_DIR,
+    TEAMS_PROJECTION_DIR,
+    team_id_map,
+    team_ids,
+)
 
 fixtures = pd.read_csv(TEAMS_DATA_DIR / "fixtures.csv")
 
@@ -12,10 +18,10 @@ fixtures = pd.read_csv(TEAMS_DATA_DIR / "fixtures.csv")
 # last_season_strengths = pd.read_csv("teams/data/2526-prem-teams-lastseason.csv")
 
 # Current season
-current_season_strengths = pd.read_csv(TEAMS_DATA_DIR / "teams_currentseason.csv")
+current_season_strengths = pd.read_csv(TEAMS_RESULTS_DIR / "teams_currentseason.csv")
 
 # Rolling 5
-# last5games_strengths = pd.read_csv("teams/data/2526-prem-teams-last5games.csv")
+last5games_strengths = pd.read_csv(TEAMS_RESULTS_DIR / "teams_last5games.csv")
 
 # Augmented
 # augmented_strengths = pd.read_csv("teams/data/2526-prem-teams-augmented.csv")
@@ -205,7 +211,7 @@ def get_next_n_gameweek(df, type, side_adjustment=True, n=5):
 get_next_gameweek(current_season_strengths, "currentseason", False)
 
 # last 5 gameweeks strengths
-# get_next_gameweek(last5games_strengths, "last5games")
+get_next_gameweek(last5games_strengths, "last5games", False)
 
 # augmented strengths
 # get_next_gameweek(augmented_strengths, "augmented")
@@ -219,7 +225,7 @@ get_next_gameweek(current_season_strengths, "currentseason", False)
 get_next_n_gameweek(current_season_strengths, "currentseason", False)
 
 # last 5 gameweeks strengths
-# get_next_5_gameweek(last5games_strengths, "last5games")
+get_next_n_gameweek(last5games_strengths, "last5games", False)
 
 # augmented strengths
 # get_next_5_gameweek(augmented_strengths, "augmented")

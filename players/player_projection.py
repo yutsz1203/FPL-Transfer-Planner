@@ -316,6 +316,7 @@ if __name__ == "__main__":
         )
     )
     player_lastngames = pd.read_csv(PLAYERS_RESULTS_DIR / f"players_last{n}games.csv")
+    team_lastngames = pd.read_csv(TEAMS_RESULTS_DIR / f"teams_last{n}games.csv")
 
     # Augmented
     # augmented_strengths = pd.read_csv("teams/data/2526-prem-teams-augmented.csv")
@@ -329,7 +330,9 @@ if __name__ == "__main__":
     )
 
     # last 5 gameweeks strengths
-    # get_next_gameweek(last5games_strengths, "last5games")
+    get_next_gameweek(
+        fixtures, player_lastngames, team_lastngames, "last5games", gw, False
+    )
 
     # augmented strengths
     # get_next_gameweek(augmented_strengths, "augmented")
@@ -342,7 +345,9 @@ if __name__ == "__main__":
     )
 
     # last 5 gameweeks strengths
-    # get_next_5_gameweek(last5games_strengths, "last5games")
+    get_next_n_gameweek(
+        fixtures, player_lastngames, team_lastngames, "last5games", gw, False
+    )
 
     # augmented strengths
     # get_next_5_gameweek(augmented_strengths, "augmented")

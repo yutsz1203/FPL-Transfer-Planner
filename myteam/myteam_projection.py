@@ -17,7 +17,7 @@ from const import (  # noqa: E402
 )
 
 
-def get_myteam_projection_nextgw(gw, type, n=1):
+def get_myteam_projection_nextgw(gw, type, n=5):
     if type == "lastngames":
         players_df = pd.read_csv(
             PLAYERS_PROJECTION_DIR / f"players_next_gameweek_last{n}games.csv"
@@ -45,7 +45,7 @@ def get_myteam_projection_nextgw(gw, type, n=1):
     print(new_df.to_string(index=False))
 
 
-def get_myteam_projection_nextngw(gw, type, n=1, ngw=5):
+def get_myteam_projection_nextngw(gw, type, n=5, ngw=5):
     if type == "lastngames":
         players_df = pd.read_csv(
             PLAYERS_PROJECTION_DIR / f"players_next{ngw}gameweeks_last{n}games.csv"
@@ -78,3 +78,5 @@ if __name__ == "__main__":
     n = int(input("Enter n, number of previous games taking into account: "))
     get_myteam_projection_nextgw(gw, "currentseason")
     get_myteam_projection_nextngw(gw, "currentseason")
+    get_myteam_projection_nextgw(gw, "lastngames")
+    get_myteam_projection_nextngw(gw, "lastngames")

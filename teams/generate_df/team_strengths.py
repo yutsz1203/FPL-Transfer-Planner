@@ -2,24 +2,17 @@ import os
 import sys
 
 import pandas as pd
-import requests
+import soccerdata as sd
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from const import (  # noqa: E402
-    base_url,
-    header,
-    league_id,
-    matches_api,
-    season_id,
-    team_id_map,
-    team_ids,
-    wait,
     TEAMS_RESULTS_DIR,
+    season,
+    teams,
 )
 
 
 def strength_calculation(df):
-    # Strength Calculation
     lod = df["gf"].sum() / df["games"].sum()
     df["Oi"] = df["gf"] / df["games"] / lod
     df["Oi"] = df["Oi"].round(2)
@@ -39,118 +32,89 @@ def strength_calculation(df):
     df["a_Di"] = df["a_Di"].round(2)
 
 
-gw = int(input("Enter gameweek number: "))
-n = int(input("Enter number of last n gameweeks to include in calculation: "))
-current_season_team = []
-lastngames_team = []
+if __name__ == "__main__":
+    gw = int(input("Enter gameweek number: "))
+    n = int(input("Enter number of last n gameweeks to include in calculation: "))
+    current_season_team = []
+    lastngames_team = []
 
-wait("match statistics")
-print(f"{gw} down, {38-gw} to go. The league is {round(gw/38 * 100.0, 2)}% done.")
-print(f"Start fetching team statistics after gameweek {gw}...")
-print("*" * 90)
+    mh = sd.MatchHistory(leagues="ENG-Premier League", seasons=season)
+    hist = mh.read_games()
+    cols = ["home_team", "away_team", "FTHG", "FTAG"]
+    hist_df = hist[cols]
+    hist_df.reset_index(drop=True, inplace=True)
 
-for team_id in team_ids:
-    response = requests.get(
-        base_url + matches_api,
-        params={"team_id": team_id, "season_id": season_id, "league_id": league_id},
-        headers=header,
-    )
-    data = response.json()["data"]
-    team_name = team_id_map[team_id]
-    print(f"Fetching data for {team_name} as at Gameweek {gw}...")
-    h_gf, h_ga, a_gf, a_ga, h_games, a_games = 0, 0, 0, 0, 0, 0
-    lastn_h_gf, lastn_h_ga, lastn_a_gf, lastn_a_ga, lastn_h_games, lastn_a_games = (
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-    )
-    for i in range(gw):
-        match = data[i]
-        # skipping bgw
-        if not match["match_id"]:
-            print(f"Blank gameweek for {team_name}")
-            break
-        # i = 4 for gw 5, 0-4 are last 5
-        if i >= gw - n:  # changed here, if have bug check out this line
-            if match["home_away"] == "Home":
-                lastn_h_gf += match["gf"]
-                lastn_h_ga += match["ga"]
-                lastn_h_games += 1
-                h_gf += match["gf"]
-                h_ga += match["ga"]
-                h_games += 1
-            else:
-                lastn_a_gf += match["gf"]
-                lastn_a_ga += match["ga"]
-                lastn_a_games += 1
-                a_gf += match["gf"]
-                a_ga += match["ga"]
-                a_games += 1
-            print(f"Gameweek{i+1}")
-        else:
-            if match["home_away"] == "Home":
-                h_gf += match["gf"]
-                h_ga += match["ga"]
-                h_games += 1
-            else:
-                a_gf += match["gf"]
-                a_ga += match["ga"]
-                a_games += 1
+    for team in teams:
+        season_df = hist_df.loc[
+            (hist_df["home_team"] == team) | (hist_df["away_team"] == team)
+        ]
+        season_home_df = season_df.loc[season_df["home_team"] == team]
+        season_away_df = season_df.loc[season_df["away_team"] == team]
 
-    current_season_team.append(
-        {
-            "team": team_name,
-            "games": h_games + a_games,
-            "gf": h_gf + a_gf,
-            "ga": h_ga + a_ga,
-            "h_games": h_games,
-            "h_gf": h_gf,
-            "h_ga": h_ga,
-            "a_gf": a_gf,
-            "a_ga": a_ga,
-            "a_games": a_games,
-        }
-    )
+        h_games = len(season_home_df)
+        h_gf = season_home_df["FTHG"].sum()
+        h_ga = season_home_df["FTAG"].sum()
 
-    lastngames_team.append(
-        {
-            "team": team_name,
-            "games": lastn_h_games + lastn_a_games,
-            "gf": lastn_h_gf + lastn_a_gf,
-            "ga": lastn_h_ga + lastn_a_ga,
-            "h_games": lastn_h_games,
-            "h_gf": lastn_h_gf,
-            "h_ga": lastn_h_ga,
-            "a_gf": lastn_a_gf,
-            "a_ga": lastn_a_ga,
-            "a_games": lastn_a_games,
-        }
-    )
-    if team_name == "Wolves":
-        print(
-            "Fetches statistics for all teams from Premier League in the last season."
+        a_games = len(season_away_df)
+        a_gf = season_away_df["FTAG"].sum()
+        a_ga = season_away_df["FTHG"].sum()
+
+        current_season_team.append(
+            {
+                "team": team,
+                "games": len(season_df),
+                "gf": h_gf + a_gf,
+                "ga": h_ga + a_ga,
+                "h_games": h_games,
+                "h_gf": h_gf,
+                "h_ga": h_ga,
+                "a_gf": a_gf,
+                "a_ga": a_ga,
+                "a_games": a_games,
+            }
         )
-    else:
-        print("*" * 90)
-        wait("next team.")
-    print(f"Fetched {team_name}. Fetching next team.")
-    print("*" * 90)
 
-current_season_df = pd.DataFrame(current_season_team)
-strength_calculation(current_season_df)
-current_season_df.sort_values(by=["Oi"], ascending=False, inplace=True)
-print(current_season_df)
-file_path = TEAMS_RESULTS_DIR / "teams_currentseason.csv"
-current_season_df.to_csv(file_path, index=False)
-print(f"Team strengths of current season saved to {file_path}")
+        lastn_df = season_df.tail(min(5, gw))
+        lastn_home_df = lastn_df.loc[lastn_df["home_team"] == team]
+        lastn_away_df = lastn_df.loc[lastn_df["away_team"] == team]
 
-lastngames_df = pd.DataFrame(lastngames_team)
-strength_calculation(lastngames_df)
-lastngames_df.sort_values(by=["Oi"], ascending=False, inplace=True)
-print(lastngames_df)
-file_path = TEAMS_RESULTS_DIR / f"teams_last{n}games.csv"
-lastngames_df.to_csv(file_path, index=False)
-print(f"Team strengths of last {n} games saved to {file_path}")
+        lastn_h_games = len(lastn_home_df)
+        lastn_h_gf = lastn_home_df["FTHG"].sum()
+        lastn_h_ga = lastn_home_df["FTAG"].sum()
+
+        lastn_a_games = len(lastn_away_df)
+        lastn_a_gf = lastn_away_df["FTAG"].sum()
+        lastn_a_ga = lastn_away_df["FTHG"].sum()
+
+        lastngames_team.append(
+            {
+                "team": team,
+                "games": len(lastn_df),
+                "gf": lastn_h_gf + lastn_a_gf,
+                "ga": lastn_h_ga + lastn_a_ga,
+                "h_games": lastn_h_games,
+                "h_gf": lastn_h_gf,
+                "h_ga": lastn_h_ga,
+                "a_gf": lastn_a_gf,
+                "a_ga": lastn_a_ga,
+                "a_games": lastn_a_games,
+            }
+        )
+
+    current_season_df = pd.DataFrame(current_season_team)
+    strength_calculation(current_season_df)
+    current_season_df.sort_values(by=["Oi"], ascending=False, inplace=True)
+    current_season_df.set_index("team", inplace=True)
+    print(current_season_df)
+    file_path = TEAMS_RESULTS_DIR / "teams_currentseason.csv"
+    current_season_df.to_csv(file_path)
+    print(f"Team strengths of current season saved to {file_path}")
+
+    lastngames_df = pd.DataFrame(lastngames_team)
+    strength_calculation(lastngames_df)
+    lastngames_df.sort_values(by=["Oi"], ascending=False, inplace=True)
+    lastngames_df.set_index("team", inplace=True)
+    print(lastngames_df)
+    file_path = TEAMS_RESULTS_DIR / f"teams_last{n}games.csv"
+    lastngames_df.to_csv(file_path)
+    print(f"Team strengths of last {n} games saved to {file_path}")

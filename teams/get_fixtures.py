@@ -1,4 +1,5 @@
 # May need to fetch again whenever there are bgw or dgw
+import json
 import os
 import sys
 
@@ -7,46 +8,51 @@ import requests
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from const import (  # noqa: E402
-    base_url,
-    header,
-    league_id,
-    matches_api,
-    season_id,
-    team_id_map,
-    team_ids,
-    wait,
+    TEAMS_DATA_DIR,
 )
 
-wait("fixtures")
-print("Start fetching fixtures for all teams...")
-print("*" * 90)
+if __name__ == "__main__":
+    official_api = "https://fantasy.premierleague.com/api/fixtures"
+    flat_data = []
+    with open("data/team_mapping.json", "r", encoding="utf-8") as f:
+        team_map = json.load(f)
 
-data = []
+    try:
+        print("Fetching fixtures from official api...")
+        response = requests.get(official_api)
+        data = response.json()
 
-for team_id in team_ids:
-    response = requests.get(
-        base_url + matches_api,
-        params={"team_id": team_id, "league_id": league_id, "season_id": season_id},
-        headers=header,
-    )
-    matches = response.json()["data"]
-    team_name = team_id_map[team_id]
-    fixtures = [team_name]
-    print(f"Fetching fixtures for {team_name}...")
-    for match in matches:
-        opponent = match["opponent"]
-        side = match["home_away"][-4]
-        fixtures.append(f"{opponent}({side})")
-        print(f"{opponent}({side})")
-    data.append(fixtures)
-    if team_name == "Wolves":
-        print("Finished fetching fixtures of all teams")
-    else:
-        print("*" * 90)
-        wait("fixtures of next team")
-    print("*" * 90)
-columns = ["team"] + [f"GW{i}" for i in range(1, 39)]
-df = pd.DataFrame(data, columns=columns)
-print(df)
-df.to_csv("teams/data/fixtures.csv", index=False)
-print("Fixtures saved to teams/data/fixtures.csv")
+        for match in data:
+            if match["event"]:
+
+                home_team = team_map[str(match["team_h"])]
+                away_team = team_map[str(match["team_a"])]
+                flat_data.append(
+                    {
+                        "team": home_team,
+                        "opponent": f"{away_team}-H",
+                        "gw": match["event"],
+                    }
+                )
+                # Away perspective
+                flat_data.append(
+                    {
+                        "team": away_team,
+                        "opponent": f"{home_team}-A",
+                        "gw": match["event"],
+                    }
+                )
+
+        df = pd.DataFrame(flat_data)
+
+        fixture_df = df.pivot_table(
+            index="team", columns="gw", values="opponent", aggfunc=list
+        ).reset_index()
+
+        file_path = TEAMS_DATA_DIR / "fixtures.csv"
+        fixture_df.to_csv(file_path, index=False)
+
+        print(f"Exported fixture.csv at {file_path}")
+
+    except requests.exceptions.RequestException as e:
+        print(e)

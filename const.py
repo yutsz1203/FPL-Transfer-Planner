@@ -7,8 +7,6 @@ from rich.progress import Progress
 # fbref api
 base_url = "https://fbrapi.com/"
 generate_api_key = "generate_api_key"
-base_url = "https://fbrapi.com/"
-generate_api_key = "generate_api_key"
 countries = "countries"
 leagues = "leagues"
 league_seasons = "league-seasons"
@@ -25,14 +23,39 @@ all_players_match_stats = "all-players-match-stats"
 
 season_id = "2025-2026"
 league_id = 9
+season = 2025  # update every year
 
 
-api = requests.post(base_url + generate_api_key)
-api_key = api.json()["api_key"]
-print("API Key:", api_key)
-header = {"X-API-Key": api_key}
+# api = requests.post(base_url + generate_api_key)
+# api_key = api.json()["api_key"]
+# print("API Key:", api_key)
+# header = {"X-API-Key": api_key}
 
 # update every year to delete relegated teams and add promoted teams
+
+teams = [
+    "Arsenal",
+    "Aston Villa",
+    "Bournemouth",
+    "Brentford",
+    "Brighton",
+    "Burnley",
+    "Chelsea",
+    "Crystal Palace",
+    "Everton",
+    "Fulham",
+    "Leeds",
+    "Liverpool",
+    "Man City",
+    "Man United",
+    "Newcastle",
+    "Nott'm Forest",
+    "Sunderland",
+    "Tottenham",
+    "West Ham",
+    "Wolves",
+]
+
 team_ids = [
     "18bb7c10",
     "8602292d",
@@ -125,7 +148,7 @@ team_id_map_2324 = {
 }
 
 # official api variables
-official_base_url = "https://fantasy.premierleague.com/api/"
+official_base_url = "https://fantasy.premierleague.com/api"
 fpl_id = "157928"
 official_team_id_map = {
     1: "Arsenal",
@@ -186,7 +209,7 @@ def wait(context):
 # /Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver
 PROJECT_DIR = Path(__file__).parent
 # print(PROJECT_DIR)
-PROJECT_DIR = Path("/Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver")
+PROJECT_DIR = Path("/Users/yutsz/Desktop/FPL-Transfer-Planner")
 # print(PROJECT_DIR)
 
 PLAYERS_RESULTS_DIR = PROJECT_DIR / "players" / "results"

@@ -1,7 +1,8 @@
-import numpy as np
-import pandas as pd
+import json
+
 import requests
-from pandas import DataFrame, Series
+
+from const import official_base_url
 
 """
 Documentation: https://fbrapi.com/documentation
@@ -30,8 +31,34 @@ league_id = 9
 # print("API Key:", api_key)
 
 # header = {"X-API-Key": api_key}
-from pathlib import Path
+# from pathlib import Path
 
-print(Path(__file__).parent)
+# print(Path(__file__).parent)
 # df = pd.read_csv("players/results/player_season_stats.csv")
 # print(df.columns)
+
+
+def get_team_id_mapping():
+    response = requests.get(f"{official_base_url}/bootstrap-static")
+
+    data = response.json()
+    teams = data["teams"]
+    team_map = {}
+
+    for team in teams:
+        # Adjust team name for MatchHistory api
+        if team["name"] == "Man Utd":
+            team_map[team["id"]] = "Man United"
+        elif team["name"] == "Spurs":
+            team_map[team["id"]] = "Tottenham"
+        else:
+            team_map[team["id"]] = team["name"]
+
+    with open("data/team_mapping.json", "w", encoding="utf-8") as f:
+        json.dump(team_map, f, indent=4)
+
+    print("Output team mappings to data/team_mapping.json")
+
+
+if __name__ == "__main__":
+    get_team_id_mapping()
