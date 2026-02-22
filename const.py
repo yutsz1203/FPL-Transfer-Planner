@@ -207,10 +207,7 @@ def wait(context):
 
 
 # /Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver
-PROJECT_DIR = Path(__file__).parent
-# print(PROJECT_DIR)
-PROJECT_DIR = Path("/Users/yutsz/Desktop/FPL-Transfer-Planner")
-# print(PROJECT_DIR)
+PROJECT_DIR = Path(__file__).resolve().parent
 
 PLAYERS_RESULTS_DIR = PROJECT_DIR / "players" / "results"
 # print(PLAYERS_RESULTS_DIR)

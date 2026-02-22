@@ -29,10 +29,10 @@ if __name__ == "__main__":
         a_lod = lod
     else:
         h_lod = (
-            team_strengths_season["h_gf"].sum() / team_strengths_season["h_games"].sum()
+            team_strengths_last5["h_gf"].sum() / team_strengths_last5["h_games"].sum()
         ).round(2)
         a_lod = (
-            team_strengths_season["a_gf"].sum() / team_strengths_season["a_games"].sum()
+            team_strengths_last5["a_gf"].sum() / team_strengths_last5["a_games"].sum()
         ).round(2)
 
     gw_df = fixtures_df[["team", gw]].copy()
@@ -51,10 +51,10 @@ if __name__ == "__main__":
             if side == "H":
                 fixture_info["Home"] = team
                 fixture_info["Away"] = opponent_name
-                h_oi = team_strengths_season.at[team, "h_Oi"]
-                h_di = team_strengths_season.at[team, "h_Di"]
-                a_oi = team_strengths_season.at[opponent_name, "a_Oi"]
-                a_di = team_strengths_season.at[opponent_name, "a_Di"]
+                h_oi = team_strengths_last5.at[team, "h_Oi"]
+                h_di = team_strengths_last5.at[team, "h_Di"]
+                a_oi = team_strengths_last5.at[opponent_name, "a_Oi"]
+                a_di = team_strengths_last5.at[opponent_name, "a_Di"]
 
                 # expected goal for home team: h_oi * a_di * h_lod
                 # expected goal for away team: a_oi * h_di * a_lod
@@ -107,5 +107,5 @@ if __name__ == "__main__":
 
                 res.append(fixture_info)
 
-    with open(f"prediction/gw{gw}results.json", "w") as file:
+    with open(f"prediction/gw{gw}results_last5.json", "w") as file:
         json.dump(res, file, indent=4)
