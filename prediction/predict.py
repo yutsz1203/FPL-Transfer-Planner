@@ -39,6 +39,7 @@ if __name__ == "__main__":
 
     gw_df[gw] = gw_df[gw].apply(ast.literal_eval)
 
+    detailed = []
     res = []
 
     for team in gw_df["team"].values:
@@ -46,16 +47,22 @@ if __name__ == "__main__":
 
         for fixture in fixtures:
             fixture_info = {}
+            res_info = {}
 
             opponent_name, side = fixture.split("-")
             if side == "H":
                 fixture_info["Home"] = team
                 fixture_info["Away"] = opponent_name
+                res_info["Home"] = team
+                res_info["Away"] = opponent_name
+
                 h_oi = team_strengths_last5.at[team, "h_Oi"]
                 h_di = team_strengths_last5.at[team, "h_Di"]
                 a_oi = team_strengths_last5.at[opponent_name, "a_Oi"]
                 a_di = team_strengths_last5.at[opponent_name, "a_Di"]
 
+                fixture_info["Home Strengths"] = f"{h_oi}, {h_di}"
+                fixture_info["Away Strengths"] = f"{a_oi}, {a_di}"
                 # expected goal for home team: h_oi * a_di * h_lod
                 # expected goal for away team: a_oi * h_di * a_lod
                 home_dist = np.array(
@@ -78,9 +85,9 @@ if __name__ == "__main__":
 
                 fixture_info["Predicted Outcome"] = prediction
 
-                print(
-                    f"Prediction for the game between {team} and {opponent_name}: {prediction} with a probability of {np.max(outcomes)}"
-                )
+                print(f"Prediction for the game between {team} and {opponent_name}")
+                print(f"{prediction} ({np.max(outcomes)})")
+                res_info["Outcome"] = f"{prediction} ({np.max(outcomes)})"
 
                 flat_idx = np.argmax(score_matrix)
                 row, col = np.unravel_index(flat_idx, score_matrix.shape)
@@ -96,7 +103,7 @@ if __name__ == "__main__":
                 rows, cols = np.indices(score_matrix.shape)
                 total_goals_grid = rows + cols
 
-                thresholds = [1.5, 2.5, 3.5, 4.5]
+                thresholds = [2.5, 3.5]
 
                 for t in thresholds:
                     over_prob = score_matrix[total_goals_grid > t].sum()
@@ -105,7 +112,20 @@ if __name__ == "__main__":
                     fixture_info[f"Over {t}"] = float(np.round(over_prob, 4))
                     fixture_info[f"Under {t}"] = float(np.round(under_prob, 4))
 
-                res.append(fixture_info)
+                    if over_prob > under_prob:
+                        res_info[t] = f"Over ({over_prob:.4f})"
+                        print(f"Over {t} ({over_prob:.4f})")
+                    else:
+                        res_info[t] = f"Under ({under_prob:.4f})"
+                        print(f"Under {t} ({under_prob:.4f})")
 
-    with open(f"prediction/gw{gw}results_last5.json", "w") as file:
+                detailed.append(fixture_info)
+                res.append(res_info)
+
+                print("=" * 50)
+
+    with open(f"prediction/gw{gw}_detailed.json", "w") as file:
+        json.dump(detailed, file, indent=4)
+
+    with open(f"prediction/gw{gw}_predict.json", "w") as file:
         json.dump(res, file, indent=4)
