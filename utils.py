@@ -1,5 +1,5 @@
 import json
-import time
+from datetime import date
 
 import requests
 import soccerdata as sd
@@ -63,14 +63,13 @@ def get_team_id_mapping():
 
 
 def test():
-    mh = sd.MatchHistory(leagues="ENG-Premier League", seasons=season)
-    hist = mh.read_games()
-    cols = ["home_team", "away_team", "FTHG", "FTAG"]
-    hist_df = hist[cols]
-    hist_df.reset_index(drop=True, inplace=True)
-    print(hist_df.tail(11))
+    sofascore = sd.Sofascore(leagues="FRA-Ligue 1", seasons=season)
+    schedule = sofascore.read_schedule(force_cache=True)
 
-    leagues = sd.MatchHistory.available_leagues()
+    gw = int(input(f"Enter gameweek: "))
+    print(schedule.loc[schedule["week"] == gw])
+
+    print(schedule.dtypes)
 
 
 def get_teams():
@@ -91,17 +90,24 @@ def get_teams():
     print("Output teams to teams/data/teams.json ")
 
 
-def get_fixtures():
+def get_gameweek():
+    sofascore = sd.Sofascore(leagues=leagues, seasons=season)
+    schedule = sofascore.read_schedule(force_cache=True)
+    today = date.today().isoformat()
+    gameweeks = {}
+
     for league in leagues:
-        source = sd.MatchHistory(leagues=league, seasons=season)
-        schedule = source.read_games()
-        print(sorted(schedule["home_team"].unique()))
+        league_schedule = schedule.loc[league]
+        gw = str(
+            league_schedule.loc[
+                league_schedule.index.get_level_values("game") >= today
+            ]["week"].values[0]
+        )
+
+        gameweeks[league] = gw
+
+    return gameweeks
 
 
 if __name__ == "__main__":
-    # get_team_id_mapping()
-    # get_teams()
-    t1 = time.perf_counter()
-    get_fixtures()
-    t2 = time.perf_counter()
-    print(f"Time: {t2 - t1}")
+    print(get_gameweek())

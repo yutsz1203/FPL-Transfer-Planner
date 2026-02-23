@@ -1,7 +1,5 @@
-[
-    {
-        "Home": "Aston Villa",
-        "Away": "Leeds",
+{
+    "Aston Villa-Leeds": {
         "Home Strengths": "0.23, 0.47",
         "Away Strengths": "1.1, 1.1",
         "Predicted Outcome": "Draw",
@@ -15,9 +13,7 @@
         "Over 3.5": 0.0231,
         "Under 3.5": 0.9769
     },
-    {
-        "Home": "Brentford",
-        "Away": "Brighton",
+    "Brentford-Brighton": {
         "Home Strengths": "0.35, 1.06",
         "Away Strengths": "0.37, 1.1",
         "Predicted Outcome": "Draw",
@@ -31,9 +27,7 @@
         "Over 3.5": 0.0243,
         "Under 3.5": 0.9757
     },
-    {
-        "Home": "Chelsea",
-        "Away": "Burnley",
+    "Chelsea-Burnley": {
         "Home Strengths": "1.64, 0.94",
         "Away Strengths": "0.98, 1.47",
         "Predicted Outcome": "Chelsea",
@@ -47,9 +41,7 @@
         "Over 3.5": 0.6857,
         "Under 3.5": 0.3143
     },
-    {
-        "Home": "Crystal Palace",
-        "Away": "Wolves",
+    "Crystal Palace-Wolves": {
         "Home Strengths": "1.06, 2.11",
         "Away Strengths": "0.0, 0.74",
         "Predicted Outcome": "Crystal Palace",
@@ -63,9 +55,7 @@
         "Over 3.5": 0.0268,
         "Under 3.5": 0.9732
     },
-    {
-        "Home": "Everton",
-        "Away": "Man United",
+    "Everton-Man United": {
         "Home Strengths": "0.7, 1.06",
         "Away Strengths": "1.47, 1.1",
         "Predicted Outcome": "Man United",
@@ -79,9 +69,7 @@
         "Over 3.5": 0.4003,
         "Under 3.5": 0.5997
     },
-    {
-        "Home": "Man City",
-        "Away": "Newcastle",
+    "Man City-Newcastle": {
         "Home Strengths": "1.76, 0.0",
         "Away Strengths": "0.74, 1.23",
         "Predicted Outcome": "Man City",
@@ -95,9 +83,7 @@
         "Over 3.5": 0.369,
         "Under 3.5": 0.631
     },
-    {
-        "Home": "Nott'm Forest",
-        "Away": "Liverpool",
+    "Nott'm Forest-Liverpool": {
         "Home Strengths": "0.23, 0.23",
         "Away Strengths": "1.1, 1.1",
         "Predicted Outcome": "Draw",
@@ -111,9 +97,7 @@
         "Over 3.5": 0.0058,
         "Under 3.5": 0.9942
     },
-    {
-        "Home": "Sunderland",
-        "Away": "Fulham",
+    "Sunderland-Fulham": {
         "Home Strengths": "1.17, 0.47",
         "Away Strengths": "0.49, 1.72",
         "Predicted Outcome": "Sunderland",
@@ -127,9 +111,7 @@
         "Over 3.5": 0.3908,
         "Under 3.5": 0.6092
     },
-    {
-        "Home": "Tottenham",
-        "Away": "Arsenal",
+    "Tottenham-Arsenal": {
         "Home Strengths": "0.94, 1.41",
         "Away Strengths": "1.72, 0.74",
         "Predicted Outcome": "Arsenal",
@@ -143,9 +125,7 @@
         "Over 3.5": 0.6197,
         "Under 3.5": 0.3803
     },
-    {
-        "Home": "West Ham",
-        "Away": "Bournemouth",
+    "West Ham-Bournemouth": {
         "Home Strengths": "1.41, 0.7",
         "Away Strengths": "1.23, 0.49",
         "Predicted Outcome": "Bournemouth",
@@ -159,4 +139,4 @@
         "Over 3.5": 0.1713,
         "Under 3.5": 0.8287
     }
-]
+}

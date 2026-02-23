@@ -1,15 +1,44 @@
+import os
 import time
 from pathlib import Path
-
-import requests
 import soccerdata as sd
+
 from rich.progress import Progress
+
+# /Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver
+PROJECT_DIR = Path(__file__).resolve().parent
+
+PLAYERS_RESULTS_DIR = PROJECT_DIR / "players" / "results"
+# print(PLAYERS_RESULTS_DIR)
+
+PLAYERS_PROJECTION_DIR = PROJECT_DIR / "players" / "projection"
+# print(PLAYERS_PROJECTION_DIR)
+
+PLAYERS_DATA_DIR = PROJECT_DIR / "players" / "data"
+# print(PLAYERS_DATA_DIR)
+
+MYTEAM_RESULTS_DIR = PROJECT_DIR / "myteam" / "results"
+# print(MYTEAM_RESULTS_DIR)
+
+MYTEAM_PROJECTION_DIR = PROJECT_DIR / "myteam" / "projection"
+# print(MYTEAM_PROJECTION_DIR)
+
+TEAMS_DATA_DIR = PROJECT_DIR / "teams" / "data"
+# print(TEAMS_DATA_DIR)
+
+TEAMS_RESULTS_DIR = PROJECT_DIR / "teams" / "results"
+# print(TEAMS_RESULTS_DIR)
+
+TEAMS_PROJECTION_DIR = PROJECT_DIR / "teams" / "projection"
+# print(TEAMS_PROJECTION_DIR)
+
+# update every year to delete relegated teams and add promoted teams
+leagues = sd.MatchHistory.available_leagues()
 
 # fbref api
 base_url = "https://fbrapi.com/"
 generate_api_key = "generate_api_key"
 countries = "countries"
-leagues = "leagues"
 league_seasons = "league-seasons"
 league_season_details = "league-season-details"
 league_standings = "league-standings"
@@ -32,8 +61,6 @@ season = 2025  # update every year
 # print("API Key:", api_key)
 # header = {"X-API-Key": api_key}
 
-# update every year to delete relegated teams and add promoted teams
-leagues = sd.MatchHistory.available_leagues()
 
 teams = [
     "Arsenal",
@@ -206,31 +233,3 @@ def wait(context):
         for i in range(200, -1, -1):
             p.update(t, advance=1)
             time.sleep(0.05)
-
-
-# /Users/yutsz/Desktop/FPL-Transfer-Planner/new_ver
-PROJECT_DIR = Path(__file__).resolve().parent
-
-PLAYERS_RESULTS_DIR = PROJECT_DIR / "players" / "results"
-# print(PLAYERS_RESULTS_DIR)
-
-PLAYERS_PROJECTION_DIR = PROJECT_DIR / "players" / "projection"
-# print(PLAYERS_PROJECTION_DIR)
-
-PLAYERS_DATA_DIR = PROJECT_DIR / "players" / "data"
-# print(PLAYERS_DATA_DIR)
-
-MYTEAM_RESULTS_DIR = PROJECT_DIR / "myteam" / "results"
-# print(MYTEAM_RESULTS_DIR)
-
-MYTEAM_PROJECTION_DIR = PROJECT_DIR / "myteam" / "projection"
-# print(MYTEAM_PROJECTION_DIR)
-
-TEAMS_DATA_DIR = PROJECT_DIR / "teams" / "data"
-# print(TEAMS_DATA_DIR)
-
-TEAMS_RESULTS_DIR = PROJECT_DIR / "teams" / "results"
-# print(TEAMS_RESULTS_DIR)
-
-TEAMS_PROJECTION_DIR = PROJECT_DIR / "teams" / "projection"
-# print(TEAMS_PROJECTION_DIR)

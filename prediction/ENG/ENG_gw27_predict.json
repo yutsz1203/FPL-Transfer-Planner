@@ -1,72 +1,52 @@
-[
-    {
-        "Home": "Aston Villa",
-        "Away": "Leeds",
+{
+    "Aston Villa-Leeds": {
         "Outcome": "Draw (0.4386)",
         "2.5": "Under (0.9079)",
         "3.5": "Under (0.9769)"
     },
-    {
-        "Home": "Brentford",
-        "Away": "Brighton",
+    "Brentford-Brighton": {
         "Outcome": "Draw (0.446)",
         "2.5": "Under (0.9044)",
         "3.5": "Under (0.9757)"
     },
-    {
-        "Home": "Chelsea",
-        "Away": "Burnley",
+    "Chelsea-Burnley": {
         "Outcome": "Chelsea (0.7814)",
         "2.5": "Over (0.8444)",
         "3.5": "Over (0.6857)"
     },
-    {
-        "Home": "Crystal Palace",
-        "Away": "Wolves",
+    "Crystal Palace-Wolves": {
         "Outcome": "Crystal Palace (0.6717)",
         "2.5": "Under (0.8976)",
         "3.5": "Under (0.9732)"
     },
-    {
-        "Home": "Everton",
-        "Away": "Man United",
+    "Everton-Man United": {
         "Outcome": "Man United (0.6085)",
         "2.5": "Over (0.6227)",
         "3.5": "Under (0.5997)"
     },
-    {
-        "Home": "Man City",
-        "Away": "Newcastle",
+    "Man City-Newcastle": {
         "Outcome": "Man City (0.9534)",
         "2.5": "Over (0.5928)",
         "3.5": "Under (0.6310)"
     },
-    {
-        "Home": "Nott'm Forest",
-        "Away": "Liverpool",
+    "Nott'm Forest-Liverpool": {
         "Outcome": "Draw (0.558)",
         "2.5": "Under (0.9655)",
         "3.5": "Under (0.9942)"
     },
-    {
-        "Home": "Sunderland",
-        "Away": "Fulham",
+    "Sunderland-Fulham": {
         "Outcome": "Sunderland (0.888)",
         "2.5": "Over (0.6138)",
         "3.5": "Under (0.6092)"
     },
-    {
-        "Home": "Tottenham",
-        "Away": "Arsenal",
+    "Tottenham-Arsenal": {
         "Outcome": "Arsenal (0.8127)",
         "2.5": "Over (0.8003)",
         "3.5": "Over (0.6197)"
     },
-    {
-        "Home": "West Ham",
-        "Away": "Bournemouth",
+    "West Ham-Bournemouth": {
         "Outcome": "Bournemouth (0.4015)",
         "2.5": "Under (0.6356)",
         "3.5": "Under (0.8287)"
     }
-]
+}
