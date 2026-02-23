@@ -1,8 +1,10 @@
 import json
+import time
 
 import requests
+import soccerdata as sd
 
-from const import official_base_url
+from const import leagues, official_base_url, season
 
 """
 Documentation: https://fbrapi.com/documentation
@@ -60,5 +62,46 @@ def get_team_id_mapping():
     print("Output team mappings to data/team_mapping.json")
 
 
+def test():
+    mh = sd.MatchHistory(leagues="ENG-Premier League", seasons=season)
+    hist = mh.read_games()
+    cols = ["home_team", "away_team", "FTHG", "FTAG"]
+    hist_df = hist[cols]
+    hist_df.reset_index(drop=True, inplace=True)
+    print(hist_df.tail(11))
+
+    leagues = sd.MatchHistory.available_leagues()
+
+
+def get_teams():
+    teams = {}
+    for league in leagues:
+        league_name = league.split("-")[1]
+        mh = sd.MatchHistory(leagues=league, seasons=season)
+        hist = mh.read_games()
+        team_list = sorted(hist["home_team"].unique())
+        teams[league_name] = team_list
+        print(league)
+        print(team_list)
+        print("\n")
+
+    with open("teams/data/teams.json", "w", encoding="utf-8") as file:
+        json.dump(teams, file, indent=4)
+
+    print("Output teams to teams/data/teams.json ")
+
+
+def get_fixtures():
+    for league in leagues:
+        source = sd.MatchHistory(leagues=league, seasons=season)
+        schedule = source.read_games()
+        print(sorted(schedule["home_team"].unique()))
+
+
 if __name__ == "__main__":
-    get_team_id_mapping()
+    # get_team_id_mapping()
+    # get_teams()
+    t1 = time.perf_counter()
+    get_fixtures()
+    t2 = time.perf_counter()
+    print(f"Time: {t2 - t1}")

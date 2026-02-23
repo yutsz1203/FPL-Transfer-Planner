@@ -6,8 +6,8 @@ import pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from const import (  # noqa: E402
     TEAMS_DATA_DIR,
-    TEAMS_RESULTS_DIR,
     TEAMS_PROJECTION_DIR,
+    TEAMS_RESULTS_DIR,
     team_id_map,
     team_ids,
 )
@@ -18,10 +18,12 @@ fixtures = pd.read_csv(TEAMS_DATA_DIR / "fixtures.csv")
 # last_season_strengths = pd.read_csv("teams/data/2526-prem-teams-lastseason.csv")
 
 # Current season
-current_season_strengths = pd.read_csv(TEAMS_RESULTS_DIR / "teams_currentseason.csv")
+current_season_strengths = pd.read_csv(
+    TEAMS_RESULTS_DIR / "ENG_teams_currentseason.csv"
+)
 
 # Rolling 5
-last5games_strengths = pd.read_csv(TEAMS_RESULTS_DIR / "teams_last5games.csv")
+last5games_strengths = pd.read_csv(TEAMS_RESULTS_DIR / "ENG_teams_last5games.csv")
 
 # Augmented
 # augmented_strengths = pd.read_csv("teams/data/2526-prem-teams-augmented.csv")

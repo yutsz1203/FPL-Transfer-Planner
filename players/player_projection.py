@@ -9,8 +9,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from const import (  # noqa: E402
     PLAYERS_PROJECTION_DIR,
     PLAYERS_RESULTS_DIR,
-    TEAMS_RESULTS_DIR,
     TEAMS_DATA_DIR,
+    TEAMS_RESULTS_DIR,
 )
 
 
@@ -304,7 +304,7 @@ if __name__ == "__main__":
     fixtures = pd.read_csv(TEAMS_DATA_DIR / "fixtures.csv")
 
     # Current season
-    team_current_season = pd.read_csv(TEAMS_RESULTS_DIR / "teams_currentseason.csv")
+    team_current_season = pd.read_csv(TEAMS_RESULTS_DIR / "ENG_teams_currentseason.csv")
     player_current_season = pd.read_csv(
         PLAYERS_RESULTS_DIR / "players_currentseason.csv"
     )
@@ -316,7 +316,7 @@ if __name__ == "__main__":
         )
     )
     player_lastngames = pd.read_csv(PLAYERS_RESULTS_DIR / f"players_last{n}games.csv")
-    team_lastngames = pd.read_csv(TEAMS_RESULTS_DIR / f"teams_last{n}games.csv")
+    team_lastngames = pd.read_csv(TEAMS_RESULTS_DIR / f"ENG_teams_last{n}games.csv")
 
     # Augmented
     # augmented_strengths = pd.read_csv("teams/data/2526-prem-teams-augmented.csv")

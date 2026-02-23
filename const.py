@@ -2,6 +2,7 @@ import time
 from pathlib import Path
 
 import requests
+import soccerdata as sd
 from rich.progress import Progress
 
 # fbref api
@@ -32,6 +33,7 @@ season = 2025  # update every year
 # header = {"X-API-Key": api_key}
 
 # update every year to delete relegated teams and add promoted teams
+leagues = sd.MatchHistory.available_leagues()
 
 teams = [
     "Arsenal",
