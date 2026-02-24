@@ -2,11 +2,12 @@ import ast
 import json
 import os
 import sys
+import time
 
 import numpy as np
 import pandas as pd
-from scipy.stats import poisson
 import soccerdata as sd
+from scipy.stats import poisson
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from const import TEAMS_DATA_DIR, TEAMS_RESULTS_DIR, leagues, season  # noqa: E402
@@ -229,5 +230,9 @@ def calc_accuracy():
 
 
 if __name__ == "__main__":
+    t1 = time.perf_counter()
     # predict()
     calc_accuracy()
+    t2 = time.perf_counter()
+
+    print(f"Time elapsed: {t2 - t1:.2f}")

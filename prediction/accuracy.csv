@@ -1,6 +1,6 @@
 league,total_matches,correct_outcome,correct_2_5,correct_3_5
-ENG-Premier League,9,44.44,88.89,77.78
-ITA-Serie A,8,62.5,75.0,75.0
+ENG-Premier League,10,50.0,80.0,80.0
 GER-Bundesliga,9,44.44,66.67,66.67
-ESP-La Liga,9,44.44,55.56,55.56
+ITA-Serie A,10,60.0,60.0,70.0
 FRA-Ligue 1,9,22.22,55.56,55.56
+ESP-La Liga,10,40.0,50.0,50.0
