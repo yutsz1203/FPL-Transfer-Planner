@@ -12,7 +12,7 @@ from const import (  # noqa: E402
     team_ids,
 )
 
-fixtures = pd.read_csv(TEAMS_DATA_DIR / "fixtures.csv")
+fixtures = pd.read_csv(TEAMS_DATA_DIR / "ENG_fixtures.csv")
 
 # Only for first gameweek
 # last_season_strengths = pd.read_csv("teams/data/2526-prem-teams-lastseason.csv")
@@ -30,10 +30,9 @@ last5games_strengths = pd.read_csv(TEAMS_RESULTS_DIR / "ENG_teams_last5games.csv
 
 
 def get_next_gameweek(df, type, side_adjustment=True):
-    coming_gameweek = int(input("Enter the coming gameweek number: "))
+    gw = input("Enter the coming gameweek number: ")
     next_gameweek = []
-    gw = f"GW{coming_gameweek}"
-    print(f"Projecting gameweek{coming_gameweek} for all teams using {type} stats...")
+    print(f"Projecting gameweek{gw} for all teams using {type} stats...")
     print("*" * 90)
     for team_id in team_ids:
         team_name = team_id_map[team_id]

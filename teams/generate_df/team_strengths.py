@@ -6,11 +6,7 @@ import pandas as pd
 import soccerdata as sd
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-from const import (  # noqa: E402
-    TEAMS_DATA_DIR,
-    TEAMS_RESULTS_DIR,
-    season,
-)
+from const import TEAMS_DATA_DIR, TEAMS_RESULTS_DIR, season, leagues  # noqa: E402
 
 
 def strength_calculation(df):
@@ -36,17 +32,17 @@ def strength_calculation(df):
 if __name__ == "__main__":
     n = int(input("Enter number of last n gameweeks to include in calculation: "))
 
-    leagues = sd.MatchHistory.available_leagues()
     for league in leagues:
         league_code, league_name = league.split("-")
         gw = int(input(f"Enter gameweek number for {league_name}: "))
         current_season_team = []
         lastngames_team = []
 
-        mh = sd.MatchHistory(leagues=league, seasons=season)
-        hist = mh.read_games()
-        cols = ["home_team", "away_team", "FTHG", "FTAG"]
-        hist_df = hist[cols]
+        ss = sd.Sofascore(leagues=league, seasons=season, proxy="tor")
+        hist = ss.read_schedule()
+        cols = ["home_team", "away_team", "home_score", "away_score"]
+        hist_df = hist[cols].copy()
+        hist_df.dropna(inplace=True)
         hist_df.reset_index(drop=True, inplace=True)
 
         with open(TEAMS_DATA_DIR / "teams.json", "r", encoding="utf-8") as file:
@@ -60,12 +56,12 @@ if __name__ == "__main__":
             season_away_df = season_df.loc[season_df["away_team"] == team]
 
             h_games = len(season_home_df)
-            h_gf = season_home_df["FTHG"].sum()
-            h_ga = season_home_df["FTAG"].sum()
+            h_gf = season_home_df["home_score"].sum()
+            h_ga = season_home_df["away_score"].sum()
 
             a_games = len(season_away_df)
-            a_gf = season_away_df["FTAG"].sum()
-            a_ga = season_away_df["FTHG"].sum()
+            a_gf = season_away_df["away_score"].sum()
+            a_ga = season_away_df["home_score"].sum()
 
             current_season_team.append(
                 {
@@ -87,12 +83,12 @@ if __name__ == "__main__":
             lastn_away_df = lastn_df.loc[lastn_df["away_team"] == team]
 
             lastn_h_games = len(lastn_home_df)
-            lastn_h_gf = lastn_home_df["FTHG"].sum()
-            lastn_h_ga = lastn_home_df["FTAG"].sum()
+            lastn_h_gf = lastn_home_df["home_score"].sum()
+            lastn_h_ga = lastn_home_df["away_score"].sum()
 
             lastn_a_games = len(lastn_away_df)
-            lastn_a_gf = lastn_away_df["FTAG"].sum()
-            lastn_a_ga = lastn_away_df["FTHG"].sum()
+            lastn_a_gf = lastn_away_df["away_score"].sum()
+            lastn_a_ga = lastn_away_df["home_score"].sum()
 
             lastngames_team.append(
                 {

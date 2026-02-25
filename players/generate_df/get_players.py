@@ -12,7 +12,7 @@ from const import (  # noqa: E402
     official_team_id_map,
 )
 
-response = requests.get(official_base_url + "bootstrap-static/")
+response = requests.get(official_base_url + "/bootstrap-static/")
 data = response.json()["elements"]
 
 players = []

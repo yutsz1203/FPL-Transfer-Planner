@@ -30,7 +30,21 @@ def stats_calculation(matches):
         defensive_contribution,
         saves,
         bonus,
-    ) = 0, 0, 0, 0, 0.0, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0
+    ) = (
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0,
+        0.0,
+        0,
+        0,
+        0,
+        0,
+    )
     (
         h_games,
         h_goals,
@@ -40,7 +54,16 @@ def stats_calculation(matches):
         hxGI,
         h_gc,
         hxGc,
-    ) = 0, 0, 0, 0.0, 0.0, 0.0, 0, 0.0
+    ) = (
+        0,
+        0,
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0,
+        0.0,
+    )
     a_games, a_goals, a_assists, axG, axA, axGI, a_gc, axGc = (
         0,
         0,
@@ -209,7 +232,7 @@ if __name__ == "__main__":
         player = player_basic_df.loc[player_id, "Name"]
         print(f"Fetching data for {player}...")
         element_id = player_id + 1
-        response = requests.get(f"{official_base_url}element-summary/{element_id}/")
+        response = requests.get(f"{official_base_url}/element-summary/{element_id}/")
         if "history" not in response.json():
             print(f"{player} has not played in the current season, skipping...")
             continue
