@@ -1,21 +1,21 @@
 team,side,team_Oi,team_Di,opponent,opponent_Oi,opponent_Di,expected_gf,expected_ga
-Manchester Utd,A,1.53,0.97,Nott'ham Forest,0.14,1.25,1.91,0.14
-Aston Villa,A,1.25,0.56,Liverpool,0.97,1.39,1.74,0.54
-Brighton,H,1.39,1.25,Leeds United,1.11,1.11,1.54,1.39
-Leeds United,A,1.11,1.11,Brighton,1.39,1.25,1.39,1.54
-Tottenham,H,1.25,0.83,Chelsea,1.11,1.11,1.39,0.92
-Brentford,A,1.25,0.97,Crystal Palace,1.11,1.11,1.39,1.08
-Arsenal,A,0.97,0.28,Burnley,1.11,1.39,1.35,0.31
-Fulham,H,0.83,1.39,Wolves,0.69,1.39,1.15,0.96
-Crystal Palace,H,1.11,1.11,Brentford,1.25,0.97,1.08,1.39
-Manchester City,H,1.25,0.42,Bournemouth,1.39,0.83,1.04,0.58
-Newcastle Utd,A,0.83,0.69,West Ham,0.42,1.25,1.04,0.29
-Sunderland,H,0.83,0.56,Everton,0.56,1.25,1.04,0.31
-Wolves,A,0.69,1.39,Fulham,0.83,1.39,0.96,1.15
-Chelsea,A,1.11,1.11,Tottenham,1.25,0.83,0.92,1.39
-Bournemouth,A,1.39,0.83,Manchester City,1.25,0.42,0.58,1.04
-Liverpool,H,0.97,1.39,Aston Villa,1.25,0.56,0.54,1.74
-Everton,A,0.56,1.25,Sunderland,0.83,0.56,0.31,1.04
-Burnley,H,1.11,1.39,Arsenal,0.97,0.28,0.31,1.35
-West Ham,H,0.42,1.25,Newcastle Utd,0.83,0.69,0.29,1.04
-Nott'ham Forest,H,0.14,1.25,Manchester Utd,1.53,0.97,0.14,1.91
+Bournemouth,H,1.52,1.14,Sunderland,0.33,1.97,2.99,0.38
+Man City,A,1.32,0.99,Leeds,1.14,1.89,2.49,1.13
+Brentford,A,1.32,0.66,Burnley,0.76,1.52,2.01,0.5
+Liverpool,H,1.89,1.14,West Ham,1.32,0.99,1.87,1.5
+Everton,A,0.99,0.66,Newcastle,0.76,1.89,1.87,0.5
+Aston Villa,A,0.99,0.33,Wolves,0.76,1.77,1.75,0.25
+Arsenal,H,2.27,0.0,Chelsea,1.97,0.66,1.5,0.0
+Fulham,H,1.14,1.14,Tottenham,0.66,1.32,1.5,0.75
+West Ham,A,1.32,0.99,Liverpool,1.89,1.14,1.5,1.87
+Leeds,H,1.14,1.89,Man City,1.32,0.99,1.13,2.49
+Nott'm Forest,A,0.99,0.99,Brighton,0.38,0.76,0.75,0.38
+Tottenham,A,0.66,1.32,Fulham,1.14,1.14,0.75,1.5
+Man United,H,1.89,0.76,Crystal Palace,0.66,0.33,0.62,0.5
+Newcastle,H,0.76,1.89,Everton,0.99,0.66,0.5,1.87
+Burnley,H,0.76,1.52,Brentford,1.32,0.66,0.5,2.01
+Crystal Palace,A,0.66,0.33,Man United,1.89,0.76,0.5,0.62
+Sunderland,A,0.33,1.97,Bournemouth,1.52,1.14,0.38,2.99
+Brighton,H,0.38,0.76,Nott'm Forest,0.99,0.99,0.38,0.75
+Wolves,H,0.76,1.77,Aston Villa,0.99,0.33,0.25,1.75
+Chelsea,A,1.97,0.66,Arsenal,2.27,0.0,0.0,1.5

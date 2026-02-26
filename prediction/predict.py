@@ -7,137 +7,140 @@ import time
 import numpy as np
 import pandas as pd
 import soccerdata as sd
+import statsmodels
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
 from scipy.stats import poisson
+
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from const import TEAMS_DATA_DIR, TEAMS_RESULTS_DIR, leagues, season  # noqa: E402
 from utils import get_gameweek
 
+import os
+import sys
+import numpy as np
+import pandas as pd
+import soccerdata as sd
 
-def predict():
-    gameweeks = get_gameweek()
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from const import TEAMS_DATA_DIR, TEAMS_RESULTS_DIR, season, leagues, teams
 
-    for league in leagues:
-        league_code = league.split("-")[0]
-        gw = gameweeks[league]
 
-        fixtures_df = pd.read_csv(TEAMS_DATA_DIR / f"{league_code}_fixtures.csv")
-        team_strengths_season = pd.read_csv(
-            TEAMS_RESULTS_DIR / f"{league_code}_teams_currentseason.csv", index_col=0
+def create_model_data(df):
+    home_df = pd.DataFrame(
+        {
+            "date": df["date"].dt.tz_localize(None),
+            "team": df["home_team"],
+            "opponent": df["away_team"],
+            "goals": df["home_score"],
+            "home": 1,
+        }
+    )
+
+    away_df = pd.DataFrame(
+        {
+            "date": df["date"].dt.tz_localize(None),
+            "team": df["away_team"],
+            "opponent": df["home_team"],
+            "goals": df["away_score"],
+            "home": 0,
+        }
+    )
+
+    return pd.concat([home_df, away_df])
+
+
+def fit_model(df, T, lam=0.01):
+    model_df = df.copy()
+    model_df["days_ago"] = (T - model_df["date"]).dt.days
+    model_df["weight"] = np.exp(-lam * model_df["days_ago"])
+
+    model = smf.glm(
+        formula="goals ~ home + team + opponent",
+        data=model_df,
+        family=sm.families.Poisson(),
+        freq_weights=model_df["weight"],
+    ).fit()
+
+    return model
+
+
+def _predict(
+    model: statsmodels.genmod.generalized_linear_model.GLMResultsWrapper,
+    team: str,
+    opponent: str,
+) -> tuple[str, str]:
+    home_mean = model.predict(
+        pd.DataFrame(
+            data={"team": team, "opponent": opponent, "home": 1},
+            index=[1],
         )
-        team_strengths_last5 = pd.read_csv(
-            TEAMS_RESULTS_DIR / f"{league_code}_teams_last5games.csv", index_col=0
-        )
+    ).values[0]
 
-        # Use overall attacking / defending strength when less than half of games are played
-        if int(gw) <= 19:
-            lod = (
-                team_strengths_season["gf"].sum() / team_strengths_season["games"].sum()
-            ).round(2)
-            h_lod = lod
-            a_lod = lod
+    away_mean = model.predict(
+        pd.DataFrame(
+            data={"team": opponent, "opponent": team, "home": 0},
+            index=[1],
+        )
+    ).values[0]
+
+    return home_mean, away_mean
+
+
+def process_predict(proba: list, home: str, away: str) -> tuple[dict, dict]:
+
+    long_info, short_info = {}, {}
+
+    score_matrix = np.outer(proba[0], proba[1])
+    np.round(score_matrix)
+
+    home_prob = np.round(np.sum(np.tril(score_matrix, -1)), 4)
+    draw_prob = np.round(np.trace(score_matrix), 4)
+    away_prob = np.round(np.sum(np.triu(score_matrix, 1)), 4)
+
+    outcomes = np.array([home_prob, draw_prob, away_prob])
+    labels = np.array([home, "Draw", away])
+    prediction = labels[np.argmax(outcomes)]
+
+    long_info["Predicted Outcome"] = prediction
+
+    print(f"{prediction} ({np.max(outcomes)})")
+    short_info["Outcome"] = f"{prediction} ({np.max(outcomes)})"
+
+    flat_idx = np.argmax(score_matrix)
+    row, col = np.unravel_index(flat_idx, score_matrix.shape)
+
+    long_info["Home Probability"] = home_prob
+    long_info["Away Probability"] = away_prob
+    long_info["Draw Probability"] = draw_prob
+    long_info["Most likely score"] = f"{row}-{col}"
+    long_info["Most likely score probability"] = float(
+        np.round(score_matrix[row, col], 4)
+    )
+
+    rows, cols = np.indices(score_matrix.shape)
+    total_goals_grid = rows + cols
+
+    thresholds = [2.5, 3.5]
+
+    for t in thresholds:
+        over_prob = score_matrix[total_goals_grid > t].sum()
+        under_prob = 1 - over_prob
+
+        long_info[f"Over {t}"] = float(np.round(over_prob, 4))
+        long_info[f"Under {t}"] = float(np.round(under_prob, 4))
+
+        if over_prob > under_prob:
+            short_info[t] = f"Over ({over_prob:.4f})"
+            print(f"Over {t} ({over_prob:.4f})")
         else:
-            h_lod = (
-                team_strengths_last5["h_gf"].sum()
-                / team_strengths_last5["h_games"].sum()
-            ).round(2)
-            a_lod = (
-                team_strengths_last5["a_gf"].sum()
-                / team_strengths_last5["a_games"].sum()
-            ).round(2)
-        gw_df = fixtures_df[["team", gw]].copy()
+            short_info[t] = f"Under ({under_prob:.4f})"
+            print(f"Under {t} ({under_prob:.4f})")
 
-        gw_df[gw] = gw_df[gw].apply(ast.literal_eval)
+    print("=" * 50)
 
-        detailed, res = {}, {}
-
-        for team in gw_df["team"].values:
-            fixtures = gw_df.loc[gw_df["team"] == team, gw].item()
-
-            for fixture in fixtures:
-                # make it a list of dictionary of dictionary, e.g. [{"Man City":  {"Opponent": , "Outcome": , "2.5", "3.5"}}]
-                fixture_info = {}
-                res_info = {}
-
-                opponent_name, side = fixture.split("-")
-                if side == "H":
-                    h_oi = team_strengths_last5.at[team, "h_Oi"]
-                    h_di = team_strengths_last5.at[team, "h_Di"]
-                    a_oi = team_strengths_last5.at[opponent_name, "a_Oi"]
-                    a_di = team_strengths_last5.at[opponent_name, "a_Di"]
-
-                    fixture_info["Home Strengths"] = f"{h_oi}, {h_di}"
-                    fixture_info["Away Strengths"] = f"{a_oi}, {a_di}"
-                    # expected goal for home team: h_oi * a_di * h_lod
-                    # expected goal for away team: a_oi * h_di * a_lod
-                    home_dist = np.array(
-                        [poisson.pmf(i, h_oi * a_di * h_lod) for i in range(11)]
-                    )
-                    away_dist = np.array(
-                        [poisson.pmf(i, a_oi * h_di * a_lod) for i in range(11)]
-                    )
-
-                    score_matrix = np.outer(home_dist, away_dist)
-                    np.round(score_matrix)
-
-                    home_prob = np.round(np.sum(np.tril(score_matrix, -1)), 4)
-                    draw_prob = np.round(np.trace(score_matrix), 4)
-                    away_prob = np.round(np.sum(np.triu(score_matrix, 1)), 4)
-
-                    outcomes = np.array([home_prob, draw_prob, away_prob])
-                    labels = np.array([team, "Draw", opponent_name])
-                    prediction = labels[np.argmax(outcomes)]
-
-                    fixture_info["Predicted Outcome"] = prediction
-
-                    print(f"Prediction for the game between {team} and {opponent_name}")
-                    print(f"{prediction} ({np.max(outcomes)})")
-                    res_info["Outcome"] = f"{prediction} ({np.max(outcomes)})"
-
-                    flat_idx = np.argmax(score_matrix)
-                    row, col = np.unravel_index(flat_idx, score_matrix.shape)
-
-                    fixture_info["Home Probability"] = home_prob
-                    fixture_info["Away Probability"] = away_prob
-                    fixture_info["Draw Probability"] = draw_prob
-                    fixture_info["Most likely score"] = f"{row}-{col}"
-                    fixture_info["Most likely score probability"] = float(
-                        np.round(score_matrix[row, col], 4)
-                    )
-
-                    rows, cols = np.indices(score_matrix.shape)
-                    total_goals_grid = rows + cols
-
-                    thresholds = [2.5, 3.5]
-
-                    for t in thresholds:
-                        over_prob = score_matrix[total_goals_grid > t].sum()
-                        under_prob = 1 - over_prob
-
-                        fixture_info[f"Over {t}"] = float(np.round(over_prob, 4))
-                        fixture_info[f"Under {t}"] = float(np.round(under_prob, 4))
-
-                        if over_prob > under_prob:
-                            res_info[t] = f"Over ({over_prob:.4f})"
-                            print(f"Over {t} ({over_prob:.4f})")
-                        else:
-                            res_info[t] = f"Under ({under_prob:.4f})"
-                            print(f"Under {t} ({under_prob:.4f})")
-
-                    detailed[f"{team}-{opponent_name}"] = fixture_info
-                    res[f"{team}-{opponent_name}"] = res_info
-
-                    print("=" * 50)
-
-        with open(
-            f"prediction/{league_code}/{league_code}_gw{gw}_detailed.json", "w"
-        ) as file:
-            json.dump(detailed, file, indent=4)
-
-        with open(
-            f"prediction/{league_code}/{league_code}_gw{gw}_predict.json", "w"
-        ) as file:
-            json.dump(res, file, indent=4)
+    return long_info, short_info
 
 
 def calc_accuracy():
@@ -230,9 +233,61 @@ def calc_accuracy():
 
 
 if __name__ == "__main__":
-    t1 = time.perf_counter()
+    # t1 = time.perf_counter()
     # predict()
-    calc_accuracy()
-    t2 = time.perf_counter()
+    # # calc_accuracy()
+    # t2 = time.perf_counter()
 
-    print(f"Time elapsed: {t2 - t1:.2f}")
+    # print(f"Time elapsed: {t2 - t1:.2f}")
+    gameweeks = get_gameweek()
+    for league in leagues:
+        league_code, league_name = league.split("-")
+
+        ss = sd.Sofascore(leagues=league, seasons=season, proxy="tor")
+        hist = ss.read_schedule(force_cache=True)
+        gw = gameweeks[league]
+        T = hist.loc[hist["week"] == int(gw), "date"].values[0]
+        hist.dropna(inplace=True)
+        hist.reset_index(drop=True, inplace=True)
+        cols = ["date", "home_team", "away_team", "home_score", "away_score"]
+        league_df = create_model_data(hist[cols].copy())
+        model = fit_model(league_df, T)
+
+        fixtures_df = pd.read_csv(TEAMS_DATA_DIR / f"{league_code}_fixtures.csv")
+        fixtures_df.set_index("team", inplace=True)
+
+        long, short = {}, {}
+
+        for team in teams[league_name]:
+            curr_fixtures = ast.literal_eval(fixtures_df.at[team, gw])
+            for curr_fixture in curr_fixtures:
+                opponent, side = curr_fixture.split("-")
+                if side == "A":
+                    continue
+
+                home_mean, away_mean = _predict(model, team, opponent)
+
+                max_goals = 6
+                proba = [
+                    [poisson.pmf(i, team_mean) for i in range(0, max_goals)]
+                    for team_mean in [home_mean, away_mean]
+                ]
+
+                print(
+                    f"Prediction for the game between {team} ({home_mean:.2f}) and {opponent} ({away_mean:.2f}))"
+                )
+
+                long_info, short_info = process_predict(proba, team, opponent)
+
+                long[f"{team}-{opponent}"] = long_info
+                short[f"{team}-{opponent}"] = short_info
+
+        with open(
+            f"prediction/{league_code}/{league_code}_gw{gw}_long.json", "w"
+        ) as file:
+            json.dump(long, file, indent=4)
+
+        with open(
+            f"prediction/{league_code}/{league_code}_gw{gw}_short.json", "w"
+        ) as file:
+            json.dump(short, file, indent=4)

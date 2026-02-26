@@ -1,4 +1,4 @@
-import os
+import json
 import time
 from pathlib import Path
 import soccerdata as sd
@@ -62,28 +62,8 @@ season = 2025  # update every year
 # header = {"X-API-Key": api_key}
 
 
-teams = [
-    "Arsenal",
-    "Aston Villa",
-    "Bournemouth",
-    "Brentford",
-    "Brighton",
-    "Burnley",
-    "Chelsea",
-    "Crystal Palace",
-    "Everton",
-    "Fulham",
-    "Leeds",
-    "Liverpool",
-    "Man City",
-    "Man United",
-    "Newcastle",
-    "Nott'm Forest",
-    "Sunderland",
-    "Tottenham",
-    "West Ham",
-    "Wolves",
-]
+with open("teams/data/teams.json", "r") as file:
+    teams = json.load(file)
 
 team_ids = [
     "18bb7c10",

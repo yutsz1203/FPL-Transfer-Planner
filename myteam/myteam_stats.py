@@ -8,12 +8,17 @@ import pandas as pd
 import requests
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from const import fpl_id, official_base_url, PLAYERS_RESULTS_DIR, MYTEAM_RESULTS_DIR  # noqa: E402
+from const import (
+    fpl_id,
+    official_base_url,
+    PLAYERS_RESULTS_DIR,
+    MYTEAM_RESULTS_DIR,
+)  # noqa: E402
 
 
 def get_myteam_season_stats(gw):
     players_df = pd.read_csv(PLAYERS_RESULTS_DIR / "players_currentseason.csv")
-    response = requests.get(official_base_url + f"entry/{fpl_id}/event/{gw}/picks/")
+    response = requests.get(official_base_url + f"/entry/{fpl_id}/event/{gw}/picks/")
     players = response.json()["picks"]
     player_ids = [player["element"] for player in players]
     new_df = players_df[players_df["Player ID"].isin(player_ids)]
@@ -28,7 +33,7 @@ def get_myteam_season_stats(gw):
 # change last5games to lastngames
 def get_myteam_lastn_stats(gw, n):
     players_df = pd.read_csv(PLAYERS_RESULTS_DIR / f"players_last{n}games.csv")
-    response = requests.get(official_base_url + f"entry/{fpl_id}/event/{gw}/picks/")
+    response = requests.get(official_base_url + f"/entry/{fpl_id}/event/{gw}/picks/")
     players = response.json()["picks"]
     player_ids = [player["element"] for player in players]
     new_df = players_df[players_df["Player ID"].isin(player_ids)]

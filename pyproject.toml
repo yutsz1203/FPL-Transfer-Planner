@@ -52,6 +52,7 @@ dependencies = [
     "soccerdata>=1.8.8",
     "soupsieve==2.7",
     "sqlparse>=0.5.5",
+    "statsmodels>=0.14.6",
     "tomli>=2.4.0",
     "typing-extensions>=4.15.0",
     "tzdata>=2025.3",
