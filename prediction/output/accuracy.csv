@@ -1,0 +1,6 @@
+league,total_matches,correct_outcome,correct_outcome_levels,correct_2_5,correct_2_5_levels,correct_3_5,correct_3_5_levels
+ESP-La Liga,10,50.0,"[(np.float64(0.38), np.float64(0.55))]",80.0,"[(np.float64(0.59), np.float64(0.63))]",70.0,"[(np.float64(0.72), np.float64(0.82))]"
+GER-Bundesliga,9,66.67,"[(np.float64(0.41), np.float64(0.53))]",66.67,"[(np.float64(0.56), np.float64(0.66))]",100.0,"[(np.float64(0.61), np.float64(0.72))]"
+ITA-Serie A,10,50.0,"[(np.float64(0.61), np.float64(0.73))]",60.0,"[(np.float64(0.56), np.float64(0.65))]",80.0,"[(np.float64(0.7), np.float64(0.81))]"
+ENG-Premier League,10,70.0,"[(np.float64(0.54), np.float64(0.58))]",60.0,"[(np.float64(0.54), np.float64(0.62))]",70.0,"[(np.float64(0.65), np.float64(0.77))]"
+FRA-Ligue 1,9,77.78,"[(np.float64(0.47), np.float64(0.57))]",44.44,"[(np.float64(0.54), np.float64(0.66))]",77.78,"[(np.float64(0.67), np.float64(0.76))]"

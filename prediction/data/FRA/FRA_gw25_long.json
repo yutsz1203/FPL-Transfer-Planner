@@ -1,0 +1,110 @@
+{
+    "Auxerre-Strasbourg": {
+        "Predicted Outcome": "Strasbourg",
+        "Home Probability": 0.2213,
+        "Away Probability": 0.5137,
+        "Draw Probability": 0.2601,
+        "Most likely score": "0-1",
+        "Most likely score probability": 0.137,
+        "Over 2.5": 0.4257,
+        "Under 2.5": 0.5743,
+        "Over 3.5": 0.2166,
+        "Under 3.5": 0.7834
+    },
+    "Brest-Le Havre": {
+        "Predicted Outcome": "Brest",
+        "Home Probability": 0.4865,
+        "Away Probability": 0.1853,
+        "Draw Probability": 0.3272,
+        "Most likely score": "1-0",
+        "Most likely score probability": 0.2103,
+        "Over 2.5": 0.2293,
+        "Under 2.5": 0.7707,
+        "Over 3.5": 0.0852,
+        "Under 3.5": 0.9148
+    },
+    "Lens-Metz": {
+        "Predicted Outcome": "Lens",
+        "Home Probability": 0.7641,
+        "Away Probability": 0.0258,
+        "Draw Probability": 0.0692,
+        "Most likely score": "3-0",
+        "Most likely score probability": 0.129,
+        "Over 2.5": 0.6217,
+        "Under 2.5": 0.3783,
+        "Over 3.5": 0.4266,
+        "Under 3.5": 0.5734
+    },
+    "Lille-Lorient": {
+        "Predicted Outcome": "Lille",
+        "Home Probability": 0.4254,
+        "Away Probability": 0.3098,
+        "Draw Probability": 0.2597,
+        "Most likely score": "1-1",
+        "Most likely score probability": 0.1235,
+        "Over 2.5": 0.484,
+        "Under 2.5": 0.516,
+        "Over 3.5": 0.2655,
+        "Under 3.5": 0.7345
+    },
+    "Lyon-Paris FC": {
+        "Predicted Outcome": "Lyon",
+        "Home Probability": 0.6901,
+        "Away Probability": 0.1054,
+        "Draw Probability": 0.1803,
+        "Most likely score": "2-0",
+        "Most likely score probability": 0.1334,
+        "Over 2.5": 0.5257,
+        "Under 2.5": 0.4743,
+        "Over 3.5": 0.3022,
+        "Under 3.5": 0.6978
+    },
+    "Nantes-Angers": {
+        "Predicted Outcome": "Nantes",
+        "Home Probability": 0.3787,
+        "Away Probability": 0.305,
+        "Draw Probability": 0.3153,
+        "Most likely score": "1-0",
+        "Most likely score probability": 0.1511,
+        "Over 2.5": 0.3002,
+        "Under 2.5": 0.6998,
+        "Over 3.5": 0.1274,
+        "Under 3.5": 0.8726
+    },
+    "Nice-Rennes": {
+        "Predicted Outcome": "Rennes",
+        "Home Probability": 0.2768,
+        "Away Probability": 0.4866,
+        "Draw Probability": 0.216,
+        "Most likely score": "1-2",
+        "Most likely score probability": 0.0918,
+        "Over 2.5": 0.6521,
+        "Under 2.5": 0.3479,
+        "Over 3.5": 0.4352,
+        "Under 3.5": 0.5648
+    },
+    "Paris SG-Monaco": {
+        "Predicted Outcome": "Paris SG",
+        "Home Probability": 0.6967,
+        "Away Probability": 0.1029,
+        "Draw Probability": 0.1671,
+        "Most likely score": "2-0",
+        "Most likely score probability": 0.1226,
+        "Over 2.5": 0.5701,
+        "Under 2.5": 0.4299,
+        "Over 3.5": 0.3466,
+        "Under 3.5": 0.6534
+    },
+    "Toulouse-Marseille": {
+        "Predicted Outcome": "Toulouse",
+        "Home Probability": 0.4129,
+        "Away Probability": 0.3434,
+        "Draw Probability": 0.2296,
+        "Most likely score": "1-1",
+        "Most likely score probability": 0.1004,
+        "Over 2.5": 0.625,
+        "Under 2.5": 0.375,
+        "Over 3.5": 0.4039,
+        "Under 3.5": 0.5961
+    }
+}

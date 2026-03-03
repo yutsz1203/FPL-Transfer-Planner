@@ -2,9 +2,11 @@ import json
 from datetime import date
 
 import requests
+import numpy as np
 import soccerdata as sd
-
+from scipy.stats import t, sem
 from const import leagues, official_base_url, season
+
 
 """
 Documentation: https://fbrapi.com/documentation
@@ -90,7 +92,7 @@ def get_teams():
     print("Output teams to teams/data/teams.json ")
 
 
-def get_gameweek():
+def get_gameweek(type=None) -> dict:
     sofascore = sd.Sofascore(leagues=leagues, seasons=season)
     schedule = sofascore.read_schedule(force_cache=True)
     today = date.today().isoformat()
@@ -98,15 +100,37 @@ def get_gameweek():
 
     for league in leagues:
         league_schedule = schedule.loc[league]
-        gw = str(
-            league_schedule.loc[
-                league_schedule.index.get_level_values("game") >= today
-            ]["week"].values[0]
-        )
-
+        first_index = league_schedule.loc[
+            league_schedule.index.get_level_values("game") >= today
+        ]["week"].index.to_list()[0]
+        first_index_loc = league_schedule.index.get_loc(first_index)
+        if type == "prev":
+            gw = str(league_schedule.iloc[first_index_loc - 1]["week"])
+        else:
+            gw = str(
+                max(
+                    league_schedule.iloc[first_index_loc]["week"],
+                    league_schedule.iloc[first_index_loc + 1]["week"],
+                )
+            )
         gameweeks[league] = gw
 
     return gameweeks
+
+
+def ci(data, confidence_level: float = 0.8) -> tuple[float, float]:
+    degrees_of_freedom = len(data) - 1
+    sample_mean = np.mean(data)
+    sample_standard_error = sem(data)
+
+    ci_lower, ci_upper = t.interval(
+        confidence_level,
+        degrees_of_freedom,
+        loc=sample_mean,
+        scale=sample_standard_error,
+    )
+
+    return round(ci_lower, 2), round(ci_upper, 2)
 
 
 if __name__ == "__main__":

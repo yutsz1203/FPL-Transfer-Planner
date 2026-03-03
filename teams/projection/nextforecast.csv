@@ -1,0 +1,21 @@
+team,opponents,expected_gf,expected_ga
+Fulham,West Ham,2.23,1.33
+Man United,Newcastle,2.06,1.51
+Man City,Nott'm Forest,1.95,0.52
+Everton,Burnley,1.83,0.93
+Bournemouth,Brentford,1.78,1.73
+Brentford,Bournemouth,1.73,1.78
+Liverpool,Wolves,1.65,0.77
+Arsenal,Brighton,1.62,0.9
+Newcastle,Man United,1.51,2.06
+Leeds,Sunderland,1.46,0.96
+West Ham,Fulham,1.33,2.23
+Tottenham,Crystal Palace,1.3,1.1
+Aston Villa,Chelsea,1.26,1.2
+Chelsea,Aston Villa,1.2,1.26
+Crystal Palace,Tottenham,1.1,1.3
+Sunderland,Leeds,0.96,1.46
+Burnley,Everton,0.93,1.83
+Brighton,Arsenal,0.9,1.62
+Wolves,Liverpool,0.77,1.65
+Nott'm Forest,Man City,0.52,1.95
